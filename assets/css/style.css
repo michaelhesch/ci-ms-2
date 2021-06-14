@@ -1,0 +1,17 @@
+#mapid {
+  height: 180px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar {
+  display: inline;
+}
+
+.navbar li {
+  list-style: none;
+  display: inline;
+  float: right;
+}
