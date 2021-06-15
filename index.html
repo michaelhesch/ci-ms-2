@@ -9,26 +9,36 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
   crossorigin="" />
+  <!--Fontawesome Stylesheet-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" type="text/css"/>
   <!--Internal stylesheet import-->
   <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body onload="defaultView();">
   <header>
     <!--Navbar-->
     <nav class="navbar">
-      <a href="">Mappy</a>
-      <ol>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/map.html">Create New Travel Map</a></li>
-      </ol>
+      <a href="" class="site-logo">Mappy</a>
+      <ul class="nav-item-container">
+        <li class="nav-item"><a href="./index.html">Create New Travel Map</a></li>
+      </ul>
     </nav>
   </header>
   <main>
-      <div id="mapid"></div>
+    <!--Container for JavaScript content delivery-->
+    <div id="form-div"></div>
   </main>
   <footer>
     <!--Social Media links-->
-
+    <div class="footer-links">
+      <p>Follow us on Social Media:</p>
+      <ul>
+         <li><a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><i class="fab fa-facebook"> </i></a></li>
+         <li><a href="https://www.twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"><i class="fab fa-twitter-square"> </i></a></li>
+         <li><a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fab fa-instagram"> </i></a></li>
+         <li><a href="https://www.youtube.com" target="_blank" rel="noreferrer" aria-label="Youtube"><i class="fab fa-youtube"> </i></a></li>
+      </ul>
+   </div>
   </footer>
   <!--Leaflet JavaScript library import-->
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
