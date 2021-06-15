@@ -1,17 +1,113 @@
-#mapid {
-  height: 180px;
-  width: 50%;
+/*Global styling*/
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/*Navigation styling*/
+nav {
+  width: 100%;
+  background-color: gray;
+  padding-left: 30px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-item-container {
+  display: flex;
+  list-style: none;
+}
+
+.nav-item a {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item:hover {
+  background-color: white;
+}
+
+.nav-item:hover a {
+  color: darkgreen;
+}
+
+.site-logo {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
+}
+
+.site-logo img {
+  width: 175px;
+  vertical-align: middle;
+}
+
+/*Main section styling*/
+
+main {
+  padding: 10px;
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.left-div {
+  flex: 60%;
+  padding: 10px;
+}
+
+.right-div {
+  flex: 40%;
+  padding: 10px;
+}
+
+/*Map container styling*/
+#mapid, #mapid2 {
+  height: 400px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.navbar {
+/*Footer styling*/
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.footer-links li {
   display: inline;
 }
 
-.navbar li {
-  list-style: none;
-  display: inline;
-  float: right;
+.footer-links a {
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.footer-links i {
+	font-size: 200%;
+	padding: 10px 25px 0 25px;
+	color: #343a40;
 }
