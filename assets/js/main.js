@@ -108,16 +108,22 @@ function defaultView() {
   //Consume inputs from form form
 
 //Randomize results based on inputs
-  //Use inputs to generate array of results
+  //Use user inputs to generate array of results
   function randomizer (locationsArr) {
     return Math.floor(Math.random() * locationsArr);
   };
 
   //randomly select an item to add to the output array by producing an index value between 0 and the max of the 'data' array
-  let printArr = [];
+  function generateCityList () {
+    let printArr = [];
 
-  for (let i = 0; i < 3; i++) {
-    printArr.push(locationsArr[randomizer(locationsArr.length)]);
+    while (printArr.length < 3) { //need to update 3 to be variable value consumed from form selection
+      let randomResult = locationsArr[randomizer(locationsArr.length)];
+      if (!printArr.includes(randomResult)) {
+        printArr.push(randomResult);  
+      };
+    };
+    return printArr;
   };
 
 //validate form for completeness before generating map
@@ -125,6 +131,8 @@ function defaultView() {
 
 //HTML content to return
 function returnMap() {
+  let printArr = generateCityList();
+
   //display Leaflet map content
   let locationsList = "";
 
