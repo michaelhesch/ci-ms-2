@@ -165,27 +165,29 @@ function defaultView() {
   function returnForm() {
     return document.getElementById("form-div").innerHTML = `
       <div>
-        <h3 class="">Apply to join Driven:</h3>
-        <p>Ready to join the fun?  We are looking for new members!</p>
-        <p>To apply to join the club, please enter your contact details below and select the desired membership level.  After your application has been submitted, a staff member will reach out to you for further details.</p>
+        <h3>Please select your travel preferences below:</h3>
           <form action="#">
-            <div class="">
-              <label for="fname">First Name:</label>
-              <input type="text" class="form-control" placeholder="Enter First Name" id="fname" aria-label="First Name" required>
+            <div>
+              <p>Starting City:</p>
+              <label for="startcityDublin">Dublin</label>
+              <input type="radio" name="startcity" id="startcityDublin" value="option1" aria-label="Starting City Dublin" checked>
+              <br />
+              <label for="startcityCork">Cork</label>
+              <input type="radio" name="startcity" id="startcityCork" value="optoin2" aria-lable="Starting City Cork">
             </div>
-            <div class="form-group">
+            <div>
               <label for="lname">Last Name:</label>
               <input type="text" class="form-control" placeholder="Enter Last Name" id="lname" aria-label="Last Name" required>
             </div>
-            <div class="form-group">
+            <div>
               <label for="phone">Mobile phone number:</label>
               <input type="tel" class="form-control" placeholder="Enter Mobile Number - eg. +353 000-123-4567" id="phone" name="phone" pattern="+[0-9]{3} [0-9]{3}-[0-9]{3}-[0-9]{4}" aria-label="Mobile Phone Number" required>
             </div>
-            <div class="form-group">
+            <div>
               <label for="email">Email address:</label>
               <input type="email" class="form-control" placeholder="Enter email address" id="email" aria-label="Email Address" required>
             </div>
-            <div class="form-group">
+            <div>
               <label for="pwd">Password:</label>
               <input type="password" class="form-control" placeholder="Choose password" id="pwd" aria-label="password" required>
             </div>
@@ -203,7 +205,6 @@ function defaultView() {
                   <label class="form-check-label" for="premiumMember">Premium Membership</label>
                 </div>
               </div>
-            <p><i>Note: a member of staff will contact you to collect payment details upon processing your application.</i></p>
             <br />
             <button type="submit" onclick="returnMap();">Create your travel Map!</button>
           </form>
