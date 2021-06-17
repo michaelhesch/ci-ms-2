@@ -166,7 +166,7 @@ let locationsArr = [
 //Landing page default view upon arriving to the home page
 
 function defaultView() {
-  return document.getElementById("controls").innerHTML = `
+  document.getElementById("controls").innerHTML = `
     <div>Welcome to the Map Generation Company called Mappy!</div>
     <br />
     <div>
@@ -180,65 +180,24 @@ function defaultView() {
     <br />
     <button onclick="mapLoader();">Start building your travel map now!</button>
   `;
+  return;
 }
 
-//Generate map quiz form html
-
-  //HTML content generation
-/*  function returnForm() {
-    return document.getElementById("form-div").innerHTML = `
-      <div>
-        <h3>Please select your travel preferences below:</h3>
-          <form action="#">
-            <div>
-              <label for="startCity">Starting City:</label>
-              <select id="startCity" name="startCity">
-                <option value="dublin">Dublin</option>
-                <option value="cork">Cork</option>
-              </select>
-            </div>
-            <div>
-              <label for="tripType">Type of trip desired:</label>
-              <select id="tripType name="tripType">
-                <option value="allTypes">All</option>
-                <option value="cultreHistory">Culture / History</option>
-                <option value="outdoorsAdventure">Outdoors / Adventure</option>
-                <option value="diningNightlife">Dining / Nightlife</option>
-              </select>
-            </div>
-            <div>
-              <label for="numStops">Desired number of cities:</label>
-              <select id="numStops" name="numStops">
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-              </select>
-            </div>
-            <div>
-              <p>If you wish to save your travel map, please enter your email address below.</p>
-              <label for="email">Email address:</label>
-              <input type="email" class="form-control" placeholder="Enter email address" id="email" aria-label="Email Address" required>
-            </div>
-            <button type="submit" onclick="returnMap();">Create your travel Map!</button>
-          </form>
-      </div>
-    `;
-}*/
+//HTML content generation
 
 //Loads preference selection form & HTML and default main map view 
 function mapLoader() {
   document.getElementById("controls").innerHTML = `
   <div>
-    <form method="post">
     <div>
       <label for="tripType">Type of trip desired:</label>
-      <select id="tripType name="tripType">
+      <select id="tripType" name="tripType">
         <option value="allTypes">All</option>
-        <option value="cultreHistory">Culture / History</option>
-        <option value="outdoorsAdventure">Outdoors / Adventure</option>
-        <option value="diningNightlife">Dining / Nightlife</option>
+        <option value="Historic/Monument">Culture / History</option>
+        <option value="Outdoors">Outdoors / Adventure</option>
+        <option value="Restaurant/Pub">Dining / Nightlife</option>
       </select>
-    </div>
+    </div> 
     <div>
       <label for="numStops">Desired number of cities:</label>
       <select id="numStops" name="numStops">
@@ -248,7 +207,6 @@ function mapLoader() {
       </select>
     </div>
     <button type="submit" onclick="returnMap(); return false;">Create your travel Map!</button>
-    </form>
   </div>
   `;
 
@@ -363,7 +321,7 @@ function returnMap() {
     coordsGroup.push(printArr[i].coord);
   }
 
-  //set the map to fit all POI markers in view upon rendering
+  //set the map to fit all POI markers in view upon rendering with padding and map/zoom animation
   mymap.flyToBounds(coordsGroup, {
     padding: L.point(36, 36),
     animate: true,
@@ -376,14 +334,25 @@ function detailsView(citySelectionIndex) {
 
   let selection = printArr[citySelectionIndex];
   let poiList = "";
+  let tripType = document.getElementById("tripType").value;
+  let filteredSelection; 
 
-  for (let i = 0; i < selection.drilldown.length; i++) {
+  if (tripType === "allTypes") {
+    filteredSelection = selection.drilldown;
+  } else { 
+    filteredSelection = selection.drilldown.filter((thingToDo) => {
+      return thingToDo.poiType == tripType;
+      }
+    );
+  }
+
+  for (let i = 0; i < filteredSelection.length; i++) {
     poiList +=
-    `<p><strong>${i + 1}. ${selection.drilldown[i].poiName}</strong>
+    `<p><strong>${i + 1}. ${filteredSelection[i].poiName}</strong>
     <br />
-    <p>Summary: ${selection.drilldown[i].poiSummary}</p>
+    <p>Summary: ${filteredSelection[i].poiSummary}</p>
     <br />
-    <p>Type of attraction: ${selection.drilldown[i].poiType}</p>
+    <p>Type of attraction: ${filteredSelection[i].poiType}</p>
     </p>
     <br />
     `;
@@ -407,7 +376,7 @@ function detailsView(citySelectionIndex) {
 
   document.getElementById("controls-bottom").innerHTML = `
   <div>
-    <button onclick="clearDrilldown(); return false;">Hide Destination Details</button>
+    <button onclick="clearDrilldown(); return false;">Hide Detailed View</button>
     <button onclick="">Print Your Travel Map</button>
     <button onclick="">E-Mail Your Travel Map</button>
   </div>
@@ -424,24 +393,21 @@ function detailsView(citySelectionIndex) {
       accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
   }).addTo(mymap2);
 
-  //loop to add markers from array of drilldown coordinates based on user selection
+  //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
   let coordsDrilldownGroup = [];
 
-  for (let i = 0; i < selection.drilldown.length; i++) { //TODO need to update array to new POI coords array
-    L.marker(selection.drilldown[i].poiCoord).addTo(mymap2).bindPopup("This is the "+selection.drilldown[i].poiName+" marker");
-    coordsDrilldownGroup.push(selection.drilldown[i].poiCoord);//TODO need to create an array of drilldown POI coords?
+  for (let i = 0; i < filteredSelection.length; i++) { //TODO need to update array to new POI coords array
+    L.marker(filteredSelection[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredSelection[i].poiName+" marker");
+    coordsDrilldownGroup.push(filteredSelection[i].poiCoord);//TODO need to create an array of drilldown POI coords?
   }
 
-  //set the map to include all POI markers upon rendering
+  //set the map to include all POI markers from array above with padding and zoom/map animation
   mymap2.flyToBounds(coordsDrilldownGroup, {
     padding: L.point(36, 36), 
     animate: true,
   });
-
-  return false;
 }
 
 function clearDrilldown() {
   document.getElementById("form-div-2").innerHTML = ``;
-  return false;
 }
