@@ -202,41 +202,39 @@ function defaultView() {
     `
 }
 
-//Process map quiz inputs  
-  //validate form for completeness before generating map
-  
-  //Consume inputs from form form
-
 //Randomize results based on inputs
-  //Use user inputs to generate array of results
+
+//consumer user preference inputs to generate array of results, generates array index values to be used by generateCityList function below
 function randomizer (locationsArr) {
-    return Math.floor(Math.random() * locationsArr);
+  return Math.floor(Math.random() * locationsArr);
 };
 
-  //randomly select an item to add to the output array by producing an index value between 0 and the max of the 'data' array
+//function to select cities to add to the output array by using the randomizer results
 function generateCityList () {
-    let citiesArr = [];
-    let numStops = document.getElementById("numStops").value;
+  let citiesArr = [];
+  let numStops = document.getElementById("numStops").value;
 
-    //While loop used to add random values which correspond to the index of an item in the data array.  
-    //If statement included to check for duplicates in the array of index values to prevent duplicate results from being displayed.
-    while (citiesArr.length < numStops) { 
-      let randomResult = locationsArr[randomizer(locationsArr.length)];
-      if (!citiesArr.includes(randomResult)) {
-        citiesArr.push(randomResult);  
-      };
+  //While loop used to add random values which correspond to the index of an item in the data array.  
+  //If statement included to check for duplicates in the array of index values to prevent duplicate results from being displayed.
+  while (citiesArr.length < numStops) { 
+    let randomResult = locationsArr[randomizer(locationsArr.length)];
+    if (!citiesArr.includes(randomResult)) {
+      citiesArr.push(randomResult);  
     };
-    return citiesArr;
+  };
+  return citiesArr;
 };
 
 //Generate HTML content to return
+
+//global variable needed to hold travel destinations content generated in the returnMap function, to be consumed by detailsView function below
 let printArr = [];
 
+//function to generate output html and populate it with map and city markers, as well as return city names and details based on user preferences input
 function returnMap() {
   printArr = generateCityList();
-  //let numStops = document.getElementById("numStops").value;
 
-  //display Leaflet map content
+  //loop to add each travel destination HTML to be included in results to user
   let locationsList = "";
 
   for (let i = 0; i < printArr.length; i++) {
@@ -251,6 +249,7 @@ function returnMap() {
     `;
   };
 
+  //HTML content displayed after preference selections are made with map results
   document.getElementById("form-div").innerHTML = `
     <h2>Your Custom Travel Map:</h2>
     <br />
@@ -269,7 +268,7 @@ function returnMap() {
     </div>
   `;
 
-  // TODO need to update center location to reflect first item in list of results
+  //render map via mapbox API & leaflet library
   let mymap = L.map('mapid').setView([53.3497, -6.2602], 13);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
@@ -288,7 +287,7 @@ function returnMap() {
     coordsGroup.push(printArr[i].coord);
   };
 
-  //set the map to include all POI markers upon rendering
+  //set the map to fit all POI markers in view upon rendering
   mymap.fitBounds(coordsGroup);
 
 };
@@ -327,6 +326,7 @@ function detailsView(citySelectionIndex) {
     </div>
   `;
 
+  //render drilldown map and POI markers using mapbox API and leaflet library
   let mymap2 = L.map('mapid2').setView([53.3497, -6.2602], 13);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
