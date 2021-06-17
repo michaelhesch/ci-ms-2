@@ -143,7 +143,7 @@ let locationsArr = [
 //Landing page default view upon arriving to the home page
 
 function defaultView() {
-  return document.getElementById("form-div").innerHTML = `
+  return document.getElementById("controls").innerHTML = `
     <div>Welcome to the Map Generation Company called Mappy!</div>
     <br />
     <div>
@@ -155,14 +155,14 @@ function defaultView() {
       </ul>
     </div>
     <br />
-    <button onclick="returnForm();">Start building your travel map now!</button>
-  `
+    <button onclick="mapLoader();">Start building your travel map now!</button>
+  `;
 }
 
 //Generate map quiz form html
 
   //HTML content generation
-  function returnForm() {
+/*  function returnForm() {
     return document.getElementById("form-div").innerHTML = `
       <div>
         <h3>Please select your travel preferences below:</h3>
@@ -199,7 +199,59 @@ function defaultView() {
             <button type="submit" onclick="returnMap();">Create your travel Map!</button>
           </form>
       </div>
-    `
+    `;
+}*/
+
+function mapLoader() {
+  document.getElementById("controls").innerHTML = `
+  <div>
+    <form method="post">
+    <div>
+      <label for="tripType">Type of trip desired:</label>
+      <select id="tripType name="tripType">
+        <option value="allTypes">All</option>
+        <option value="cultreHistory">Culture / History</option>
+        <option value="outdoorsAdventure">Outdoors / Adventure</option>
+        <option value="diningNightlife">Dining / Nightlife</option>
+      </select>
+    </div>
+    <div>
+      <label for="numStops">Desired number of cities:</label>
+      <select id="numStops" name="numStops">
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        <option value="4">Four</option>
+      </select>
+    </div>
+    <button type="submit" onclick="returnMap(); return false;">Create your travel Map!</button>
+    </form>
+  </div>
+  `;
+
+  document.getElementById("form-div").innerHTML = `
+  <h2>Your Custom Ireland Travel Map:</h2>
+  <br />
+  <p>Please select your travel preferences to generate a new map.</p>
+  <br />
+  <div class="main-container">
+    <div class="left-div">
+      <div id="mapid"></div>
+    </div>
+    <br />
+    <div class="right-div"></div>
+  </div>
+  `;
+    
+  let mymap = L.map('mapid').setView([53.2734, -7.7783], 13);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
+  }).addTo(mymap);
+  mymap.setZoom(7);
 }
 
 //Randomize results based on inputs
@@ -207,7 +259,7 @@ function defaultView() {
 //consumer user preference inputs to generate array of results, generates array index values to be used by generateCityList function below
 function randomizer (locationsArr) {
   return Math.floor(Math.random() * locationsArr);
-};
+}
 
 //function to select cities to add to the output array by using the randomizer results
 function generateCityList () {
@@ -220,10 +272,10 @@ function generateCityList () {
     let randomResult = locationsArr[randomizer(locationsArr.length)];
     if (!citiesArr.includes(randomResult)) {
       citiesArr.push(randomResult);  
-    };
-  };
+    }
+  }
   return citiesArr;
-};
+}
 
 //Generate HTML content to return
 
@@ -247,30 +299,30 @@ function returnMap() {
     </p>
     <br />
     `;
-  };
+  }
 
   //HTML content displayed after preference selections are made with map results
   document.getElementById("form-div").innerHTML = `
-    <h2>Your Custom Travel Map:</h2>
-    <br />
-    <p>Please see your customized results below.</p>
-    <br />
-    <div class="main-container">
-      <div class="left-div">
-        <div id="mapid"></div>
-      </div>
+    <h2>Your Custom Ireland Travel Map:</h2>
       <br />
-      <div class="right-div">
-        <h3>Your list of destinations for your trip:</h3>
+      <p>Please see your customized results below.</p>
+      <br />
+      <div class="main-container">
+        <div class="left-div">
+          <div id="mapid"></div>
+        </div>
         <br />
-        ${locationsList}
+        <div class="right-div">
+          <h3>Your list of destinations for your trip:</h3>
+          <br />
+          ${locationsList}
+        </div>
       </div>
-    </div>
-  `;
+    `;
 
   //render map via mapbox API & leaflet library
-  let mymap = L.map('mapid').setView([53.3497, -6.2602], 13);
-
+  let mymap = L.map('mapid').setView([53.2734, -7.7783], 9);
+  //mymap.setZoom(7);
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       id: 'mapbox/streets-v11',
@@ -285,12 +337,15 @@ function returnMap() {
   for (let i = 0; i < printArr.length; i++) {
     L.marker(printArr[i].coord).addTo(mymap).bindPopup("This is the "+printArr[i].name+" marker");
     coordsGroup.push(printArr[i].coord);
-  };
+  }
 
   //set the map to fit all POI markers in view upon rendering
-  mymap.fitBounds(coordsGroup);
+  mymap.flyToBounds(coordsGroup, {
+    padding: L.point(36, 36),
+    animate: true,
+  });
 
-};
+}
 
 //create drilldown view content, pass in index of the city from the results displayed
 function detailsView(citySelectionIndex) {
@@ -327,7 +382,7 @@ function detailsView(citySelectionIndex) {
   `;
 
   //render drilldown map and POI markers using mapbox API and leaflet library
-  let mymap2 = L.map('mapid2').setView([53.3497, -6.2602], 13);
+  let mymap2 = L.map('mapid2').setView([53.2734, -7.7783], 8);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -343,8 +398,12 @@ function detailsView(citySelectionIndex) {
   for (let i = 0; i < selection.drilldown.length; i++) { //TODO need to update array to new POI coords array
     L.marker(selection.drilldown[i].poiCoord).addTo(mymap2).bindPopup("This is the "+selection.drilldown[i].poiName+" marker");
     coordsDrilldownGroup.push(selection.drilldown[i].poiCoord);//TODO need to create an array of drilldown POI coords?
-  };
+  }
 
   //set the map to include all POI markers upon rendering
-  mymap2.fitBounds(coordsDrilldownGroup);
-};
+  mymap2.flyToBounds(coordsDrilldownGroup, {
+    padding: L.point(36, 36), 
+    animate: true,
+  });
+  return false;
+}
