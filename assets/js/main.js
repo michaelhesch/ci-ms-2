@@ -137,6 +137,29 @@ let locationsArr = [
       poiSummary: 'Restored 1594 house, garden and museum with timber ceiling.',
       poiType: 'Historic/Monument'
     }]
+  },
+  {
+    name: 'Donegal',
+    coord: [54.6543, -8.1098],
+    summary: 'A town in County Donegal which means "fort of the foreigners" in Irish.  From the 15th to 17th century it was the "capital" of Tyrconnell, a Gaelic kingdom.',
+    drilldown: [{
+      poiName: 'The Diamond',
+      poiCoord: [54.6538, -8.1106],
+      poiSummary: 'Historic center of Donegal town, a hub for music, poetic and cultural gatherings.',
+      poiType: 'Historic/Monument'
+    },
+    {
+      poiName: 'Donegal Castle',
+      poiCoord: [54.6550, -8.1106],
+      poiSummary: 'The historic stronghold of the ODonnell family, now a Office of Public Works site.',
+      poiType: 'Historic/Monument'
+    },
+    {
+      poiName: 'The Forge',
+      poiCoord: [54.6554, -8.1124],
+      poiSummary: 'A pub in Donegal town.',
+      poiType: 'Restaurant/Pub'
+    }]
   }
 ];
 
@@ -202,6 +225,7 @@ function defaultView() {
     `;
 }*/
 
+//Loads preference selection form & HTML and default main map view 
 function mapLoader() {
   document.getElementById("controls").innerHTML = `
   <div>
@@ -242,7 +266,7 @@ function mapLoader() {
   </div>
   `;
     
-  let mymap = L.map('mapid').setView([53.2734, -7.7783], 13);
+  let mymap = L.map('mapid').setView([53.2734, -7.7783], 7);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -251,7 +275,6 @@ function mapLoader() {
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
   }).addTo(mymap);
-  mymap.setZoom(7);
 }
 
 //Randomize results based on inputs
@@ -285,6 +308,7 @@ let printArr = [];
 //function to generate output html and populate it with map and city markers, as well as return city names and details based on user preferences input
 function returnMap() {
   printArr = generateCityList();
+  document.getElementById("form-div-2").innerHTML = ``; //clear drilldown if user clicks generate new map and a drilldown from a past map was already loaded.
 
   //loop to add each travel destination HTML to be included in results to user
   let locationsList = "";
@@ -321,8 +345,8 @@ function returnMap() {
     `;
 
   //render map via mapbox API & leaflet library
-  let mymap = L.map('mapid').setView([53.2734, -7.7783], 9);
-  //mymap.setZoom(7);
+  let mymap = L.map('mapid').setView([53.2734, -7.7783], 7);
+
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       id: 'mapbox/streets-v11',
@@ -381,8 +405,16 @@ function detailsView(citySelectionIndex) {
     </div>
   `;
 
+  document.getElementById("controls-bottom").innerHTML = `
+  <div>
+    <button onclick="clearDrilldown(); return false;">Hide Destination Details</button>
+    <button onclick="">Print Your Travel Map</button>
+    <button onclick="">E-Mail Your Travel Map</button>
+  </div>
+  `;
+
   //render drilldown map and POI markers using mapbox API and leaflet library
-  let mymap2 = L.map('mapid2').setView([53.2734, -7.7783], 8);
+  let mymap2 = L.map('mapid2').setView(selection.coord, 9);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -405,5 +437,11 @@ function detailsView(citySelectionIndex) {
     padding: L.point(36, 36), 
     animate: true,
   });
+
+  return false;
+}
+
+function clearDrilldown() {
+  document.getElementById("form-div-2").innerHTML = ``;
   return false;
 }
