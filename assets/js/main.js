@@ -189,15 +189,7 @@ function defaultView() {
 function mapLoader() {
   document.getElementById("controls").innerHTML = `
   <div>
-    <div>
-      <label for="tripType">Type of trip desired:</label>
-      <select id="tripType" name="tripType">
-        <option value="allTypes">All</option>
-        <option value="Historic/Monument">Culture / History</option>
-        <option value="Outdoors">Outdoors / Adventure</option>
-        <option value="Restaurant/Pub">Dining / Nightlife</option>
-      </select>
-    </div> 
+
     <div>
       <label for="numStops">Desired number of cities:</label>
       <select id="numStops" name="numStops">
@@ -329,12 +321,10 @@ function returnMap() {
 
 }
 
-//create drilldown view content, pass in index of the city from the results displayed
-function detailsView(citySelectionIndex) {
-
+/*function sharedPoiFilter() { 
   let selection = printArr[citySelectionIndex];
   let poiList = "";
-  let tripType = document.getElementById("tripType").value;
+  let tripType = "allTypes";
   let filteredSelection; 
 
   if (tripType === "allTypes") {
@@ -358,6 +348,41 @@ function detailsView(citySelectionIndex) {
     `;
   }
 
+  return poiList;
+}*/
+
+
+//create drilldown view content, pass in index of the city from the results displayed
+function detailsView(citySelectionIndex) {
+
+  let selection = printArr[citySelectionIndex];
+  let poiList = "";
+  let tripType = "allTypes";
+  let filteredSelection; 
+
+  if (tripType === "allTypes") {
+    filteredSelection = selection.drilldown;
+  } else { 
+    filteredSelection = selection.drilldown.filter((thingToDo) => {
+      return thingToDo.poiType == tripType;
+      }
+    );
+  }
+
+  for (let i = 0; i < filteredSelection.length; i++) {
+    poiList +=
+    `<p><strong>${i + 1}. ${filteredSelection[i].poiName}</strong>
+    <br />
+    <p>Summary: ${filteredSelection[i].poiSummary}</p>
+    <br />
+    <p>Type of attraction: ${filteredSelection[i].poiType}</p>
+    </p>
+    <br />
+    `;
+  }
+
+  //let poiList = sharedDataFilter();
+
   document.getElementById("form-div-2").innerHTML = `
     <h2>Detailed view of ${selection.name}:</h2>
     <br />
@@ -367,9 +392,21 @@ function detailsView(citySelectionIndex) {
       </div>
       <br />
       <div class="right-div">
-        <h3>Points of interest for ${selection.name}:</h3>
-        <br />
-        ${poiList}
+        <div>
+          <label for="tripType">Type of trip desired:</label>
+          <select id="tripType" name="tripType" onchange="filterDrilldown();">
+            <option value="allTypes">All</option>
+            <option value="Historic/Monument">Culture / History</option>
+            <option value="Outdoors">Outdoors / Adventure</option>
+            <option value="Restaurant/Pub">Dining / Nightlife</option>
+          </select>
+          <br />
+        </div>
+        <div id="drilldownDetails"> 
+          <h3>Points of interest for ${selection.name}:</h3>
+          <br />
+          ${poiList}
+        </div>
       </div>
     </div>
   `;
@@ -406,6 +443,13 @@ function detailsView(citySelectionIndex) {
     padding: L.point(36, 36), 
     animate: true,
   });
+}
+
+//update the points of interest drill down div based on user's selection
+function filterDrilldown() {
+
+
+
 }
 
 function clearDrilldown() {
