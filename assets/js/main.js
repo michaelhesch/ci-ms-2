@@ -35,13 +35,13 @@ let locationsArr = [
     },
     {
       poiName: 'The Spanish Arch',
-      oiCoord: [53.2697, -9.0539],
+      poiCoord: [53.2697, -9.0539],
       poiSummary: 'An old arch from Viking times',
       poiType: 'Historic/Monument'
     },
     {
       poiName: 'Browne Doorway',
-      oiCoord: [53.2747, -9.0496],
+      poiCoord: [53.2747, -9.0496],
       poiSummary: 'Monument at Eyre Square park',
       poiType: 'Historic/Monument'
     }]
@@ -168,82 +168,73 @@ function defaultView() {
         <h3>Please select your travel preferences below:</h3>
           <form action="#">
             <div>
-              <p>Starting City:</p>
-              <label for="startcityDublin">Dublin</label>
-              <input type="radio" name="startcity" id="startcityDublin" value="option1" aria-label="Starting City Dublin" checked>
-              <br />
-              <label for="startcityCork">Cork</label>
-              <input type="radio" name="startcity" id="startcityCork" value="optoin2" aria-lable="Starting City Cork">
+              <label for="startCity">Starting City:</label>
+              <select id="startCity" name="startCity">
+                <option value="dublin">Dublin</option>
+                <option value="cork">Cork</option>
+              </select>
             </div>
             <div>
-              <label for="lname">Last Name:</label>
-              <input type="text" class="form-control" placeholder="Enter Last Name" id="lname" aria-label="Last Name" required>
+              <label for="tripType">Type of trip desired:</label>
+              <select id="tripType name="tripType">
+                <option value="allTypes">All</option>
+                <option value="cultreHistory">Culture / History</option>
+                <option value="outdoorsAdventure">Outdoors / Adventure</option>
+                <option value="diningNightlife">Dining / Nightlife</option>
+              </select>
             </div>
             <div>
-              <label for="phone">Mobile phone number:</label>
-              <input type="tel" class="form-control" placeholder="Enter Mobile Number - eg. +353 000-123-4567" id="phone" name="phone" pattern="+[0-9]{3} [0-9]{3}-[0-9]{3}-[0-9]{4}" aria-label="Mobile Phone Number" required>
+              <label for="numStops">Desired number of cities:</label>
+              <select id="numStops" name="numStops">
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+              </select>
             </div>
             <div>
+              <p>If you wish to save your travel map, please enter your email address below.</p>
               <label for="email">Email address:</label>
               <input type="email" class="form-control" placeholder="Enter email address" id="email" aria-label="Email Address" required>
             </div>
-            <div>
-              <label for="pwd">Password:</label>
-              <input type="password" class="form-control" placeholder="Choose password" id="pwd" aria-label="password" required>
-            </div>
-            <h4 class="member-app-title">Membership Type:</h4>
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-group form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="membership" id="standardMember" value="option1" aria-label="Standard Membership" checked>
-                  <label class="form-check-label" for="standardMember">Standard Membership</label>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="membership" id="premiumMember" value="option2" aria-label="Premium Membership">
-                  <label class="form-check-label" for="premiumMember">Premium Membership</label>
-                </div>
-              </div>
-            <br />
             <button type="submit" onclick="returnMap();">Create your travel Map!</button>
           </form>
       </div>
     `
-  }
+}
 
-//Process map quiz inputs
-  //Event listeners for form submission
-  
+//Process map quiz inputs  
   //validate form for completeness before generating map
   
   //Consume inputs from form form
 
 //Randomize results based on inputs
   //Use user inputs to generate array of results
-  function randomizer (locationsArr) {
+function randomizer (locationsArr) {
     return Math.floor(Math.random() * locationsArr);
-  };
+};
 
   //randomly select an item to add to the output array by producing an index value between 0 and the max of the 'data' array
-  function generateCityList () {
+function generateCityList () {
     let citiesArr = [];
+    let numStops = document.getElementById("numStops").value;
 
     //While loop used to add random values which correspond to the index of an item in the data array.  
     //If statement included to check for duplicates in the array of index values to prevent duplicate results from being displayed.
-    while (citiesArr.length < 3) { //TODO: need to update 3 to be variable value consumed from form selection
+    while (citiesArr.length < numStops) { 
       let randomResult = locationsArr[randomizer(locationsArr.length)];
       if (!citiesArr.includes(randomResult)) {
         citiesArr.push(randomResult);  
       };
     };
     return citiesArr;
-  };
+};
 
 //Generate HTML content to return
-var printArr = generateCityList();
+let printArr = [];
 
 function returnMap() {
+  printArr = generateCityList();
+  //let numStops = document.getElementById("numStops").value;
 
   //display Leaflet map content
   let locationsList = "";
@@ -263,7 +254,7 @@ function returnMap() {
   document.getElementById("form-div").innerHTML = `
     <h2>Your Custom Travel Map:</h2>
     <br />
-    <p>Thank you, ${fname.value}.  Please see your customized results below.</p>
+    <p>Please see your customized results below.</p>
     <br />
     <div class="main-container">
       <div class="left-div">
@@ -305,14 +296,16 @@ function returnMap() {
 //create drilldown view content, pass in index of the city from the results displayed
 function detailsView(citySelectionIndex) {
 
-  let selection = printArr[citySelectionIndex]
+  let selection = printArr[citySelectionIndex];
   let poiList = "";
 
   for (let i = 0; i < selection.drilldown.length; i++) {
     poiList +=
     `<p><strong>${i + 1}. ${selection.drilldown[i].poiName}</strong>
     <br />
-    ${selection.drilldown[i].poiSummary}
+    <p>Summary: ${selection.drilldown[i].poiSummary}</p>
+    <br />
+    <p>Type of attraction: ${selection.drilldown[i].poiType}</p>
     </p>
     <br />
     `;
@@ -347,14 +340,10 @@ function detailsView(citySelectionIndex) {
   //loop to add markers from array of drilldown coordinates based on user selection
   let coordsDrilldownGroup = [];
 
-    console.log(selection.drilldown.length);
-
   for (let i = 0; i < selection.drilldown.length; i++) { //TODO need to update array to new POI coords array
     L.marker(selection.drilldown[i].poiCoord).addTo(mymap2).bindPopup("This is the "+selection.drilldown[i].poiName+" marker");
     coordsDrilldownGroup.push(selection.drilldown[i].poiCoord);//TODO need to create an array of drilldown POI coords?
   };
-
-  console.log(coordsDrilldownGroup)
 
   //set the map to include all POI markers upon rendering
   mymap2.fitBounds(coordsDrilldownGroup);
