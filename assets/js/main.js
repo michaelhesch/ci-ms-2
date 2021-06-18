@@ -198,7 +198,7 @@ function mapLoader() {
         <option value="4">Four</option>
       </select>
     </div>
-    <button type="submit" onclick="returnMap(); return false;">Create your travel Map!</button>
+    <button type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel Map!</button>
   </div>
   `;
 
@@ -252,13 +252,13 @@ function generateCityList () {
 
 //Generate HTML content to return
 
-//global variable needed to hold travel destinations content generated in the returnMap function, to be consumed by detailsView function below
-let printArr = [];
+//global variable needed to hold travel destinations content generated in the generateTopMapCitiesResults function, to be consumed by detailsViewContent function below
+let printArr = [];  //TODO - clean this up once functions are split out
 
 //function to generate output html and populate it with map and city markers, as well as return city names and details based on user preferences input
-function returnMap() {
+function generateTopMapCitiesResults() {
   printArr = generateCityList();
-  document.getElementById("form-div-2").innerHTML = ``; //clear drilldown if user clicks generate new map and a drilldown from a past map was already loaded.
+  document.getElementById("form-div-2").innerHTML = ``; //clear drilldown panel if user clicks generate new map and a drilldown from a past map was already loaded.
 
   //loop to add each travel destination HTML to be included in results to user
   let locationsList = "";
@@ -269,12 +269,15 @@ function returnMap() {
     <br />
     ${printArr[i].summary}
     <br />
-    <button onclick="detailsView(${i});">Additional Details for ${printArr[i].name}</button>
+    <button onclick="detailsViewContent(${i});">Additional Details for ${printArr[i].name}</button>
     </p>
     <br />
     `;
   }
+  generateTopMapAndCitiesLayout(locationsList);
+} 
 
+function generateTopMapAndCitiesLayout(locationsList) {
   //HTML content displayed after preference selections are made with map results
   document.getElementById("form-div").innerHTML = `
     <h2>Your Custom Ireland Travel Map:</h2>
@@ -289,7 +292,7 @@ function returnMap() {
         <div class="right-div">
           <h3>Your list of destinations for your trip:</h3>
           <br />
-          ${locationsList}
+          <div>${locationsList}</div>
         </div>
       </div>
     `;
@@ -321,70 +324,10 @@ function returnMap() {
 
 }
 
-/*function sharedPoiFilter() { 
-  let selection = printArr[citySelectionIndex];
-  let poiList = "";
-  let tripType = "allTypes";
-  let filteredSelection; 
-
-  if (tripType === "allTypes") {
-    filteredSelection = selection.drilldown;
-  } else { 
-    filteredSelection = selection.drilldown.filter((thingToDo) => {
-      return thingToDo.poiType == tripType;
-      }
-    );
-  }
-
-  for (let i = 0; i < filteredSelection.length; i++) {
-    poiList +=
-    `<p><strong>${i + 1}. ${filteredSelection[i].poiName}</strong>
-    <br />
-    <p>Summary: ${filteredSelection[i].poiSummary}</p>
-    <br />
-    <p>Type of attraction: ${filteredSelection[i].poiType}</p>
-    </p>
-    <br />
-    `;
-  }
-
-  return poiList;
-}*/
-
-
-//create drilldown view content, pass in index of the city from the results displayed
-function detailsView(citySelectionIndex) {
-
-  let selection = printArr[citySelectionIndex];
-  let poiList = "";
-  let tripType = "allTypes";
-  let filteredSelection; 
-
-  if (tripType === "allTypes") {
-    filteredSelection = selection.drilldown;
-  } else { 
-    filteredSelection = selection.drilldown.filter((thingToDo) => {
-      return thingToDo.poiType == tripType;
-      }
-    );
-  }
-
-  for (let i = 0; i < filteredSelection.length; i++) {
-    poiList +=
-    `<p><strong>${i + 1}. ${filteredSelection[i].poiName}</strong>
-    <br />
-    <p>Summary: ${filteredSelection[i].poiSummary}</p>
-    <br />
-    <p>Type of attraction: ${filteredSelection[i].poiType}</p>
-    </p>
-    <br />
-    `;
-  }
-
-  //let poiList = sharedDataFilter();
+function detailsDefaultLayout(citySelection) {
 
   document.getElementById("form-div-2").innerHTML = `
-    <h2>Detailed view of ${selection.name}:</h2>
+    <h2>Detailed view of ${citySelection.name}:</h2>
     <br />
     <div class="main-container">
       <div class="left-div">
@@ -403,24 +346,81 @@ function detailsView(citySelectionIndex) {
           <br />
         </div>
         <div id="drilldownDetails"> 
-          <h3>Points of interest for ${selection.name}:</h3>
+          <h3>Points of interest for ${citySelection.name}:</h3>
           <br />
-          ${poiList}
+          <div id="poi-list"></div>
         </div>
       </div>
     </div>
   `;
 
-  document.getElementById("controls-bottom").innerHTML = `
-  <div>
-    <button onclick="clearDrilldown(); return false;">Hide Detailed View</button>
-    <button onclick="">Print Your Travel Map</button>
-    <button onclick="">E-Mail Your Travel Map</button>
-  </div>
-  `;
-
   //render drilldown map and POI markers using mapbox API and leaflet library
-  let mymap2 = L.map('mapid2').setView(selection.coord, 9);
+  let mymap2 = L.map('mapid2').setView(citySelection.coord, 9);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
+  }).addTo(mymap2);
+
+  //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
+  let coordsDrilldownGroup = [];
+
+  for (let i = 0; i < citySelection.drilldown.length; i++) { 
+    L.marker(citySelection.drilldown[i].poiCoord).addTo(mymap2).bindPopup("This is the "+citySelection.drilldown[i].poiName+" marker");
+    coordsDrilldownGroup.push(citySelection.drilldown[i].poiCoord);
+  }
+
+  //set the map to include all POI markers from array above with padding and zoom/map animation
+  mymap2.flyToBounds(coordsDrilldownGroup, {
+    padding: L.point(36, 36), 
+    animate: true,
+  });
+
+}
+
+//create drilldown view content, pass in index of the city from the selection
+function detailsViewContent(citySelectionIndex) {
+
+  let citySelection = printArr[citySelectionIndex];
+  let poiList = "";
+  let tripType = "allTypes";
+  let filteredSelection; 
+
+  console.log(citySelection);
+  console.log(citySelectionIndex);
+  console.log(printArr);
+
+  if (tripType === "allTypes") {
+    filteredSelection = citySelection.drilldown;
+  } else { 
+    filteredSelection = citySelection.drilldown.filter((thingToDo) => {
+      return thingToDo.poiType == tripType;
+      }
+    );
+  }
+
+  for (let i = 0; i < filteredSelection.length; i++) {
+    poiList +=
+    `<p><strong>${i + 1}. ${filteredSelection[i].poiName}</strong>
+    <br />
+    <p>Summary: ${filteredSelection[i].poiSummary}</p>
+    <br />
+    <p>Type of attraction: ${filteredSelection[i].poiType}</p>
+    </p>
+    <br />
+    `;
+  }
+
+  renderBottomHtmlOutput(citySelection, poiList);
+}
+
+  function renderBottomMap (citySelection) {
+  //render drilldown map and POI markers using mapbox API and leaflet library
+  let mymap2 = L.map('mapid2').setView(citySelection.coord, 9);
+  let filteredSelection = citySelection.drilldown;
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -446,12 +446,28 @@ function detailsView(citySelectionIndex) {
 }
 
 //update the points of interest drill down div based on user's selection
-function filterDrilldown() {
-
-
-
-}
+//function filterDrilldown() {
+  //let filteredTypeIndex = printArr; 
+  //let typeOfTrip =  document.getElementById("tripType").value;
+  //detailsViewContent(typeOfTrip);
+//}
 
 function clearDrilldown() {
   document.getElementById("form-div-2").innerHTML = ``;
+}
+
+function createDrilldownControls() {
+  document.getElementById("controls-bottom").innerHTML = `
+  <div>
+    <button onclick="clearDrilldown(); return false;">Hide Detailed View</button>
+    <button onclick="">Print Your Travel Map</button>
+    <button onclick="">E-Mail Your Travel Map</button>
+  </div>
+  `;
+}
+
+function renderBottomHtmlOutput(citySelection, poiList) {
+  detailsDefaultLayout(citySelection);
+  createDrilldownControls();
+  document.getElementById("poi-list").innerHTML = poiList;
 }
