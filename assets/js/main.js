@@ -3,34 +3,34 @@ let locationsArr = [
   {
     name: 'Cork',
     coord: [51.8986, -8.4705],
-    summary: 'Cork believes is the true capital of Ireland.',
+    summary: 'Cork is the second largest city in Ireland.  The city center is an island positioned between two channels of the river Lee.  Cork Harbor is one of the largest natural harbors in the world.',
     drilldown: [{
       poiName: 'National Monument',
       poiCoord: [51.8960, -8.4745],
-      poiSummary: 'A national monument in Cork city.',
+      poiSummary: 'Early Irish Gothic national monument commemorating the rebellions, unveiled in 1906.',
       poiType: 'Historic/Monument'
     },
     {
-      poiName: 'Gallery Cafe',
+      poiName: 'Crawford Gallery Cafe',
       poiCoord: [51.8998, -8.4734],
-      poiSummary: 'A cafe for lunch in Cork city.',
+      poiSummary: 'A cafe for lunch in Cork city. Open Tuesday to Saturday from 9.00am to 4.00pm.',
       poiType: 'Restaurant/Pub'
     },
     {
       poiName: 'Fitzgeralds Park',
       poiCoord: [51.8955, -8.4933],
-      poiSummary: 'A large park in Cork city, includes a bike hire.',
+      poiSummary: 'Popular green space with a museum, fountain, sculptures, walking paths & manicured landscaping.  Includes the Cork Public Museum and a bike hire location.',
       poiType: 'Outdoors'
     }]
   },
   {
     name: 'Galway',
     coord: [53.2841, -9.0378],
-    summary: 'Galway is maybe the beste city in Ireland.',
+    summary: 'Galway is a city in the west of Ireland, chartered in 1484, and is the sixth largest city in the country.  The city is known for hosting many festivals, celebrations and events including the Galway Arts Festival.',
     drilldown: [{
       poiName: 'The Kings Head',
       poiCoord: [53.2721, -9.0532],
-      poiSummary: 'A fun pub in Galway which has the Kings head in it',
+      poiSummary: 'Relaxed bistro and pub hung with chic modern art, serving locally-sourced dishes with a global twist.  The building it is housed in is over 800 years old, from the 13th century.',
       poiType: 'Restaurant/Pub'
     },
     {
@@ -167,18 +167,23 @@ let locationsArr = [
 
 function defaultView() {
   document.getElementById("controls").innerHTML = `
-    <div>Welcome to the Map Generation Company called Mappy!</div>
+  <div class="row text-center">
+    <h3>Welcome to the Ireland travel map service called Mappy!</h3>
     <br />
-    <div>
       <p>We can do some fun things together, such as:</p>
       <ul>
+        <li>Not sure where to visit? We create a randomized list of destinations with points of interest!</li>
         <li>Help you plan your next trip</li>
         <li>Show you interesting things to do on your trip</li>
         <li>Download your travel map to your computer to take with you!</li>
       </ul>
-    </div>
-    <br />
+  </div>
+  <br />
+  <div id="home-img"></div>
+  <br />
+  <span class="text-center">
     <button onclick="mapLoader();">Start building your travel map now!</button>
+  </span>
   `;
   return;
 }
@@ -188,8 +193,7 @@ function defaultView() {
 //Loads preference selection form & HTML and default main map view 
 function mapLoader() {
   document.getElementById("controls").innerHTML = `
-  <div>
-    <div>
+    <div clas="row">
       <label for="numStops">Desired number of cities:</label>
       <select id="numStops" name="numStops">
         <option value="2">Two</option>
@@ -198,7 +202,6 @@ function mapLoader() {
       </select>
     </div>
     <button type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel Map!</button>
-  </div>
   `;
 
   document.getElementById("form-div").innerHTML = `
@@ -206,12 +209,12 @@ function mapLoader() {
   <br />
   <p>Please select your travel preferences to generate a new map.</p>
   <br />
-  <div>
-    <div class="left-div">
+  <div class="row">
+    <div class="col">
       <div id="mapid"></div>
     </div>
     <br />
-    <div class="right-div"></div>
+    <div class="col"></div>
   </div>
   `;
     
@@ -284,12 +287,11 @@ function generateTopMapAndCitiesLayout(locationsList) {
       <br />
       <p>Please see your customized results below.</p>
       <br />
-      <div class="main-container">
-        <div class="left-div">
+      <div class="row">
+        <div class="col">
           <div id="mapid"></div>
         </div>
-        <br />
-        <div class="right-div">
+        <div class="col">
           <h3>Your list of destinations for your trip:</h3>
           <br />
           <div>${locationsList}</div>
@@ -378,15 +380,15 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
   let citySelection = printArr[citySelectionIndex];
 
   document.getElementById("form-div-2").innerHTML = `
+    <br />
     <h2>Detailed view of ${citySelection.name}:</h2>
     <br />
-    <div class="main-container">
-      <div class="left-div">
+    <div class="row">
+      <div class="col">
         <div id="mapid2"></div>
       </div>
       <br />
-      <div class="right-div">
-        <div>
+      <div class="col">
           <label for="tripType">Type of trip desired:</label>
           <select id="tripType" name="tripType" onchange="filterDrilldown(${citySelectionIndex});">
             <option value="allTypes">All</option>
@@ -395,8 +397,7 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
             <option value="Restaurant/Pub">Dining / Nightlife</option>
           </select>
           <br />
-        </div>
-        <div id="drilldownDetails"> 
+          <div id="drilldownDetails"> 
           <h3>Points of interest for ${citySelection.name}:</h3>
           <br />
           <div id="poi-list"></div>
