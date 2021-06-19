@@ -7,22 +7,21 @@ html {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+  background-color: #dedbd2;
 }
 
 /*Navigation styling*/
 nav {
   width: 100%;
-  background-color: gray;
+  background-color: #4A5759;
   padding-left: 30px;
   padding-right: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   list-style: none;
 }
@@ -30,6 +29,7 @@ nav {
 .nav-item-container {
   display: flex;
   list-style: none;
+  background-color: #4A5759;
 }
 
 .nav-item a {
@@ -37,14 +37,12 @@ nav {
   padding: 10px 15px;
   text-decoration: none;
   color: white;
-}
+  background-color: #4A5759;
 
-.nav-item:hover {
-  background-color: white;
 }
 
 .nav-item:hover a {
-  color: darkgreen;
+  color: b0c4b1;
 }
 
 .site-logo {
@@ -52,6 +50,8 @@ nav {
   text-decoration: none;
   color: white;
   font-size: 28px;
+  background-color: #4A5759;
+
 }
 
 .site-logo img {
@@ -65,9 +65,14 @@ main {
   padding: 10px;
 }
 
-.main-container {
+.flex-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+.col {
+  flex: 1;
 }
 
 .left-div {
@@ -78,6 +83,10 @@ main {
 .right-div {
   flex: 40%;
   padding: 10px;
+}
+
+button {
+  background-color: #b0c4b1;
 }
 
 /*Map container styling*/
@@ -111,3 +120,5 @@ main {
 	padding: 10px 25px 0 25px;
 	color: #343a40;
 }
+
+

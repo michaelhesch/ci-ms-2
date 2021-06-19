@@ -189,7 +189,6 @@ function defaultView() {
 function mapLoader() {
   document.getElementById("controls").innerHTML = `
   <div>
-
     <div>
       <label for="numStops">Desired number of cities:</label>
       <select id="numStops" name="numStops">
@@ -207,7 +206,7 @@ function mapLoader() {
   <br />
   <p>Please select your travel preferences to generate a new map.</p>
   <br />
-  <div class="main-container">
+  <div>
     <div class="left-div">
       <div id="mapid"></div>
     </div>
@@ -216,7 +215,7 @@ function mapLoader() {
   </div>
   `;
     
-  let mymap = L.map('mapid').setView([53.2734, -7.7783], 7);
+  let mymap = L.map('mapid', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -254,6 +253,7 @@ function generateCityList () {
 
 //global variable needed to hold travel destinations content generated in the generateTopMapCitiesResults function, to be consumed by detailsViewContent function below
 let printArr = [];  //TODO - clean this up once functions are split out
+let mymap2;
 
 //function to generate output html and populate it with map and city markers, as well as return city names and details based on user preferences input
 function generateTopMapCitiesResults() {
@@ -269,7 +269,7 @@ function generateTopMapCitiesResults() {
     <br />
     ${printArr[i].summary}
     <br />
-    <button onclick="detailsViewContent(${i});">Additional Details for ${printArr[i].name}</button>
+    <button onclick="generateDetailsDefaultLayout(${i}, 'allTypes');">Additional Details for ${printArr[i].name}</button>
     </p>
     <br />
     `;
@@ -298,7 +298,7 @@ function generateTopMapAndCitiesLayout(locationsList) {
     `;
 
   //render map via mapbox API & leaflet library
-  let mymap = L.map('mapid').setView([53.2734, -7.7783], 7);
+  let mymap = L.map('mapid', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -308,7 +308,7 @@ function generateTopMapAndCitiesLayout(locationsList) {
       accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
   }).addTo(mymap);
 
-  //loop to add markers from array of coordinates (to be updated to be based on user inputs)
+  //loop to add markers from array of coordinates
   let coordsGroup = [];
 
   for (let i = 0; i < printArr.length; i++) {
@@ -324,7 +324,58 @@ function generateTopMapAndCitiesLayout(locationsList) {
 
 }
 
-function detailsDefaultLayout(citySelection) {
+let bottomMapMarkers = [];
+
+function updateDetailsMapMarkers(filteredAttractions) {
+    //let coordsDrilldownGroup = [];
+
+    // TODO reset markers 
+    for (let i = 0; i < filteredAttractions.length; i++) {
+      L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
+    }
+    /*if (bottomMapMarkers !== null) {
+      for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
+        delete bottomMapMarkers[i];
+      }
+    }*/
+
+    //document.getElementById("mapid2").innerHTML = "";
+    //mymap2.removeLayer(L.marker);
+    /*for (let i = 0; i < bottomMapMarkers.length; i++) {
+      mymap2.removeLayer(bottomMapMarkers[i]);
+    }*/
+
+    //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
+    for (let i = 0; i < filteredAttractions.length; i++) { 
+      L.marker(filteredAttractions[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredAttractions[i].poiName+" marker");
+      bottomMapMarkers.push(filteredAttractions[i].poiCoord);
+    }
+
+    console.log(bottomMapMarkers);
+    console.log(mymap2);
+    
+    //set the map to include all POI markers from array above with padding and zoom/map animation
+    mymap2.flyToBounds(bottomMapMarkers, {
+      padding: L.point(36, 36), 
+      animate: true,
+    });
+}
+
+function generateFilteredAttractions(citySelectionIndex, tripType) {
+  let citySelection = printArr[citySelectionIndex];
+  let filteredSelection = citySelection.drilldown; 
+
+  if (tripType !== "allTypes") {
+    filteredSelection = citySelection.drilldown.filter((thingToDo) => {
+      return thingToDo.poiType == tripType;
+    });
+  }
+
+  return filteredSelection;
+}
+
+function generateDetailsDefaultLayout(citySelectionIndex) {
+  let citySelection = printArr[citySelectionIndex];
 
   document.getElementById("form-div-2").innerHTML = `
     <h2>Detailed view of ${citySelection.name}:</h2>
@@ -337,7 +388,7 @@ function detailsDefaultLayout(citySelection) {
       <div class="right-div">
         <div>
           <label for="tripType">Type of trip desired:</label>
-          <select id="tripType" name="tripType" onchange="filterDrilldown();">
+          <select id="tripType" name="tripType" onchange="filterDrilldown(${citySelectionIndex});">
             <option value="allTypes">All</option>
             <option value="Historic/Monument">Culture / History</option>
             <option value="Outdoors">Outdoors / Adventure</option>
@@ -355,7 +406,7 @@ function detailsDefaultLayout(citySelection) {
   `;
 
   //render drilldown map and POI markers using mapbox API and leaflet library
-  let mymap2 = L.map('mapid2').setView(citySelection.coord, 9);
+  mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 9);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -365,61 +416,53 @@ function detailsDefaultLayout(citySelection) {
       accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
   }).addTo(mymap2);
 
-  //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
-  let coordsDrilldownGroup = [];
-
-  for (let i = 0; i < citySelection.drilldown.length; i++) { 
-    L.marker(citySelection.drilldown[i].poiCoord).addTo(mymap2).bindPopup("This is the "+citySelection.drilldown[i].poiName+" marker");
-    coordsDrilldownGroup.push(citySelection.drilldown[i].poiCoord);
-  }
-
-  //set the map to include all POI markers from array above with padding and zoom/map animation
-  mymap2.flyToBounds(coordsDrilldownGroup, {
-    padding: L.point(36, 36), 
-    animate: true,
-  });
-
+  let filteredAttractions = generateFilteredAttractions(citySelectionIndex, 'allTypes');
+  updateDetailsViewContent(filteredAttractions);
+  createDrilldownControls();
 }
 
 //create drilldown view content, pass in index of the city from the selection
-function detailsViewContent(citySelectionIndex) {
-
-  let citySelection = printArr[citySelectionIndex];
+function updateDetailsViewContent(filteredAttractions) {
   let poiList = "";
-  let tripType = "allTypes";
-  let filteredSelection; 
 
-  console.log(citySelection);
-  console.log(citySelectionIndex);
-  console.log(printArr);
-
-  if (tripType === "allTypes") {
-    filteredSelection = citySelection.drilldown;
-  } else { 
-    filteredSelection = citySelection.drilldown.filter((thingToDo) => {
-      return thingToDo.poiType == tripType;
-      }
-    );
-  }
-
-  for (let i = 0; i < filteredSelection.length; i++) {
+  for (let i = 0; i < filteredAttractions.length; i++) {
     poiList +=
-    `<p><strong>${i + 1}. ${filteredSelection[i].poiName}</strong>
+    `<p><strong>${i + 1}. ${filteredAttractions[i].poiName}</strong>
     <br />
-    <p>Summary: ${filteredSelection[i].poiSummary}</p>
+    <p>Summary: ${filteredAttractions[i].poiSummary}</p>
     <br />
-    <p>Type of attraction: ${filteredSelection[i].poiType}</p>
+    <p>Type of attraction: ${filteredAttractions[i].poiType}</p>
     </p>
     <br />
     `;
   }
 
-  renderBottomHtmlOutput(citySelection, poiList);
+  // clear existing map markers
+
+  for (let i = 0; i < filteredAttractions.length; i++) {
+    L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
+  }
+  /*if (bottomMapMarkers !== null) {
+    for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
+      delete bottomMapMarkers[i];
+    }
+  }*/
+
+  //document.getElementById("mapid2").innerHTML = "";
+  /*for (let i = 0; i < bottomMapMarkers.length; i++) {
+    mymap2.removeLayer(bottomMapMarkers[i]);
+  }*/
+
+  // update map
+  updateDetailsMapMarkers(filteredAttractions);
+
+  // update poilist inner html
+  document.getElementById("poi-list").innerHTML = poiList;
 }
 
   function renderBottomMap (citySelection) {
   //render drilldown map and POI markers using mapbox API and leaflet library
-  let mymap2 = L.map('mapid2').setView(citySelection.coord, 9);
+  let mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 9);
   let filteredSelection = citySelection.drilldown;
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
@@ -431,26 +474,26 @@ function detailsViewContent(citySelectionIndex) {
   }).addTo(mymap2);
 
   //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
-  let coordsDrilldownGroup = [];
+  //let coordsDrilldownGroup = [];
 
-  for (let i = 0; i < filteredSelection.length; i++) { //TODO need to update array to new POI coords array
+  for (let i = 0; i < filteredSelection.length; i++) {
     L.marker(filteredSelection[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredSelection[i].poiName+" marker");
-    coordsDrilldownGroup.push(filteredSelection[i].poiCoord);//TODO need to create an array of drilldown POI coords?
+    bottomMapMarkers.push(filteredSelection[i].poiCoord);
   }
 
   //set the map to include all POI markers from array above with padding and zoom/map animation
-  mymap2.flyToBounds(coordsDrilldownGroup, {
+  mymap2.flyToBounds(bottomMapMarkers, {
     padding: L.point(36, 36), 
     animate: true,
   });
 }
 
 //update the points of interest drill down div based on user's selection
-//function filterDrilldown() {
-  //let filteredTypeIndex = printArr; 
-  //let typeOfTrip =  document.getElementById("tripType").value;
-  //detailsViewContent(typeOfTrip);
-//}
+function filterDrilldown(citySelectionIndex) {
+  let typeOfTrip =  document.getElementById("tripType").value;
+  let filteredAttractions = generateFilteredAttractions(citySelectionIndex, typeOfTrip);
+  updateDetailsViewContent(filteredAttractions);
+}
 
 function clearDrilldown() {
   document.getElementById("form-div-2").innerHTML = ``;
@@ -464,10 +507,4 @@ function createDrilldownControls() {
     <button onclick="">E-Mail Your Travel Map</button>
   </div>
   `;
-}
-
-function renderBottomHtmlOutput(citySelection, poiList) {
-  detailsDefaultLayout(citySelection);
-  createDrilldownControls();
-  document.getElementById("poi-list").innerHTML = poiList;
 }
