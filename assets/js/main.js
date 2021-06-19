@@ -206,7 +206,7 @@ function mapLoader() {
   <br />
   <p>Please select your travel preferences to generate a new map.</p>
   <br />
-  <div class="main-container">
+  <div>
     <div class="left-div">
       <div id="mapid"></div>
     </div>
@@ -215,7 +215,7 @@ function mapLoader() {
   </div>
   `;
     
-  let mymap = L.map('mapid').setView([53.2734, -7.7783], 7);
+  let mymap = L.map('mapid', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -298,7 +298,7 @@ function generateTopMapAndCitiesLayout(locationsList) {
     `;
 
   //render map via mapbox API & leaflet library
-  let mymap = L.map('mapid').setView([53.2734, -7.7783], 7);
+  let mymap = L.map('mapid', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -308,7 +308,7 @@ function generateTopMapAndCitiesLayout(locationsList) {
       accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
   }).addTo(mymap);
 
-  //loop to add markers from array of coordinates (to be updated to be based on user inputs)
+  //loop to add markers from array of coordinates
   let coordsGroup = [];
 
   for (let i = 0; i < printArr.length; i++) {
@@ -324,22 +324,38 @@ function generateTopMapAndCitiesLayout(locationsList) {
 
 }
 
-function updateDetailsMapMarkers(filteredAttractions) {
-    let coordsDrilldownGroup = [];
+let bottomMapMarkers = [];
 
-    // TODO reset markers
+function updateDetailsMapMarkers(filteredAttractions) {
+    //let coordsDrilldownGroup = [];
+
+    // TODO reset markers 
+    for (let i = 0; i < filteredAttractions.length; i++) {
+      L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
+    }
+    /*if (bottomMapMarkers !== null) {
+      for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
+        delete bottomMapMarkers[i];
+      }
+    }*/
+
+    //document.getElementById("mapid2").innerHTML = "";
+    //mymap2.removeLayer(L.marker);
+    /*for (let i = 0; i < bottomMapMarkers.length; i++) {
+      mymap2.removeLayer(bottomMapMarkers[i]);
+    }*/
 
     //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
     for (let i = 0; i < filteredAttractions.length; i++) { 
       L.marker(filteredAttractions[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredAttractions[i].poiName+" marker");
-      coordsDrilldownGroup.push(filteredAttractions[i].poiCoord);
+      bottomMapMarkers.push(filteredAttractions[i].poiCoord);
     }
 
-    console.log(coordsDrilldownGroup);
+    console.log(bottomMapMarkers);
     console.log(mymap2);
-  
+    
     //set the map to include all POI markers from array above with padding and zoom/map animation
-    mymap2.flyToBounds(coordsDrilldownGroup, {
+    mymap2.flyToBounds(bottomMapMarkers, {
       padding: L.point(36, 36), 
       animate: true,
     });
@@ -390,7 +406,7 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
   `;
 
   //render drilldown map and POI markers using mapbox API and leaflet library
-  mymap2 = L.map('mapid2').setView(citySelection.coord, 9);
+  mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 9);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -421,6 +437,22 @@ function updateDetailsViewContent(filteredAttractions) {
     `;
   }
 
+  // clear existing map markers
+
+  for (let i = 0; i < filteredAttractions.length; i++) {
+    L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
+  }
+  /*if (bottomMapMarkers !== null) {
+    for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
+      delete bottomMapMarkers[i];
+    }
+  }*/
+
+  //document.getElementById("mapid2").innerHTML = "";
+  /*for (let i = 0; i < bottomMapMarkers.length; i++) {
+    mymap2.removeLayer(bottomMapMarkers[i]);
+  }*/
+
   // update map
   updateDetailsMapMarkers(filteredAttractions);
 
@@ -430,7 +462,7 @@ function updateDetailsViewContent(filteredAttractions) {
 
   function renderBottomMap (citySelection) {
   //render drilldown map and POI markers using mapbox API and leaflet library
-  let mymap2 = L.map('mapid2').setView(citySelection.coord, 9);
+  let mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 9);
   let filteredSelection = citySelection.drilldown;
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
@@ -442,15 +474,15 @@ function updateDetailsViewContent(filteredAttractions) {
   }).addTo(mymap2);
 
   //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
-  let coordsDrilldownGroup = [];
+  //let coordsDrilldownGroup = [];
 
-  for (let i = 0; i < filteredSelection.length; i++) { //TODO need to update array to new POI coords array
+  for (let i = 0; i < filteredSelection.length; i++) {
     L.marker(filteredSelection[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredSelection[i].poiName+" marker");
-    coordsDrilldownGroup.push(filteredSelection[i].poiCoord);//TODO need to create an array of drilldown POI coords?
+    bottomMapMarkers.push(filteredSelection[i].poiCoord);
   }
 
   //set the map to include all POI markers from array above with padding and zoom/map animation
-  mymap2.flyToBounds(coordsDrilldownGroup, {
+  mymap2.flyToBounds(bottomMapMarkers, {
     padding: L.point(36, 36), 
     animate: true,
   });
