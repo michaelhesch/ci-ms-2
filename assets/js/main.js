@@ -36,59 +36,59 @@ let locationsArr = [
     {
       poiName: 'The Spanish Arch',
       poiCoord: [53.2697, -9.0539],
-      poiSummary: 'An old arch from Viking times',
+      poiSummary: 'Added to the 16th-century walls in the 18th century, this archway provides access to Spanish Parade.',
       poiType: 'Historic/Monument'
     },
     {
       poiName: 'Browne Doorway',
       poiCoord: [53.2747, -9.0496],
-      poiSummary: 'Monument at Eyre Square park',
+      poiSummary: 'Originally located on Lower Abbeygate Street but now standing at the north end of Eyre Square, was the doorway to the townhouse of the Browne family, one of the fourteen Tribes of Galway',
       poiType: 'Historic/Monument'
     }]
   },
   {
     name: 'Dublin',
     coord: [53.3497, -6.2602],
-    summary: 'Dublin is the capital of Ireland.',
+    summary: 'Dublin is the capital and the largest city in Ireland.  It was likely first settled by the Gaels during or before the 7th century and later by the Vikings.',
     drilldown: [{
       poiName: 'James Toner',
       poiCoord: [53.3377, -6.2524],
-      poiSummary: 'One of the best pints of Guiness in Dublin.',
+      poiSummary: 'Long-established, traditional pub with a dark wooden bar, picture-framed snug and popular beer yard.',
       poiType: 'Restaurant/Pub'
     },
     {
       poiName: 'Merrion Square Park',
       poiCoord: [53.3396, -6.2491],
-      poiSummary: 'A lovely park in Dublin city.',
+      poiSummary: 'Leafy park with floral and heather gardens, playground and notable Oscar Wilde statue.',
       poiType: 'Outdoors'
     },
     {
       poiName: 'Spire of Dublin',
       poiCoord: [53.3498, -6.2602],
-      poiSummary: 'The Spire of Dublin is 200m tall.',
+      poiSummary: 'Also called the "Monument of Light", it is a large, stainless steel, pin like monument that is 120 meters (390ft) tall located in North Dublin.',
       poiType: 'Historic/Monument'
     }]
   },
   {
     name: 'Belfast',
     coord: [54.5964, -5.9302],
-    summary: 'Belfast is the capital of Northern Ireland.',
+    summary: 'Belfast is the capital and largest city of Northern Ireland.  Belfast was a major port city in by the early 19th century playing an important role in the industrial revolution, and was briefly the largest linen producer in the world.',
     drilldown: [{
       poiName: 'Titanic Museum',
       poiCoord: [54.6080, -5.9100],
-      poiSummary: 'Museum at the location where the Titanic was built.',
+      poiSummary: 'Museum at the location where the Titanic was built.  Hands-on displays, including dark ride, underwater exploration theatre and re-created decks/cabins.',
       poiType: 'Historic/Monument'
     },
     {
       poiName: 'Belfast City Hall',
       poiCoord: [54.5964, -5.9294],
-      poiSummary: 'Historic city hall and surrounding garden with monuments.',
+      poiSummary: 'Historic city hall and surrounding garden.  In addition to city offices, this ornate 1906 building has a cafe, public art & a Titanic garden.',
       poiType: 'Historic/Monument'
     },
     {
       poiName: 'The Fountain Bar',
       poiCoord: [54.5986, -5.9314],
-      poiSummary: 'A pub in Belfast city',
+      poiSummary: 'Casual bar with exposed ceiling beams, banquettes and upstairs grill restaurant, plus outside space.',
       poiType: 'Restaurant/Pub'
     }]
   },
@@ -167,23 +167,29 @@ let locationsArr = [
 
 function defaultView() {
   document.getElementById("controls").innerHTML = `
-  <div class="row text-center">
-    <h3>Welcome to the Ireland travel map service called Mappy!</h3>
-    <br />
-      <p>We can do some fun things together, such as:</p>
-      <ul>
-        <li>Not sure where to visit? We create a randomized list of destinations with points of interest!</li>
-        <li>Help you plan your next trip</li>
-        <li>Show you interesting things to do on your trip</li>
-        <li>Download your travel map to your computer to take with you!</li>
-      </ul>
+  <div class="row">
+    <div class="col text-center">
+      <h3>Welcome to the Ireland travel map service called Mappy!</h3>
+      <br />
+    </div>
+      <div class="container mx-auto">
+        <p>We can do some fun things together, such as:</p>
+        <div class="w-25 text-start align-items-center">
+        <ul>
+          <li>Create a randomized list of destinations with points of interest!</li>
+          <li>Help you plan your next trip</li>
+          <li>Show you interesting things to do on your trip</li>
+          <li>Download your travel map to your computer to take with you!</li>
+        </ul>
+        </div>
+      </div>
+      <br />
+    <div id="home-img"></div>
+      <br />
+    <div class="col text-center">
+      <button type="button" onclick="mapLoader();">Build your map!</button>
+    </div>
   </div>
-  <br />
-  <div id="home-img"></div>
-  <br />
-  <span class="text-center">
-    <button onclick="mapLoader();">Start building your travel map now!</button>
-  </span>
   `;
   return;
 }
@@ -193,22 +199,24 @@ function defaultView() {
 //Loads preference selection form & HTML and default main map view 
 function mapLoader() {
   document.getElementById("controls").innerHTML = `
-    <div clas="row">
-      <label for="numStops">Desired number of cities:</label>
-      <select id="numStops" name="numStops">
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="4">Four</option>
-      </select>
+    <div class="row text-center align-items-center">
+      <div class="col text-end">
+        <label for="numStops"><strong>Select the number of cities to visit:</strong></label>
+        <select id="numStops" name="numStops">
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+          <option value="4">Four</option>
+        </select>
+      </div>
+      <div class="col text-start">
+        <button type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel Map!</button>
+      </div>
     </div>
-    <button type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel Map!</button>
   `;
 
   document.getElementById("form-div").innerHTML = `
-  <h2>Your Custom Ireland Travel Map:</h2>
-  <br />
+  <h3>Your Custom Ireland Travel Map:</h3>
   <p>Please select your travel preferences to generate a new map.</p>
-  <br />
   <div class="row">
     <div class="col">
       <div id="mapid"></div>
@@ -283,7 +291,7 @@ function generateTopMapCitiesResults() {
 function generateTopMapAndCitiesLayout(locationsList) {
   //HTML content displayed after preference selections are made with map results
   document.getElementById("form-div").innerHTML = `
-    <h2>Your Custom Ireland Travel Map:</h2>
+    <h3>Your Custom Ireland Travel Map:</h3>
       <br />
       <p>Please see your customized results below.</p>
       <br />
@@ -292,9 +300,9 @@ function generateTopMapAndCitiesLayout(locationsList) {
           <div id="mapid"></div>
         </div>
         <div class="col">
-          <h3>Your list of destinations for your trip:</h3>
+          <h4>Your list of destinations for your trip:</h4>
           <br />
-          <div>${locationsList}</div>
+          <div class="row">${locationsList}</div>
         </div>
       </div>
     `;
@@ -326,15 +334,15 @@ function generateTopMapAndCitiesLayout(locationsList) {
 
 }
 
-let bottomMapMarkers = [];
+
 
 function updateDetailsMapMarkers(filteredAttractions) {
     //let coordsDrilldownGroup = [];
-
+    let bottomMapMarkers = [];
     // TODO reset markers 
-    for (let i = 0; i < filteredAttractions.length; i++) {
+    /*for (let i = 0; i < filteredAttractions.length; i++) {
       L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
-    }
+    }*/
     /*if (bottomMapMarkers !== null) {
       for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
         delete bottomMapMarkers[i];
@@ -381,27 +389,23 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
 
   document.getElementById("form-div-2").innerHTML = `
     <br />
-    <h2>Detailed view of ${citySelection.name}:</h2>
-    <br />
+    <h3>Detailed view of ${citySelection.name}:</h3>
     <div class="row">
       <div class="col">
         <div id="mapid2"></div>
       </div>
-      <br />
       <div class="col">
-          <label for="tripType">Type of trip desired:</label>
+          <label for="tripType"><strong>Please select the type of attractions you wish to visit in ${citySelection.name}: </strong></label>
           <select id="tripType" name="tripType" onchange="filterDrilldown(${citySelectionIndex});">
             <option value="allTypes">All</option>
-            <option value="Historic/Monument">Culture / History</option>
-            <option value="Outdoors">Outdoors / Adventure</option>
-            <option value="Restaurant/Pub">Dining / Nightlife</option>
+            <option value="Historic/Monument">Historic / Monument</option>
+            <option value="Outdoors">Outdoors</option>
+            <option value="Restaurant/Pub">Restaurant / Pub</option>
           </select>
-          <br />
           <div id="drilldownDetails"> 
-          <h3>Points of interest for ${citySelection.name}:</h3>
-          <br />
-          <div id="poi-list"></div>
-        </div>
+            <h4>Points of interest for ${citySelection.name}:</h4>
+            <div id="poi-list"></div>
+          </div>
       </div>
     </div>
   `;
@@ -422,27 +426,49 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
   createDrilldownControls();
 }
 
+
+let fontMapper = [
+  {
+    poiType: "Historic/Monument",
+    iconType: `<i class="fas fa-landmark"> </i>`
+  },
+  {
+    poiType: "Restaurant/Pub",
+    iconType: `<i class="fas fa-utensils"> </i>`
+  },
+  {
+    poiType: "Outdoors",
+    iconType: `<i class="fas fa-cloud-sun"> </i>`
+  }
+];
+
 //create drilldown view content, pass in index of the city from the selection
 function updateDetailsViewContent(filteredAttractions) {
   let poiList = "";
-
+  //loop to create filtered points of interest content for the drill-down pane
   for (let i = 0; i < filteredAttractions.length; i++) {
+    //use Array find method to select Font Awesome code corresponding to attraction type and insert in results HTML
+    let icon = fontMapper.find(function (placeIcon) {
+      console.log(placeIcon);
+      return placeIcon.poiType == filteredAttractions[i].poiType;
+    });
+    //select the iconType HTML from the object returned by the loop above
+    let finalIcon = icon.iconType;
+    //create HTML with data corresponding to the selected POI type
     poiList +=
-    `<p><strong>${i + 1}. ${filteredAttractions[i].poiName}</strong>
-    <br />
-    <p>Summary: ${filteredAttractions[i].poiSummary}</p>
-    <br />
-    <p>Type of attraction: ${filteredAttractions[i].poiType}</p>
+    `<p>
+      <strong>${i + 1}. ${filteredAttractions[i].poiName} ${finalIcon}</strong>
+      <p>Summary: ${filteredAttractions[i].poiSummary}</p>
+      <p>Type of attraction: ${filteredAttractions[i].poiType}</p>
     </p>
-    <br />
     `;
   }
 
   // clear existing map markers
 
-  for (let i = 0; i < filteredAttractions.length; i++) {
+  /*for (let i = 0; i < filteredAttractions.length; i++) {
     L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
-  }
+  }*/
   /*if (bottomMapMarkers !== null) {
     for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
       delete bottomMapMarkers[i];
@@ -502,10 +528,12 @@ function clearDrilldown() {
 
 function createDrilldownControls() {
   document.getElementById("controls-bottom").innerHTML = `
-  <div>
-    <button onclick="clearDrilldown(); return false;">Hide Detailed View</button>
-    <button onclick="">Print Your Travel Map</button>
-    <button onclick="">E-Mail Your Travel Map</button>
-  </div>
+
+    <div class="col text-center align-items-center">
+      <button onclick="clearDrilldown(); return false;">Hide Detailed View</button>
+      <button onclick="">Print Your Travel Map</button>
+      <button onclick="">E-Mail Your Travel Map</button>
+    </div>
+
   `;
 }
