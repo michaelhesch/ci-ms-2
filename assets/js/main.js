@@ -172,9 +172,9 @@ function defaultView() {
       <h3>Welcome to the Ireland travel map service called Mappy!</h3>
       <br />
     </div>
-      <div class="container mx-auto">
+      <div class="container mx-auto text-center">
         <p>We can do some fun things together, such as:</p>
-        <div class="w-25 text-start align-items-center">
+        <div class="w-25 text-start mx-auto">
         <ul>
           <li>Create a randomized list of destinations with points of interest!</li>
           <li>Help you plan your next trip</li>
@@ -292,9 +292,7 @@ function generateTopMapAndCitiesLayout(locationsList) {
   //HTML content displayed after preference selections are made with map results
   document.getElementById("form-div").innerHTML = `
     <h3>Your Custom Ireland Travel Map:</h3>
-      <br />
       <p>Please see your customized results below.</p>
-      <br />
       <div class="row">
         <div class="col">
           <div id="mapid"></div>
@@ -333,8 +331,6 @@ function generateTopMapAndCitiesLayout(locationsList) {
   });
 
 }
-
-
 
 function updateDetailsMapMarkers(filteredAttractions) {
     //let coordsDrilldownGroup = [];
@@ -394,24 +390,21 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
       <div class="col">
         <div id="mapid2"></div>
       </div>
-      <div class="col">
-          <label for="tripType"><strong>Please select the type of attractions you wish to visit in ${citySelection.name}: </strong></label>
-          <select id="tripType" name="tripType" onchange="filterDrilldown(${citySelectionIndex});">
-            <option value="allTypes">All</option>
-            <option value="Historic/Monument">Historic / Monument</option>
-            <option value="Outdoors">Outdoors</option>
-            <option value="Restaurant/Pub">Restaurant / Pub</option>
-          </select>
-          <div id="drilldownDetails"> 
-            <h4>Points of interest for ${citySelection.name}:</h4>
-            <div id="poi-list"></div>
-          </div>
+      <div class="col" id="drilldownDetails>
+        <label for="tripType"><h4>Points of interest for ${citySelection.name}: </h4></label>
+        <select id="tripType" name="tripType" onchange="filterDrilldown(${citySelectionIndex});">
+          <option value="allTypes">All</option>
+          <option value="Historic/Monument">Historic / Monument</option>
+          <option value="Outdoors">Outdoors</option>
+          <option value="Restaurant/Pub">Restaurant / Pub</option>
+        </select>
+        <div id="poi-list"></div>
       </div>
     </div>
   `;
 
   //render drilldown map and POI markers using mapbox API and leaflet library
-  mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 9);
+  mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -489,7 +482,7 @@ function updateDetailsViewContent(filteredAttractions) {
 
   function renderBottomMap (citySelection) {
   //render drilldown map and POI markers using mapbox API and leaflet library
-  let mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 9);
+  let mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
   let filteredSelection = citySelection.drilldown;
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {

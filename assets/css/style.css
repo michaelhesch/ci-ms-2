@@ -1,13 +1,13 @@
 /*Global styling*/
 html {
-  position: relative;
-  min-height: 100%;
+  /*min-height: 100%;*/
   margin: 0;
+  padding: 0;
+  background-color: #FDFDFC;
 }
 
-html, body {
-  height: 100%;
-  background-color: #FDFDFC;
+body, wrapper {
+  min-height: 100vh;
 }
 
 /*Navigation styling*/
@@ -60,7 +60,7 @@ nav {
 }
 
 main {
-  padding-top: 10px;
+  flex: 1;
 }
 
 button {
@@ -73,7 +73,7 @@ button {
   opacity: 0.9;
 }
 
-button:hover {
+button:hover, button:focus {
   color: white;
   background-color: #91411D;
   border-color: #6D3115;
@@ -90,10 +90,6 @@ select {
   border-color: #b0c4b1;
 }
 
-#main-element {
-  min-height: 100%;
-}
-
 #main-container {
   overflow: auto;
 }
@@ -102,8 +98,13 @@ select {
   padding-top: 15px;
 }
 
+#controls button {
+  margin-top: 20px;
+}
+
 #controls-bottom {
   padding-top: 10px;
+  padding-bottom: 15px;
 }
 
 /*Map container styling*/
@@ -121,37 +122,44 @@ select {
 }
 
 #form-div-2 {
-  padding-left: 150px;
-  padding-right: 150px;
+  padding-left: 125px;
+  padding-right: 125px;
 }
 
 /*Footer styling*/
 
-/*.footer {
+.footer {
+  display: block;
   position: relative;
-  margin-top: -50px;
+  bottom: 0;
   height: 50px;
-  clear: both;
-  padding-top: 20px;
+  line-height: 50px;
+  width: 100%;
+  background-color: #F5F8F5;
 }
-*/
-.footer-links {
+
+/*.footer-links {
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-}
+}*/
 
-.footer-links li {
+.footer li {
   display: inline;
 }
 
-.footer-links a {
+.footer a {
   padding: 10px 15px;
   text-decoration: none;
 }
 
-.footer-links i {
-	font-size: 200%;
+.footer i {
+	font-size: 150%;
 	padding: 10px 25px 0 25px;
 	color: #3C503D;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 0;
 }
