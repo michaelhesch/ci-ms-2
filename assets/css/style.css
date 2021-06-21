@@ -96,8 +96,12 @@ select {
   padding-top: 15px;
 }
 
+#controls {
+  margin-top: 10px;
+}
+
 #controls button {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 #controls-bottom {
@@ -147,7 +151,7 @@ select {
 
 .footer i {
 	font-size: 150%;
-	padding: 10px 25px 0 25px;
+	padding: 10px 15px 0 15px;
 	color: #3C503D;
 }
 
