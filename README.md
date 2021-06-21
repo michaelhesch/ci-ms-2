@@ -66,8 +66,10 @@ The purpose of this website is to provide users with a map of cities to visit in
     - Google fonts were used to import the 'Open Sans' font into the style.css file which is used on all pages throughout the project.
 1. [Font Awesome:](https://fontawesome.com/)
     - Font Awesome was used to add a visual identifier for the type of point of interest for the maps page, and for the social media links found in the footer of all pages.
-1. [w3schools.com:](https://www.w3schools.com/bootstrap4/default.asp)
-    - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized documentation on CSS and Bootstrap 5 features.
+1. [w3schools.com - JavaScript:](https://www.w3schools.com/jsref/jsref_reference.asp)
+1. [w3schools.com - CSS](https://www.w3schools.com/css/default.asp)
+1. [w3schools.com - Bootstrap](https://www.w3schools.com/bootstrap4/default.asp)
+    - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 1. [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/)
     - Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
 1. [Balsamiq:](https://balsamiq.com/)
@@ -76,6 +78,8 @@ The purpose of this website is to provide users with a map of cities to visit in
     - GIMP (GNU Image Manipulation Program) is a free and open source image editor, used to resize and adjust the images used on the site for better performance.
 1. [Visual Stuido Code:](https://code.visualstudio.com/)
     - Visual Stuido code was used as the desktop development IDE for the project, managing the code and assets for the page during development.
+1. [Visual Studio Code - JSHint Plugin:](https://jshint.com/about/)
+    - JSHint plugin was utilized throughout the development process to help catch typographic errors and other potential issues as code was being written.
 1. [Git:](https://git-scm.com/)
     - Git was used for version control by utilizing the Windows command prompt/terminal interface to commit and push to GitHub.
 1. [GitHub:](https://github.com/)
@@ -95,14 +99,14 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
     1. Learn about X.
         1. When a user arrives at the landing page of the site, they are presented with a clean and clear menu bar for navigation, featuring the name of the club, and a large hero image section to draw their attention.  
-        1. The hero image also features a text tagline to further reinforce the brand of the club and further draw the user's attention.  [View Screenshot](https://github.com/michaelhesch/ci-ms-1/tree/main/documentation/screenshots/Home-Hero.PNG)
-        1. Continuing further down the page, the benefits of membership in the club are clearly featured in three large tiles with brief text descriptions of each feature. [View Screenshot](https://github.com/michaelhesch/ci-ms-1/tree/main/documentation/screenshots/Home-Features.PNG)
+        1. The hero image also features a text tagline to further reinforce the brand of the club and further draw the user's attention.  [View Screenshot](https://github.com/)
+        1. Continuing further down the page, the benefits of membership in the club are clearly featured in three large tiles with brief text descriptions of each feature. [View Screenshot](https://github.com/)
 
     2. Learn about X.
-        1. The second component of the landing page, after the club benefits, is a listing of upcoming club events by location, including day and time. [View Screenshot](https://github.com/michaelhesch/ci-ms-1/tree/main/documentation/screenshots/Home-Events.PNG)
+        1. The second component of the landing page, after the club benefits, is a listing of upcoming club events by location, including day and time. [View Screenshot](https://github.com/)
 
     3. Learn about X.
-        1. Once the user navigates to the Locations tab, the club's physical locations are clearly displayed in a large grid, including the address and opening hours of each location, as well as a map to help the user visualize the location in each city. [View Screenshot](https://github.com/michaelhesch/ci-ms-1/tree/main/documentation/screenshots/Locations.PNG)
+        1. Once the user navigates to the Locations tab, the club's physical locations are clearly displayed in a large grid, including the address and opening hours of each location, as well as a map to help the user visualize the location in each city. [View Screenshot](https://github.com/)
 
 -   #### Returning Visitor Goals - TBU
 
@@ -135,7 +139,8 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 - [Resolved] x 
 - [Resolved] x
-- [Open] Map marker clearing - Ongoing issue related to how the Leaflet maps consume point of interest coordinates to set map markers.  
+- [Open] Map marker clearing - Ongoing issue related to how the Leaflet maps consume point of interest coordinates to set map markers.  Attempted several potential solutions to loop through the currently set markers and remove them when the POI list is filtered, however the way the markers are being set to the map when it is intilized will not allow this to work.  Extensively read the API documentation from Leaflet and Mapbox but have not been able to produce a solution to this yet.
+- [Open] Navbar Link Highlighting - The link to return to the landing page ("Create New Travel Map") will highlight to its mouse-over color if the page title on the navbar is hovered over.  The CSS properties are set such that the color should only change when a navbar link is hovered over, the title is not set up as a link.  Need to do additional investigation to determine how to fix this issue.
 
 ## Deployment
 
@@ -185,27 +190,31 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 -   [Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/carousel/) : Code snippets taken from the offical Bootstrap reference materials to create the image carousel featured on the landing page for the site.
 
+-   [Stack Overflow - Sticky Footer Solution](https://stackoverflow.com/questions/10099422/flushing-footer-to-bottom-of-the-page-twitter-bootstrap) : Utilized method provided by user "Andres Ilich" to create a wrapper for main content container in index.html and applied corresponding CSS properties to get sticky footer bar for the site's social media links working correctly.
+
+-   [Stack Overflow - Add onload event to a Div](https://stackoverflow.com/questions/4057236/how-to-add-onload-event-to-a-div-element) : Utilized method provided by user "John Williams" to trigger the map carousel function to run automatically by utilizing the `img` tag's `onerror` property.
+
 ### Content - TBU
 
--   All text content in the landing page was written by the developer.  
+-   All text content excluding city and location information was written by the developer.  
 
 -   City and points of interest descriptions were sourced from Wikipedia or Google Maps location descriptions.
 
 -   City and points of interest GPS coordinates utilized on the maps were acquired from searching for each location on [Maps.ie](https://www.maps.ie/coordinates.html).
 
--   Map locations and points of interest were selected by the developer for demonstration purposes.
+-   Map locations and points of interest were selected by the developer for demonstration purposes.  In a real-world scenario this data would be returned in a JSON response from a data service.
 
 ### Media - TBU
 
 -   All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
 
-- [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/)
+    1. [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/)
 
-- [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/)
+    1. [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/)
 
-- [Cork](https://pixabay.com/photos/cork-cork-ireland-cork-ireland-4686695/)
+    1. [Cork](https://pixabay.com/photos/cork-cork-ireland-cork-ireland-4686695/)
 
-- [Belfast](https://pixabay.com/photos/belfast-architecture-cutter-1532356/)
+    1. [Belfast](https://pixabay.com/photos/belfast-architecture-cutter-1532356/)
 
 ### Acknowledgements - TBU
 
