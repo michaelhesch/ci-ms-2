@@ -221,12 +221,17 @@ let fontMapper = [
   }
 ];
 
+//Global Variables 
+//needed to hold travel destinations content generated in the generateTopMapCitiesResults function, to be consumed by detailsViewContent function below
+let cityList = []; //array to hold results to return 
+let mymap2; //lower drill-down section map, needs to be accessed by multiple functions
+
 //Landing page default view upon arriving to the home page
-function defaultView() {
+function setLandingPage() {
   document.getElementById("controls").innerHTML = `
     <div class="row">
       <div class="col text-center">
-        <h3>Welcome to the Ireland travel map service called Mappy!</h3>
+        <h3>Welcome to Mappy, the Ireland travel map service!</h3>
         <p>Can't decide where to go on your next trip around Ireland?  We are here to help!</p>
         <br />
       </div>
@@ -246,13 +251,33 @@ function defaultView() {
     </div>
     <!--Grid container for carousel-->
     <div class="row">
-      <div class="col-md-4 mx-auto text-center">
-      <!--Bootstrap 5 Carousel template code below from official Bootstrap documentation-->
+      <div id="carousel-div" class="col-md-4 mx-auto text-center">
+      <!--img tag used to trigger an equivalent to an onload event in this div so the map carousel will load automatically-->
+        <img src onerror='setMapCarousel();'>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+      <!--Button to launch map page -->
+        <button class="map-button" type="button" onclick="mapLoader();">Build your map!</button>
+      </div>
+    </div>
+  `;
+  return;
+}
+
+//sets map carousel HTML for landing page, split out of landing view for ease of maintenance
+function setMapCarousel() {
+  document.getElementById("carousel-div").innerHTML = `
+  <!--Bootstrap 5 Carousel template code below taken from official Bootstrap documentation-->
         <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
-            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Dublin"></button>
+            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Galway"></button>
+            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Cork"></button>
+            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="3" aria-label="Belfast"></button>
+            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="4" aria-label="Killarney"></button>
+            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="5" aria-label="Kilkenny"></button>
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -273,6 +298,24 @@ function defaultView() {
                 <h5>Cork</h5>
               </div>
             </div>
+            <div class="carousel-item">
+              <img src="assets/img/home-img-4.jpg" class="d-block w-100" alt="Belfast city image">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Belfast</h5>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/img/home-img-5.jpg" class="d-block w-100" alt="Killarney city image">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Killarney</h5>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/img/home-img-6.jpg" class="d-block w-100" alt="Kilkenny city image">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Kilkenny</h5>
+              </div>
+            </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -283,14 +326,6 @@ function defaultView() {
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col text-center">
-      <!--Button to launch map page -->
-        <button class="map-button" type="button" onclick="mapLoader();">Build your map!</button>
-      </div>
-    </div>
   `;
   return;
 }
@@ -369,26 +404,21 @@ function generateCityList() {
 }
 
 //Generate HTML content to display
-
-//global variables needed to hold travel destinations content generated in the generateTopMapCitiesResults function, to be consumed by detailsViewContent function below
-let printArr = []; //array to hold results to return 
-let mymap2; //lower drill-down section map, needs to be accessed by multiple functions
-
 //function to generate output html to return city names and corresponding details based on user input
 function generateTopMapCitiesResults() {
-  printArr = generateCityList(); //assigns pritArr to be the array of city data returned by generateCityList function above
+  cityList = generateCityList(); //assigns pritArr to be the array of city data returned by generateCityList function above
   document.getElementById("form-div-2").innerHTML = ``; //clear drilldown panel if user clicks generate new map and a drilldown from a past map was already loaded.
 
   //loop to create HTML output for each travel destination to be included in results to user
   let locationsList = "";
 
-  for (let i = 0; i < printArr.length; i++) {
+  for (let i = 0; i < cityList.length; i++) {
     locationsList +=
-    `<p><strong>${i + 1}. ${printArr[i].name}</strong>
+    `<p><strong>${i + 1}. ${cityList[i].name}</strong>
     <br />
-    ${printArr[i].summary}
+    ${cityList[i].summary}
     <br />
-    <button class="map-button" onclick="generateDetailsDefaultLayout(${i}, 'allTypes');">Additional Details for ${printArr[i].name}</button>
+    <button class="map-button" onclick="generateDetailsDefaultLayout(${i}, 'allTypes');">Additional Details for ${cityList[i].name}</button>
     </p>
     <br />
     `;
@@ -428,9 +458,9 @@ function generateTopMapAndCitiesLayout(locationsList) {
   //loop to add markers from array of coordinates, coordsGroup array is the output needed by Leaflet to generate map markers
   let coordsGroup = [];
 
-  for (let i = 0; i < printArr.length; i++) {
-    L.marker(printArr[i].coord).addTo(mymap).bindPopup("This is the "+printArr[i].name+" marker");
-    coordsGroup.push(printArr[i].coord);
+  for (let i = 0; i < cityList.length; i++) {
+    L.marker(cityList[i].coord).addTo(mymap).bindPopup("This is the "+cityList[i].name+" marker");
+    coordsGroup.push(cityList[i].coord);
   }
 
   //set the map to fit all POI markers in view upon rendering with padding and map/zoom animation
@@ -438,11 +468,10 @@ function generateTopMapAndCitiesLayout(locationsList) {
     padding: L.point(36, 36),
     animate: true,
   });
-
 }
 
 function generateFilteredAttractions(citySelectionIndex, tripType) {
-  let citySelection = printArr[citySelectionIndex];
+  let citySelection = cityList[citySelectionIndex];
   let filteredSelection = citySelection.drilldown; 
 
   if (tripType !== "allTypes") {
@@ -455,7 +484,7 @@ function generateFilteredAttractions(citySelectionIndex, tripType) {
 }
 
 function generateDetailsDefaultLayout(citySelectionIndex) {
-  let citySelection = printArr[citySelectionIndex];
+  let citySelection = cityList[citySelectionIndex];
 
   document.getElementById("form-div-2").innerHTML = `
     <br />
@@ -495,38 +524,36 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
 
 //function to add markers 
 function updateDetailsMapMarkers(filteredAttractions) {
-    //let coordsDrilldownGroup = [];
-    let bottomMapMarkers = [];
-    // TODO reset markers 
-    /*for (let i = 0; i < filteredAttractions.length; i++) {
-      L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
-    }*/
-    /*if (bottomMapMarkers !== null) {
-      for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
-        delete bottomMapMarkers[i];
-      }
-    }*/
-
-    //document.getElementById("mapid2").innerHTML = "";
-    //mymap2.removeLayer(L.marker);
-    /*for (let i = 0; i < bottomMapMarkers.length; i++) {
-      mymap2.removeLayer(bottomMapMarkers[i]);
-    }*/
-
-    //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
-    for (let i = 0; i < filteredAttractions.length; i++) { 
-      L.marker(filteredAttractions[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredAttractions[i].poiName+" marker");
-      bottomMapMarkers.push(filteredAttractions[i].poiCoord);
+  //let coordsDrilldownGroup = [];
+  let bottomMapMarkers = [];
+  
+  // TODO reset markers 
+  /*for (let i = 0; i < filteredAttractions.length; i++) {
+    L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
+  }*/
+  /*if (bottomMapMarkers !== null) {
+    for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
+      delete bottomMapMarkers[i];
     }
+  }*/
 
-    console.log(bottomMapMarkers);
-    console.log(mymap2);
-    
-    //set the map to include all POI markers from array above with padding and zoom/map animation
-    mymap2.flyToBounds(bottomMapMarkers, {
-      padding: L.point(36, 36), 
-      animate: true,
-    });
+  //document.getElementById("mapid2").innerHTML = "";
+  //mymap2.removeLayer(L.marker);
+  /*for (let i = 0; i < bottomMapMarkers.length; i++) {
+    mymap2.removeLayer(bottomMapMarkers[i]);
+  }*/
+
+  //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
+  for (let i = 0; i < filteredAttractions.length; i++) { 
+    L.marker(filteredAttractions[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredAttractions[i].poiName+" marker");
+    bottomMapMarkers.push(filteredAttractions[i].poiCoord);
+  }
+
+  //set the map to include all POI markers from array above with padding and zoom/map animation
+  mymap2.flyToBounds(bottomMapMarkers, {
+    padding: L.point(36, 36), 
+    animate: true,
+  });
 }
 
 //create drilldown view content, pass in index of the city from the selection
@@ -536,7 +563,6 @@ function updateDetailsViewContent(filteredAttractions) {
   for (let i = 0; i < filteredAttractions.length; i++) {
     //use Array find method to select Font Awesome code corresponding to attraction type and insert in results HTML
     let icon = fontMapper.find(function (placeIcon) {
-      console.log(placeIcon);
       return placeIcon.poiType == filteredAttractions[i].poiType;
     });
     //select the iconType HTML from the object returned by the loop above
@@ -551,8 +577,7 @@ function updateDetailsViewContent(filteredAttractions) {
     `;
   }
 
-  // clear existing map markers
-
+  //TODO - clear existing map markers so only current drill-down selection will be visible
   /*for (let i = 0; i < filteredAttractions.length; i++) {
     L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
   }*/
@@ -574,8 +599,8 @@ function updateDetailsViewContent(filteredAttractions) {
   document.getElementById("poi-list").innerHTML = poiList;
 }
 
-  function renderBottomMap (citySelection) {
-  //render drilldown map and POI markers using mapbox API and leaflet library
+//render drilldown map and POI markers using mapbox API and leaflet library
+function renderBottomMap (citySelection) {
   let mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
   let filteredSelection = citySelection.drilldown;
 
