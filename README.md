@@ -72,6 +72,8 @@ The purpose of this website is to provide users with a map of cities to visit in
     - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 1. [w3schools.com - Bootstrap:](https://www.w3schools.com/bootstrap4/default.asp)
     - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
+1. [Coolors:](https://coolors.co/) 
+    - Used Coolors to select the color palette for the page.  Selected color palette can be viewed [here]().
 1. [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/)
     - Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
 1. [Balsamiq:](https://balsamiq.com/)
