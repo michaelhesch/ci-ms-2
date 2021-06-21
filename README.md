@@ -2,7 +2,7 @@
 
 [View the live project here.](https://michaelhesch.github.io/ci-ms-2/)
 
-TBU - The purpose of this website is to .
+The purpose of this website is to provide users with a map of cities to visit in Ireland, along with selected points of interest for each city.  The tool will generate a randomized list of cities including two, three or four primary destinations as results, based on user selection.  The user can then drill down into each destination to view a list of selected points of interest, which they can then filter by 'cateogry' to further refine their trip.
 
 ## User Experience (UX) - TBU
 
@@ -24,11 +24,11 @@ TBU - The purpose of this website is to .
 
 -   ### Design - TBU
     -   #### Colour Scheme
-        -   The page color scheme is based on dark and light gray tones to give a clean and somewhat spartan design asthetic throughout the site.
+        -   The page color scheme is based on subdued green and orange tones, as well as a light gray-green background color to create a simple aesthetic design for the page.  Oranges are used as highlights only to clearly draw the user's attention to a hover or click selection.  The theme is meant to reference the colors of the Irish flag.
     -   #### Typography
-        -   The font used throughout the site is the Google Font 'Open Sans' which gives a clean and simple font which is easy to read across font sizes.  The goal of selecting this font was to further encourage a clean and simple aesthetic on the site.  Sans-serif serves as the backup to Open Sans if it fails to load.
+        -   The font used throughout the site is the Google Font 'Open Sans' which is a clean and simple font style that is easy to read across font sizes.  This font was selected to further build a clean and simple aesthetic across the content on the site.  Sans-serif serves as the backup to Open Sans if it fails to load.
     -   #### Imagery
-        -   Hero image utilized across the site presents a dramatic view of a Formula One car with the club name overlayed to engage and excite the visitor about the club.  In addition the landing page uses images of Formula One races in progress to draw the visitor's attention to the key details about the club.
+        -   The landing page image carousel serves a series of images of cities that are included in the Mappy generation database.  This serves to draw the user's attention and create excitement for visiting cities included when using the tool.
 
 *   ### Wireframes - TBU
 
@@ -56,18 +56,20 @@ TBU - The purpose of this website is to .
 
 ### Frameworks, Libraries & Programs Used - TBU
 
-1. [Mapbox API](https://x/)
-    - Mapbox was used to x.
-1. [Leaflet.js](https://x/)
-    - Leaflet was used to x.
+1. [Leaflet.js](https://leafletjs.com/)
+    - Leaflet was used to generate mobile friendly and efficient maps and to attach point of interest markers to the maps generated in this project.  Attribution for Leaflet can also be found on the maps embedded in the page.
+1. [Mapbox](https://docs.mapbox.com/api/overview/)
+    - Mapbox was used to provide the image tiles utilized by the Leaflet maps.  Attribution for Mapbox can also be found on the maps embedded in the page.
+1. [Bootstrap 5.0.1](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+    - Bootstrap was used to add responsiveness and provide a simplified grid construction method.  In addition I utilized Bootstrap to create a sticky footer bar and image carousel for the site's landing page.
 1. [Google Fonts:](https://fonts.google.com/)
     - Google fonts were used to import the 'Open Sans' font into the style.css file which is used on all pages throughout the project.
 1. [Font Awesome:](https://fontawesome.com/)
-    - Font Awesome was used on the index page to add icons to add a visual highlight to the "club benefits" section, and for the social media links in the footer of all pages.
+    - Font Awesome was used to add a visual identifier for the type of point of interest for the maps page, and for the social media links found in the footer of all pages.
 1. [w3schools.com:](https://www.w3schools.com/bootstrap4/default.asp)
-    - Referenced w3schools Bootstrap 4 page to leverage code samples to work off of for different features, for example in configuring the responsive menu bar.
-1. [Code Institute Full-Stack Developer Course:](https://www.codeinstitute.net/)
-    - Referenced past projects in Code Institute Full-Stack course for code samples to work off of, for example in the "Upcoming Events" section of the index page.
+    - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized documentation on CSS and Bootstrap 5 features.
+1. [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/)
+    - Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
 1. [Balsamiq:](https://balsamiq.com/)
     - Balsamiq was used to create the design wireframes used to outline the webpage before development.
 1. [GIMP:](https://www.gimp.org/)
@@ -85,6 +87,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 -   [W3C Markup Validator](https://) - [Results](https://)
 -   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://)
+-   [JavaScript]() - [Results](https://)
 
 ### Testing User Stories from User Experience (UX) Section - TBU
 
@@ -120,21 +123,19 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
     1.  Mobile Scores:
         1. [Home Page](https://)
-        1. [Club Locations Page](https://)
-        1. [Join the Club Page](https://)
+        1. [Map Generation Page](https://)
     
     1. Desktop Scores:
         1. [Home Page](https://)
-        1. [Club Locations Page](https://)
-        1. [Join the Club Page](https://)
+        1. [Map Generation Page](https://)
 
--   Please note that while efforts to coprrect some defects indicated in these results are due to issues found in external dependencies, such as Bootstrap's CSS, the version of jQuery used in this Bootstrap implementation, the HTTP version configured in the GitHub Pages server that the site is deployed on, etc. or other faults that are beyond the scope of this project to remedy.
+-   Please note that while efforts to coprrect some defects indicated in these results are due to issues found in external dependencies, such as Bootstrap's CSS, the HTTP version configured in the GitHub Pages server that the site is deployed on, etc. or other faults that are beyond the scope of this project to remedy.
 
 ### Issues Encountered in Development - TBU
 
 - [Resolved] x 
 - [Resolved] x
-- [Open] x
+- [Open] Map marker clearing - Ongoing issue related to how the Leaflet maps consume point of interest coordinates to set map markers.  
 
 ## Deployment
 
@@ -178,25 +179,33 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Code
 
--   [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/) : Code snippets from example projects, Love Running and the UCD Resume in particular, were used as basis for Hero Image layout and Upcoming Club Events section. 
+-   [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/) : Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
 
 -   [README Template](https://github.com/Code-Institute-Solutions/SampleREADME) : Template for the README.md file for this project was sourced from Code Institute.
 
+-   [Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/carousel/) : Code snippets taken from the offical Bootstrap reference materials to create the image carousel featured on the landing page for the site.
+
 ### Content - TBU
 
--   All text content in the page was written by the developer.
+-   All text content in the landing page was written by the developer.  
 
--   Addresses and other contact details presented in the site, including map locations, were selected by the developer.
+-   City and points of interest descriptions were sourced from Wikipedia or Google Maps location descriptions.
+
+-   City and points of interest GPS coordinates utilized on the maps were acquired from searching for each location on [Maps.ie](https://www.maps.ie/coordinates.html).
+
+-   Map locations and points of interest were selected by the developer for demonstration purposes.
 
 ### Media - TBU
 
 -   All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
 
--   The hero image came from [Pixabay](https://pixabay.com/photos/ferrari-formula-1-fernand-alonso-f1-490617/)
+- [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/)
 
--   The upcoming club activity background image came from [Pixabay](https://pixabay.com/photos/racetrack-lane-line-arrival-sport-794589/)
+- [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/)
 
--   The three feature images used in the club benefits section came from [Wikipedia - Formula One](https://en.wikipedia.org/wiki/Formula_One) and [Wikipedia - Formula One Car](https://en.wikipedia.org/wiki/Formula_One_car)
+- [Cork](https://pixabay.com/photos/cork-cork-ireland-cork-ireland-4686695/)
+
+- [Belfast](https://pixabay.com/photos/belfast-architecture-cutter-1532356/)
 
 ### Acknowledgements - TBU
 

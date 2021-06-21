@@ -1,9 +1,13 @@
+/*Import Google font family Open Sans at default font weight*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 /*Global styling*/
 html {
   /*min-height: 100%;*/
   margin: 0;
   padding: 0;
   background-color: #FDFDFC;
+  font-family: "Open Sans", sans-serif;
 }
 
 body, wrapper {
@@ -46,16 +50,10 @@ nav {
   margin: 0;
 }
 
-.site-logo img {
-  width: 175px;
-  vertical-align: middle;
-}
-
 /*Main section styling*/
-#home-img {
-  background: url("../img/home-img.jpg") no-repeat center center;
-  height: 300px;
-  width: 100%;
+.home-img {
+  /*height: 300px;*/
+  /*width: 300px;*/
   border-radius: 10px;
 }
 
@@ -63,7 +61,7 @@ main {
   flex: 1;
 }
 
-button {
+.map-button {
   background-color: #b0c4b1;
   border-radius: 4px;
   border-style: solid 0.5px;
@@ -73,7 +71,7 @@ button {
   opacity: 0.9;
 }
 
-button:hover, button:focus {
+.map-button:hover {
   color: white;
   background-color: #91411D;
   border-color: #6D3115;
@@ -137,12 +135,6 @@ select {
   width: 100%;
   background-color: #F5F8F5;
 }
-
-/*.footer-links {
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-}*/
 
 .footer li {
   display: inline;
