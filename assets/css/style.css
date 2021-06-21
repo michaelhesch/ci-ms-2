@@ -6,8 +6,12 @@ html {
   /*min-height: 100%;*/
   margin: 0;
   padding: 0;
-  background-color: #FDFDFC;
+  background-color: #F0EEEA;
   font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background-color: #E7EBEB;
 }
 
 body, wrapper {
@@ -73,8 +77,8 @@ main {
 
 .map-button:hover {
   color: white;
-  background-color: #91411D;
-  border-color: #6D3115;
+  background-color: #B55224;
+  border-color: #91411D;
 }
 
 ul {
@@ -123,9 +127,9 @@ select {
   padding-top: 10px;
 }
 
-#form-div-2 {
+#form-div, #form-div-2 {
   padding-left: 125px;
-  padding-right: 125px;
+  padding-right: 275px;
 }
 
 /*Footer styling*/
@@ -137,7 +141,7 @@ select {
   height: 50px;
   line-height: 50px;
   width: 100%;
-  background-color: #F5F8F5;
+  background-color: #C4D3C5;
 }
 
 .footer li {

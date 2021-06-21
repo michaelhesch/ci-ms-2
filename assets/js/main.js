@@ -1,5 +1,5 @@
 //Static data array of objects for outputs used as a simulated JSON response 
-let locationsArr = [
+const locationsArr = [
   {
     name: 'Cork',
     coord: [51.8986, -8.4705],
@@ -218,7 +218,7 @@ let locationsArr = [
 ];
 
 //Array of objects providing mapping between point of interest type and it's corresponding Font Awesome icon to be displayed in results.
-let fontMapper = [
+const fontMapper = [
   {
     poiType: "Historic/Monument",
     iconType: `<i class="fas fa-landmark"> </i>`
@@ -236,7 +236,7 @@ let fontMapper = [
 //Global Variables 
 //needed to hold travel destinations content generated in the generateTopMapCitiesResults function, to be consumed by detailsViewContent function below
 let cityList = []; //array to hold results to return 
-let mymap2; //lower drill-down section map, needs to be accessed by multiple functions
+let bottomMap; //lower drill-down section map, needs to be accessed by multiple functions
 
 //Landing page default view which is triggered by onload event upon arriving to the home page
 function setLandingPage() {
@@ -384,7 +384,7 @@ function mapLoader() {
       <div class="col"></div>
     </div>
   `;
-    
+      //rename this to be more descriptive? primaryMap, etc
   let mymap = L.map('mapid', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
@@ -404,6 +404,7 @@ function mapLoader() {
  * @param numOfLocations as number
  * @returns random number
  */
+
 function randomizer(numOfLocations) {
   return Math.floor(Math.random() * numOfLocations);
 }
@@ -412,6 +413,7 @@ function randomizer(numOfLocations) {
  * Generate city list array based on randomly selected unique index values. 
  * @returns array of city objects
  */
+
 //function to select cities to add to the output array by using the randomizer results
 function generateCityList() {
   let citiesArr = [];
@@ -529,7 +531,7 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
   `;
 
   //render drilldown map and POI markers using mapbox API and leaflet library
-  mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
+  bottomMap = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -537,7 +539,7 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
       tileSize: 512,
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
-  }).addTo(mymap2);
+  }).addTo(bottomMap);
 
   let filteredAttractions = generateFilteredAttractions(citySelectionIndex, 'allTypes');
   updateDetailsViewContent(filteredAttractions);
@@ -549,9 +551,9 @@ function updateDetailsMapMarkers(filteredAttractions) {
   //let coordsDrilldownGroup = [];
   let bottomMapMarkers = [];
   
-  // TODO reset markers 
+  // TODO reset markers - check with tutoring
   /*for (let i = 0; i < filteredAttractions.length; i++) {
-    L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
+    L.marker(filteredAttractions[i].poiCoord).remove(bottomMap);
   }*/
   /*if (bottomMapMarkers !== null) {
     for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
@@ -560,19 +562,19 @@ function updateDetailsMapMarkers(filteredAttractions) {
   }*/
 
   //document.getElementById("mapid2").innerHTML = "";
-  //mymap2.removeLayer(L.marker);
+  //bottomMap.removeLayer(L.marker);
   /*for (let i = 0; i < bottomMapMarkers.length; i++) {
-    mymap2.removeLayer(bottomMapMarkers[i]);
+    bottomMap.removeLayer(bottomMapMarkers[i]);
   }*/
 
   //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
   for (let i = 0; i < filteredAttractions.length; i++) { 
-    L.marker(filteredAttractions[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredAttractions[i].poiName+" marker");
+    L.marker(filteredAttractions[i].poiCoord).addTo(bottomMap).bindPopup("This is the "+filteredAttractions[i].poiName+" marker");
     bottomMapMarkers.push(filteredAttractions[i].poiCoord);
   }
 
   //set the map to include all POI markers from array above with padding and zoom/map animation
-  mymap2.flyToBounds(bottomMapMarkers, {
+  bottomMap.flyToBounds(bottomMapMarkers, {
     padding: L.point(36, 36), 
     animate: true,
   });
@@ -584,9 +586,7 @@ function updateDetailsViewContent(filteredAttractions) {
   //loop to create filtered points of interest content for the drill-down pane
   for (let i = 0; i < filteredAttractions.length; i++) {
     //use Array find method to select Font Awesome code corresponding to attraction type and insert in results HTML
-    let icon = fontMapper.find(function (placeIcon) {
-      return placeIcon.poiType == filteredAttractions[i].poiType;
-    });
+    let icon = fontMapper.find((placeIcon) => placeIcon.poiType == filteredAttractions[i].poiType);
     //select the iconType HTML from the object returned by the loop above
     let finalIcon = icon.iconType;
     //create HTML with data corresponding to the selected POI type
@@ -599,7 +599,7 @@ function updateDetailsViewContent(filteredAttractions) {
 
   //TODO - clear existing map markers so only current drill-down selection will be visible
   /*for (let i = 0; i < filteredAttractions.length; i++) {
-    L.marker(filteredAttractions[i].poiCoord).remove(mymap2);
+    L.marker(filteredAttractions[i].poiCoord).remove(bottomMap);
   }*/
   /*if (bottomMapMarkers !== null) {
     for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
@@ -609,7 +609,7 @@ function updateDetailsViewContent(filteredAttractions) {
 
   //document.getElementById("mapid2").innerHTML = "";
   /*for (let i = 0; i < bottomMapMarkers.length; i++) {
-    mymap2.removeLayer(bottomMapMarkers[i]);
+    bottomMap.removeLayer(bottomMapMarkers[i]);
   }*/
 
   // update map
@@ -621,7 +621,7 @@ function updateDetailsViewContent(filteredAttractions) {
 
 //render drilldown map and POI markers using mapbox API and leaflet library
 function renderBottomMap (citySelection) {
-  let mymap2 = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
+  let bottomMap = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
   let filteredSelection = citySelection.drilldown;
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
@@ -630,18 +630,18 @@ function renderBottomMap (citySelection) {
       tileSize: 512,
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
-  }).addTo(mymap2);
+  }).addTo(bottomMap);
 
   //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
   //let coordsDrilldownGroup = [];
 
   for (let i = 0; i < filteredSelection.length; i++) {
-    L.marker(filteredSelection[i].poiCoord).addTo(mymap2).bindPopup("This is the "+filteredSelection[i].poiName+" marker");
+    L.marker(filteredSelection[i].poiCoord).addTo(bottomMap).bindPopup("This is the "+filteredSelection[i].poiName+" marker");
     bottomMapMarkers.push(filteredSelection[i].poiCoord);
   }
 
   //set the map to include all POI markers from array above with padding and zoom/map animation
-  mymap2.flyToBounds(bottomMapMarkers, {
+  bottomMap.flyToBounds(bottomMapMarkers, {
     padding: L.point(36, 36), 
     animate: true,
   });
