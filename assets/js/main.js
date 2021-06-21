@@ -17,10 +17,16 @@ let locationsArr = [
       poiType: 'Restaurant/Pub'
     },
     {
-      poiName: 'Fitzgeralds Park',
+      poiName: 'FitzGerald Park',
       poiCoord: [51.8955, -8.4933],
       poiSummary: 'Popular green space with a museum, fountain, sculptures, walking paths & manicured landscaping.  Includes the Cork Public Museum and a bike hire location.',
       poiType: 'Outdoors'
+    },
+    {
+      poiName: 'The English Market',
+      poiCoord: [51.8976, -8.4743],
+      poiSummary: 'Traders selling organic and locally produced food in an 18th-century covered market.',
+      poiType: 'Restaurant/Pub'
     }]
   },
   {
@@ -28,7 +34,7 @@ let locationsArr = [
     coord: [53.2841, -9.0378],
     summary: 'Galway is a city in the west of Ireland, chartered in 1484, and is the sixth largest city in the country.  The city is known for hosting many festivals, celebrations and events including the Galway Arts Festival.',
     drilldown: [{
-      poiName: 'The Kings Head',
+      poiName: "The King's Head",
       poiCoord: [53.2721, -9.0532],
       poiSummary: 'Relaxed bistro and pub hung with chic modern art, serving locally-sourced dishes with a global twist.  The building it is housed in is over 800 years old, from the 13th century.',
       poiType: 'Restaurant/Pub'
@@ -48,7 +54,7 @@ let locationsArr = [
     {
       poiName: 'Eyre Square',
       poiCoord: [53.2744, -9.0493],
-      poiSummary: 'Popular square in the heart of the city featuring grassy areas, trees, sculptures & a playground..',
+      poiSummary: 'Popular square in the heart of the city featuring grassy areas, trees, sculptures & a playground.',
       poiType: 'Outdoors'
     }]
   },
@@ -69,6 +75,12 @@ let locationsArr = [
       poiType: 'Outdoors'
     },
     {
+      poiName: "St. Stephen's Green",
+      poiCoord: [53.3379, -6.2590],
+      poiSummary: "City centre park with ornamental lake, waterfall, sculptures and a children's playground.",
+      poiType: 'Outdoors'
+    },
+    {
       poiName: 'Spire of Dublin',
       poiCoord: [53.3498, -6.2602],
       poiSummary: 'Also called the "Monument of Light", it is a large, stainless steel, pin like monument that is 120 meters (390ft) tall located in North Dublin.',
@@ -76,15 +88,15 @@ let locationsArr = [
     },
     {
       poiName: 'Molly Malone',
-      poiCoord: [53.3527, -6.2616],
+      poiCoord: [53.3437, -6.2609],
       poiSummary: 'Bronze statue of a fictional fishmonger named Molly Malone, the star of a well-known Irish song.',
       poiType: 'Historic/Monument'
     },
     {
-      poiName: 'Poolbeg Lighthouse',
-      poiCoord: [53.3421, -6.1513],
-      poiSummary: 'Iconic red lighthouse reachable by a lengthy seawall that attracts sightseers, anglers & cyclists.',
-      poiType: 'Outdoors'
+      poiName: 'Keohes Pub',
+      poiCoord: [53.3411, -6.2594],
+      poiSummary: 'Classic pub scattered with original features such as mahogany doors and wood partitioned snug areas.',
+      poiType: 'Restaurant/Pub'
     }]
   },
   {
@@ -119,7 +131,7 @@ let locationsArr = [
   {
     name: 'Killarney',
     coord: [52.0595, -9.5053],
-    summary: 'Killarney is a town in County Kerry in southwest Ireland. Its natural heritage, history and location on the Ring of Kerry make Killarney a popular tourist destination.',
+    summary: "Killarney is a town in County Kerry in southwest Ireland. It's natural heritage, history and location on the Ring of Kerry make Killarney a popular tourist destination.",
     drilldown: [{
       poiName: 'Killarney House',
       poiCoord: [52.0556, -9.5116],
@@ -133,9 +145,9 @@ let locationsArr = [
       poiType: 'Restaurant/Pub'
     },
     {
-      poiName: 'Murphys Ice Cream',
+      poiName: "Murphy's Ice Cream",
       poiCoord: [52.0590, -9.5091],
-      poiSummary: 'Local ice cream shop offering premium ice cream.  Founded in Dingle in 2000, Murphys uses the best local ingredients in their ice cream.',
+      poiSummary: "Local ice cream shop offering premium ice cream.  Founded in Dingle in 2000, Murphy's uses the best local ingredients including Kerry cow milk to make their ice cream.",
       poiType: 'Restaurant/Pub'
     },
     {
@@ -226,7 +238,7 @@ let fontMapper = [
 let cityList = []; //array to hold results to return 
 let mymap2; //lower drill-down section map, needs to be accessed by multiple functions
 
-//Landing page default view upon arriving to the home page
+//Landing page default view which is triggered by onload event upon arriving to the home page
 function setLandingPage() {
   document.getElementById("controls").innerHTML = `
     <div class="row">
@@ -237,8 +249,11 @@ function setLandingPage() {
       </div>
       <!--Landing page text summary-->
       <div class="container mx-auto text-center">
-        <div class="w-25 text-start mx-auto">
-        <p>With Mappy, we can help you plan your trip by:
+        <div class="col-md-4 text-start mx-auto">
+        <p>Our travel map generation tool will help you plan a wonderful trip around Ireland.  
+        <br />
+        Some features of our tool include:
+        </p>
         <ul>
           <li>Creating unique lists of destinations around Ireland.</li>
           <li>Help you plan your next trip.</li>
@@ -248,6 +263,9 @@ function setLandingPage() {
         </div>
       </div>
       <br />
+      <div class="container mx-auto text-center">
+        <p>Some of the top destination cities in Ireland include:</p>
+      </div>
     </div>
     <!--Grid container for carousel-->
     <div class="row">
@@ -278,6 +296,7 @@ function setMapCarousel() {
             <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="3" aria-label="Belfast"></button>
             <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="4" aria-label="Killarney"></button>
             <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="5" aria-label="Kilkenny"></button>
+            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="6" aria-label="Donegal"></button>
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -316,6 +335,12 @@ function setMapCarousel() {
                 <h5>Kilkenny</h5>
               </div>
             </div>
+            <div class="carousel-item">
+              <img src="assets/img/home-img-7.jpg" class="d-block w-100" alt="Donegal city image">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Donegal</h5>
+              </div>
+            </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -343,7 +368,7 @@ function mapLoader() {
         </select>
       </div>
       <div class="col text-start">
-        <button class="map-button" type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel Map!</button>
+        <button class="map-button" type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel map!</button>
       </div>
     </div>
   `;
@@ -414,13 +439,11 @@ function generateTopMapCitiesResults() {
 
   for (let i = 0; i < cityList.length; i++) {
     locationsList +=
-    `<p><strong>${i + 1}. ${cityList[i].name}</strong>
-    <br />
-    ${cityList[i].summary}
-    <br />
-    <button class="map-button" onclick="generateDetailsDefaultLayout(${i}, 'allTypes');">Additional Details for ${cityList[i].name}</button>
+    `<h5>${i + 1}. ${cityList[i].name}</h5>
+    <p>${cityList[i].summary}</p>
+    <p>
+      <button class="map-button" onclick="generateDetailsDefaultLayout(${i}, 'allTypes');">Additional Details for ${cityList[i].name}</button>
     </p>
-    <br />
     `;
   }
   generateTopMapAndCitiesLayout(locationsList);
@@ -437,8 +460,7 @@ function generateTopMapAndCitiesLayout(locationsList) {
           <div id="mapid"></div>
         </div>
         <div class="col">
-          <h4>Your list of destinations for your trip:</h4>
-          <br />
+          <h4>Destinations selected for your trip:</h4>
           <div class="row">${locationsList}</div>
         </div>
       </div>
@@ -493,7 +515,7 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
       <div class="col">
         <div id="mapid2"></div>
       </div>
-      <div class="col" id="drilldownDetails>
+      <div class="col" id="drilldownDetails">
         <label for="tripType"><h4>Points of interest for ${citySelection.name}: </h4></label>
         <select id="tripType" name="tripType" onchange="filterDrilldown(${citySelectionIndex});">
           <option value="allTypes">All</option>
@@ -569,11 +591,9 @@ function updateDetailsViewContent(filteredAttractions) {
     let finalIcon = icon.iconType;
     //create HTML with data corresponding to the selected POI type
     poiList +=
-    `<p>
-      <strong>${i + 1}. ${filteredAttractions[i].poiName} ${finalIcon}</strong>
+    `<h6>${i + 1}. ${filteredAttractions[i].poiName} ${finalIcon}</h6>
       <p>Summary: ${filteredAttractions[i].poiSummary}</p>
       <p>Type of attraction: ${filteredAttractions[i].poiType}</p>
-    </p>
     `;
   }
 

@@ -59,7 +59,7 @@ The purpose of this website is to provide users with a map of cities to visit in
 1. [Leaflet.js](https://leafletjs.com/)
     - Leaflet was used to generate mobile friendly and efficient maps and to attach point of interest markers to the maps generated in this project.  Attribution for Leaflet can also be found on the maps embedded in the page.
 1. [Mapbox](https://docs.mapbox.com/api/overview/)
-    - Mapbox was used to provide the image tiles utilized by the Leaflet maps.  Attribution for Mapbox can also be found on the maps embedded in the page.
+    - Mapbox was used in conjunction with Leaflet to provide the image tiles utilized by the Leaflet maps.  Attribution for Mapbox can also be found on the maps embedded in the page.
 1. [Bootstrap 5.0.1](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
     - Bootstrap was used to add responsiveness and provide a simplified grid construction method.  In addition I utilized Bootstrap to create a sticky footer bar and image carousel for the site's landing page.
 1. [Google Fonts:](https://fonts.google.com/)
@@ -67,8 +67,10 @@ The purpose of this website is to provide users with a map of cities to visit in
 1. [Font Awesome:](https://fontawesome.com/)
     - Font Awesome was used to add a visual identifier for the type of point of interest for the maps page, and for the social media links found in the footer of all pages.
 1. [w3schools.com - JavaScript:](https://www.w3schools.com/jsref/jsref_reference.asp)
-1. [w3schools.com - CSS](https://www.w3schools.com/css/default.asp)
-1. [w3schools.com - Bootstrap](https://www.w3schools.com/bootstrap4/default.asp)
+    - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
+1. [w3schools.com - CSS:](https://www.w3schools.com/css/default.asp)
+    - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
+1. [w3schools.com - Bootstrap:](https://www.w3schools.com/bootstrap4/default.asp)
     - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 1. [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/)
     - Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
@@ -190,7 +192,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 -   [Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/carousel/) : Code snippets taken from the offical Bootstrap reference materials to create the image carousel featured on the landing page for the site.
 
--   [Stack Overflow - Sticky Footer Solution](https://stackoverflow.com/questions/10099422/flushing-footer-to-bottom-of-the-page-twitter-bootstrap) : Utilized method provided by user "Andres Ilich" to create a wrapper for main content container in index.html and applied corresponding CSS properties to get sticky footer bar for the site's social media links working correctly.
+-   [Stack Overflow - Sticky Footer Solution](https://stackoverflow.com/questions/20657599/footer-in-bootstrap-that-extends-with-content-or-sticks-to-the-bottom) : Utilized method provided by user "Zim" to create a wrapper tag for main content container in index.html and applied corresponding CSS properties to get sticky footer bar for the site's social media links working correctly.
 
 -   [Stack Overflow - Add onload event to a Div](https://stackoverflow.com/questions/4057236/how-to-add-onload-event-to-a-div-element) : Utilized method provided by user "John Williams" to trigger the map carousel function to run automatically by utilizing the `img` tag's `onerror` property.
 
@@ -208,6 +210,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 -   All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
 
+-   Image carousel credits:
     1. [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/)
 
     1. [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/)
@@ -215,6 +218,12 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
     1. [Cork](https://pixabay.com/photos/cork-cork-ireland-cork-ireland-4686695/)
 
     1. [Belfast](https://pixabay.com/photos/belfast-architecture-cutter-1532356/)
+
+    1. [Killarney](https://pixabay.com/photos/killarney-ireland-city-traffic-959325/)
+
+    1. [Kilkenny](https://pixabay.com/photos/kilkenny-ireland-castle-abbey-339160/)
+    
+    1. [Donegal](https://commons.wikimedia.org/wiki/File:The_Abbey_Hotel,_The_Diamond_-_geograph.org.uk_-_1016168.jpg)
 
 ### Acknowledgements - TBU
 
