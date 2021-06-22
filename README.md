@@ -1,4 +1,4 @@
-<h1 align="left">Milestone Project Two - "TBU"</h1>
+<h1 align="left">Milestone Project Two - Mappy</h1>
 
 [View the live project here.](https://michaelhesch.github.io/ci-ms-2/)
 
@@ -213,19 +213,19 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 -   All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
 
 -   Image carousel credits:
-    1. [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/)
+    1. [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/) - via Pixabay
 
-    1. [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/)
+    1. [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/) - via Pixabay
 
-    1. [Cork](https://pixabay.com/photos/cork-cork-ireland-cork-ireland-4686695/)
+    1. [Cork](https://pixabay.com/photos/cork-cork-ireland-cork-ireland-4686695/) - via Pixabay
 
-    1. [Belfast](https://pixabay.com/photos/belfast-architecture-cutter-1532356/)
+    1. [Belfast](https://pixabay.com/photos/belfast-architecture-cutter-1532356/) - via Pixabay
 
-    1. [Killarney](https://pixabay.com/photos/killarney-ireland-city-traffic-959325/)
+    1. [Killarney](https://pixabay.com/photos/killarney-ireland-city-traffic-959325/) - via Pixabay
 
-    1. [Kilkenny](https://pixabay.com/photos/kilkenny-ireland-castle-abbey-339160/)
+    1. [Kilkenny](https://pixabay.com/photos/kilkenny-ireland-castle-abbey-339160/) - via Pixabay
     
-    1. [Donegal](https://commons.wikimedia.org/wiki/File:The_Abbey_Hotel,_The_Diamond_-_geograph.org.uk_-_1016168.jpg)
+    1. [Donegal](https://commons.wikimedia.org/wiki/File:The_Abbey_Hotel,_The_Diamond_-_geograph.org.uk_-_1016168.jpg) - via Wikipedia
 
 ### Acknowledgements - TBU
 
