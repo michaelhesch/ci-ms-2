@@ -246,9 +246,6 @@ function renderBottomMap (citySelection) {
     bottomMapMarkers.push(filteredSelection[i].poiCoord);
   }
 
-
-
-
   //set the map to include all POI markers from array above with padding and zoom/map animation
   bottomMap.flyToBounds(bottomMapMarkers, {
     padding: L.point(36, 36), 
