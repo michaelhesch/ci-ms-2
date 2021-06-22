@@ -113,6 +113,10 @@ select {
   padding-bottom: 15px;
 }
 
+#build-button {
+  margin-top: 16px;
+}
+
 /*Map container styling*/
 #mapid, #mapid2 {
   height: 400px;
