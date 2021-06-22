@@ -7,7 +7,7 @@ let bottomMap; //lower drill-down section map, needs to be accessed by multiple 
 //Loads preference selection form for number of cities to visit, HTML layout and the default main map view 
 function mapLoader() {
   
-  let topMap = L.map('mapid', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
+  let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -87,11 +87,11 @@ function generateTopMapAndCitiesLayout(locationsList) {
 
   //refresh map content after container has been initialized 
   //https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized
-  if (L.DomUtil.get('mapid') !== undefined) { 
-    L.DomUtil.get('mapid')._leaflet_id = null; 
+  if (L.DomUtil.get('top-map-div') !== undefined) { 
+    L.DomUtil.get('top-map-div')._leaflet_id = null; 
   }
 
-  let topMap = L.map('mapid', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
+  let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -137,7 +137,7 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
     <h3>Detailed view of ${citySelection.name}:</h3>
     <div class="row">
       <div class="col">
-        <div id="mapid2"></div>
+        <div id="bottom-map-div"></div>
       </div>
       <div class="col" id="drilldownDetails">
         <label for="tripType"><h4>Points of interest for ${citySelection.name}: </h4></label>
@@ -153,7 +153,7 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
   `;
 
   //render drilldown map and POI markers using mapbox API and leaflet library
-  bottomMap = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
+  bottomMap = L.map('bottom-map-div', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -183,7 +183,7 @@ function updateDetailsMapMarkers(filteredAttractions) {
     }
   }*/
 
-  //document.getElementById("mapid2").innerHTML = "";
+  //document.getElementById("bottom-map-div").innerHTML = "";
   //bottomMap.removeLayer(L.marker);
   /*for (let i = 0; i < bottomMapMarkers.length; i++) {
     bottomMap.removeLayer(bottomMapMarkers[i]);
@@ -227,7 +227,7 @@ function updateDetailsViewContent(filteredAttractions) {
 
 //render drilldown map and POI markers using mapbox API and leaflet library
 function renderBottomMap (citySelection) {
-  let bottomMap = L.map('mapid2', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
+  let bottomMap = L.map('bottom-map-div', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
   let filteredSelection = citySelection.drilldown;
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA', {
