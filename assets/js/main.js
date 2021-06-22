@@ -56,7 +56,7 @@ function generateCityList() {
 //function to generate output html to return city names and corresponding details based on user input
 function generateTopMapCitiesResults() {
   cityList = generateCityList(); //assigns pritArr to be the array of city data returned by generateCityList function above
-  document.getElementById("form-div-2").innerHTML = ``; //clear drilldown panel if user clicks generate new map and a drilldown from a past map was already loaded.
+  clearDrilldown(); //clear drilldown panel if user clicks generate new map and a drilldown from a past map was already loaded.
 
   //loop to create HTML output for each travel destination to be included in results to user
   let locationsList = "";

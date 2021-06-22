@@ -36,10 +36,12 @@ nav {
   padding: 10px;
   text-decoration: none;
   color: white;
+  font-weight: 500;
 }
 
 .navbar:hover a {
   color: #E49977;
+  font-weight: 500;
 }
 
 .site-logo {
@@ -60,9 +62,8 @@ main {
 
 .map-button {
   background-color: #CEDACF;
-  border-radius: 4px;
-  border-style: 1px solid;
-  border-color: #C4D3C5;
+  border: 1px solid #C4D3C5;
+  border-radius: 5px;
   padding: 8px 0px 8px 0px;
   width: 250px;
   opacity: 0.9;
@@ -86,9 +87,10 @@ ul {
 
 select {
   background-color: #FDFDFC;
-  border-style: 1px solid;
-  border-radius: 4px;
-  border-color: #b0c4b1;
+  border: 1px solid #b0c4b1;
+  border-radius: 5px;
+  padding: 3px;
+  font-size: inherit;
 }
 
 #main-container {
@@ -101,7 +103,6 @@ select {
 }
 
 #controls {
-
   margin: 0;
 }
 
