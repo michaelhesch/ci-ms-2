@@ -196,8 +196,6 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 -   [Stack Overflow - Sticky Footer Solution](https://stackoverflow.com/questions/20657599/footer-in-bootstrap-that-extends-with-content-or-sticks-to-the-bottom) : Utilized method provided by user "Zim" to create a wrapper tag for main content container in index.html and applied corresponding CSS properties to get sticky footer bar for the site's social media links working correctly.
 
--   [Stack Overflow - Add onload event to a Div](https://stackoverflow.com/questions/4057236/how-to-add-onload-event-to-a-div-element) : Utilized method provided by user "John Williams" to trigger the map carousel function to run automatically by utilizing the `img` tag's `onerror` property.
-
 ### Content - TBU
 
 -   All text content excluding city and location information was written by the developer.  

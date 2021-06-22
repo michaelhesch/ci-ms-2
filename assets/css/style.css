@@ -118,7 +118,7 @@ select {
 }
 
 /*Map container styling*/
-#mapid, #mapid2 {
+#top-map-div, #bottom-map-div {
   height: 400px;
   width: 100%;
   display: flex;
