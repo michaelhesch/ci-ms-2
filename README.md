@@ -210,7 +210,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 -   All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
 
--   Image carousel credits:
+-   Landing page carousel image credits:
     1. [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/) - via Pixabay
 
     1. [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/) - via Pixabay
