@@ -79,7 +79,7 @@ function generateTopMapAndCitiesLayout(locationsList) {
   document.getElementById("top-map-comment").innerHTML = `Please see your customized results below.`;
   document.getElementById("city-div").innerHTML = `
     <h4>Destinations selected for your trip:</h4>
-    <div class="row">${locationsList}</div>
+    <div id="city-div-content" class="row">${locationsList}</div>
   `;
 
   //render the upper city results map via mapbox API & leaflet library

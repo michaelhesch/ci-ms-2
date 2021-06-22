@@ -59,13 +59,15 @@ main {
 }
 
 .map-button {
-  background-color: #b0c4b1;
+  background-color: #CEDACF;
   border-radius: 4px;
-  border-style: solid 0.5px;
-  border-color: #96B097;
+  border-style: 1px solid;
+  border-color: #C4D3C5;
   padding: 8px 0px 8px 0px;
   width: 250px;
   opacity: 0.9;
+  color:#141B14;
+  font-weight: 500;
 }
 
 .map-button:hover {
@@ -74,13 +76,17 @@ main {
   border-color: #91411D;
 }
 
+.remove-margin {
+  margin: 0;
+}
+
 ul {
   padding: 0;
 }
 
 select {
   background-color: #FDFDFC;
-  border-style: solid 1px;
+  border-style: 1px solid;
   border-radius: 4px;
   border-color: #b0c4b1;
 }
@@ -95,11 +101,8 @@ select {
 }
 
 #controls {
-  margin-top: 10px;
-}
 
-#controls button {
-  margin-top: 15px;
+  margin: 0;
 }
 
 #controls-bottom {
@@ -118,6 +121,10 @@ select {
 
 #stops-label {
   font-size: 18px;
+}
+
+#poi-list, #city-div-content {
+  margin-top: 10px;
 }
 
 /*Map container styling*/
