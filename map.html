@@ -26,8 +26,8 @@
 </head>
 
 <body onload='mapLoader();'>
-  <div id="wrapper" class="d-flex flex-column">
   <!--Content wrapper to add sticky footer-->
+  <div id="wrapper" class="d-flex flex-column">
     <header>
       <!--Navbar-->
       <nav class="navbar">
@@ -37,44 +37,44 @@
     </header>
     <main>
       <!--Containers for JavaScript content delivery in Bootstrap grid-->
-        <div id="main-container" class="container-fluid">
-          <div id="controls" class="row text-center align-items-center">
-            <div class="col text-end">
-                <label for="numStops" id="stops-label"><strong>Select the number of cities to visit:</strong></label>
-                <select id="numStops" name="numStops">
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                  <option value="4">Four</option>
-                </select>
-              </div>
-              <div class="col text-start">
-                <button class="map-button" type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel map!</button>
-              </div>  
+      <div id="main-container" class="container-fluid">
+        <div id="controls" class="row text-center align-items-center">
+          <div class="col text-end">
+              <label for="numStops" id="stops-label"><strong>Select the number of cities to visit:</strong></label>
+              <select id="numStops" name="numStops">
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+              </select>
             </div>
-          </div>
-          <!--Container structure for top city map and associated information panel-->
-          <div class="row remove-margin">
-            <div class="col" id="form-div">
-              <h3>Your Custom Ireland Travel Map:</h3>
-              <p id="top-map-comment">Please select your travel preferences above to generate a new map.</p>
-              <div class="row">
-                <div class="col">
-                  <div id="top-map-div"></div>
-                </div>
-                <br />
-                <div class="col" id="city-div"></div>
-              </div>
-            </div>
-          </div>
-          <!--Containers for lower details map and assocaited poi information panel-->
-          <div class="row remove-margin">
-            <div class="col" id="form-div-2"></div>
-          </div>
-          <!--Lower control panel container for details map button controls-->
-          <div class="row remove-margin">
-            <div class="col" id="controls-bottom"></div>
+            <div class="col text-start">
+              <button class="map-button" type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel map!</button>
+            </div>  
           </div>
         </div>
+        <!--Container structure for top city map and associated information panel-->
+        <div class="row remove-margin">
+          <div class="col" id="form-div">
+            <h3>Your Custom Ireland Travel Map:</h3>
+            <p id="top-map-comment">Please select your travel preferences above to generate a new map.</p>
+            <div class="row">
+              <div class="col">
+                <div id="top-map-div"></div>
+              </div>
+              <br />
+              <div class="col" id="city-div"></div>
+            </div>
+          </div>
+        </div>
+        <!--Containers for lower details map and assocaited poi information panel-->
+        <div class="row remove-margin">
+          <div class="col" id="form-div-2"></div>
+        </div>
+        <!--Lower control panel container for details map button controls-->
+        <div class="row remove-margin">
+          <div class="col" id="controls-bottom"></div>
+        </div>
+      </div>
     </main>
     <footer class="footer mx-auto text-center">
       <!--Bootstrap sticky footer and Social Media links-->
