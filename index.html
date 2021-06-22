@@ -16,7 +16,7 @@
   <!--Internal stylesheet import-->
   <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 </head>
-<body onload="setLandingPage();">
+<body><!--onload="setLandingPage();" -->
 <!--Content wrapper to add sticky footer-->
 <wrapper class="d-flex flex-column">
   <header>
@@ -30,16 +30,106 @@
     <!--Containers for JavaScript content delivery in Bootstrap grid-->
       <div id="main-container" class="container-fluid">
         <div class="row">
-          <div class="col" id="controls"></div>
+          <div class="col text-center">
+            <h3>Welcome to Mappy, the Ireland travel map service!</h3>
+            <p>Can't decide where to go on your next trip around Ireland?  We are here to help!</p>
+            <br />
+          </div>
+          <!--Landing page text summary-->
+          <div class="container mx-auto text-center">
+            <div class="col-md-4 text-start mx-auto">
+            <p>Our travel map generation tool will help you plan a wonderful trip around Ireland.  
+            <br />
+            Some features of our tool include:
+            </p>
+            <ul>
+              <li>Creating unique lists of destinations around Ireland.</li>
+              <li>Help you plan your next trip.</li>
+              <li>Show you interesting things to do on your trip.</li>
+              <li>Download your travel map to your computer to take with you!</li>
+            </ul>
+            </div>
+          </div>
+          <br />
+          <div class="container mx-auto text-center">
+            <p>Some of the top destination cities in Ireland include:</p>
+          </div>
+        </div>
+        <!--Grid container for carousel-->
+        <div class="row">
+          <div id="carousel-div" class="col-md-4 mx-auto text-center">
+          <!--img tag used to trigger an equivalent to an onload event in this div so the map carousel will load automatically-->
+            <!--Bootstrap 5 Carousel template code below taken from official Bootstrap documentation-->
+            <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Dublin"></button>
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Galway"></button>
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Cork"></button>
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="3" aria-label="Belfast"></button>
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="4" aria-label="Killarney"></button>
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="5" aria-label="Kilkenny"></button>
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="6" aria-label="Donegal"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="assets/img/home-img.jpg" class="d-block w-100" alt="Dublin city image">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Dublin</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/home-img-2.jpg" class="d-block w-100" alt="Galway city image">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Galway</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/home-img-3.jpg" class="d-block w-100" alt="Cork city image">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Cork</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/home-img-4.jpg" class="d-block w-100" alt="Belfast city image">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Belfast</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/home-img-5.jpg" class="d-block w-100" alt="Killarney city image">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Killarney</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/home-img-6.jpg" class="d-block w-100" alt="Kilkenny city image">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Kilkenny</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/home-img-7.jpg" class="d-block w-100" alt="Donegal city image">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Donegal</h5>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
         </div>
         <div class="row">
-          <div class="col" id="form-div"></div>
-        </div>
-        <div class="row">
-          <div class="col" id="form-div-2"></div>
-        </div>
-        <div class="row">
-          <div class="col" id="controls-bottom"></div>
+          <div class="col text-center">
+          <!--Button to launch map page -->
+            <button class="map-button" type="button" onclick="window.location.href='map.html';">Build your map!</button>
+          </div>
         </div>
       </div>
   </main>
@@ -61,6 +151,8 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin=""></script>
+  <!--Internal JavaScript data file import-->
+  <script src="assets/js/data.js"></script>
   <!--Internal JavaScript import-->
   <script src="assets/js/main.js"></script>
 </body>
