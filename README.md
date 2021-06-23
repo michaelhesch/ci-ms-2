@@ -1,4 +1,4 @@
-<h1 align="left">Milestone Project Two - Mappy</h1>
+# Milestone Project Two - Mappy
 
 [View the live project here.](https://michaelhesch.github.io/ci-ms-2/)
 
@@ -6,53 +6,61 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 ## User Experience (UX) - TBU
 
--   ### User stories - TBU
+- ### User stories - TBU
 
-    -   #### First Time Visitor Goals
+- #### First Time Visitor Goals
 
-        ##### As a first time visitor, I want to:
-        1. Learn about x.
-        2. Learn about x.
-        3. Learn about x.
+##### As a first time visitor, I want to":"
 
-    -   #### Returning Visitor Goals
+    1. Learn about x.
+    2. Learn about x.
+    3. Learn about x.
 
-        ##### As a returning visitor, I want to:
-        1.  x.
-        2.  x.
-        3.  x.
+- #### Returning Visitor Goals
 
--   ### Design - TBU
-    -   #### Colour Scheme
-        -   The page color scheme is based on subdued green and orange tones, as well as a light gray-green background color to create a simple aesthetic design for the page.  Oranges are used as highlights only to clearly draw the user's attention to a hover or click selection.  The theme is meant to reference the colors of the Irish flag.
-    -   #### Typography
-        -   The font used throughout the site is the Google Font 'Open Sans' which is a clean and simple font style that is easy to read across font sizes.  This font was selected to further build a clean and simple aesthetic across the content on the site.  Sans-serif serves as the backup to Open Sans if it fails to load.
-    -   #### Imagery
-        -   The landing page image carousel serves a series of images of cities that are included in the Mappy generation database.  This serves to draw the user's attention and create excitement for visiting cities included when using the tool.
+##### As a returning visitor, I want to":"
 
-*   ### Wireframes - TBU
+    1.  x.
+    2.  x.
+    3.  x.
 
-    -   Mobile Wireframes - x pages - [View](https://)
+- ### Design - TBU
 
-    -   Tablet Wireframes - x pages - [View](https://)
+- #### Colour Scheme
 
-    -   Desktop Wireframes - x pages  - [View](https://)
+  - The page color scheme is based on subdued green and orange tones, as well as a light gray-green background color to create a simple aesthetic design for the page.  Oranges are used as highlights only to clearly draw the user's attention to a hover or click selection.  The theme is meant to reference the colors of the Irish flag.
+
+- #### Typography
+
+  - The font used throughout the site is the Google Font 'Open Sans' which is a clean and simple font style that is easy to read across font sizes.  This font was selected to further build a clean and simple aesthetic across the content on the site.  Sans-serif serves as the backup to Open Sans if it fails to load.
+
+- #### Imagery
+
+  - The landing page image carousel serves a series of images of cities that are included in the Mappy generation database.  This serves to draw the user's attention and create excitement for visiting cities included when using the tool.
+
+- ### Wireframes - TBU
+
+  - Mobile Wireframes - x pages - [View](https://)
+
+  - Tablet Wireframes - x pages - [View](https://)
+
+  - Desktop Wireframes - x pages  - [View](https://)
 
 ## Features - TBU
 
--   x.
+- x.
 
--   x. 
+- x.
 
--   x.
+- x.
 
 ## Technologies Used - TBU
 
 ### Programming Languages Used
 
--   [HTML5](https://en.wikipedia.org/wiki/HTML5)
--   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
--   [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
 ### Frameworks, Libraries & Programs Used - TBU
 
@@ -72,7 +80,7 @@ The purpose of this website is to provide users with a map of cities to visit in
     - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 1. [w3schools.com - Bootstrap:](https://www.w3schools.com/bootstrap4/default.asp)
     - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
-1. [Coolors:](https://coolors.co/) 
+1. [Coolors:](https://coolors.co/)
     - Used Coolors to select the color palette for the page.  Selected color palette can be viewed [here]().
 1. [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/)
     - Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
@@ -93,13 +101,13 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.  Results of those checks are documented in PDFs included in the project repository and can be accessed by following the links below.
 
--   [W3C Markup Validator](https://) - [Results](https://)
--   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://)
--   [JavaScript]() - [Results](https://)
+- [W3C Markup Validator](https://) - [Results](https://)
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://)
+- [JavaScript](https://jshint.com/) - Development was undertaken using Visual Studio Code with the JSHint plugin
 
 ### Testing User Stories from User Experience (UX) Section - TBU
 
--   #### First Time Visitor Goals
+- #### First Time Visitor Story Testing
 
     1. Learn about X.
         1. When a user arrives at the landing page of the site, they are presented with a clean and clear menu bar for navigation, featuring the name of the club, and a large hero image section to draw their attention.  
@@ -112,36 +120,35 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
     3. Learn about X.
         1. Once the user navigates to the Locations tab, the club's physical locations are clearly displayed in a large grid, including the address and opening hours of each location, as well as a map to help the user visualize the location in each city. [View Screenshot](https://github.com/)
 
--   #### Returning Visitor Goals - TBU
+- #### Returning Visitor Story Testing
 
-    1.  Sign up for the club using the form in the "Join the Club" page.
+    1. Sign up for the club using the form in the "Join the Club" page.
         1. After a user visits the page and learns more about the club, they may want to return to submit an application.  This is accomplished by navigating to the "Join the Club" page and filling out a form to collect the user's basic details.  [View Screenshot](https://)
         1. In addition, the user can select their desired membership level from two options, standard & premium, based on the features of each level displayed in the form. [View Screenshot](https://)
 
-    2.  Check for newly posted upcoming club events.
+    2. Check for newly posted upcoming club events.
         1. The club events highlight section on the landing page would be updated rountinely by the club as new events are held, and as time passes, so this section will provide a quick and easy reference point for a returning user to view events. [View Screenshot](https://)
 
-    3.  Check the physical club locations across Europe and opening hours of each club.
+    3. Check the physical club locations across Europe and opening hours of each club.
         1. As the club expands, users can easily view newly added locations on the "Locations" tab of the page, which would be updated to include the address and opening hours details for new club locations. [View Screenshot](https://)
 
 ### Further Testing - TBU
 
--   All pages were tested for responsiveness and any visible bugs using Google Chrome developer tools to change the viewing size across devices.  In addition, all pages on the site were tested for correct behavior on a 27" desktop monitor, a 15.1" laptop monitor, an iPhone 11 and a 10.5" iPad.
--   The Lighthouse tool in Chrome Developer tools was used to generate performance scores and identify areas for improvement in both mobile and desktop views of the page.  Results of this scoring can be viewed via the links below:
+- All pages were tested for responsiveness and any visible bugs using Google Chrome developer tools to change the viewing size across devices.  In addition, all pages on the site were tested for correct behavior on a 27" desktop monitor, a 15.1" laptop monitor, an iPhone 11 and a 10.5" iPad.
+- The Lighthouse tool in Chrome Developer tools was used to generate performance scores and identify areas for improvement in both mobile and desktop views of the page.  Results of this scoring can be viewed via the links below:
 
-    1.  Mobile Scores:
+    1. Mobile Scores:
         1. [Home Page](https://)
         1. [Map Generation Page](https://)
-    
     1. Desktop Scores:
         1. [Home Page](https://)
         1. [Map Generation Page](https://)
 
--   Please note that while efforts to coprrect some defects indicated in these results are due to issues found in external dependencies, such as Bootstrap's CSS, the HTTP version configured in the GitHub Pages server that the site is deployed on, etc. or other faults that are beyond the scope of this project to remedy.
+- Please note that while efforts to coprrect some defects indicated in these results are due to issues found in external dependencies, such as Bootstrap's CSS, the HTTP version configured in the GitHub Pages server that the site is deployed on, etc. or other faults that are beyond the scope of this project to remedy.
 
 ### Issues Encountered in Development - TBU
 
-- [Resolved] x 
+- [Resolved] x
 - [Resolved] x
 - [Open] Map marker clearing - Ongoing issue related to how the Leaflet maps consume point of interest coordinates to set map markers.  Attempted several potential solutions to loop through the currently set markers and remove them when the POI list is filtered, however the way the markers are being set to the map when it is intilized will not allow this to work.  Extensively read the API documentation from Leaflet and Mapbox but have not been able to produce a solution to this yet.
 - [Open] Navbar Link Highlighting - The link to return to the landing page ("Create New Travel Map") will highlight to its mouse-over color if the page title on the navbar is hovered over.  The CSS properties are set such that the color should only change when a navbar link is hovered over, the title is not set up as a link.  Need to do additional investigation to determine how to fix this issue.
@@ -188,29 +195,29 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Code
 
--   [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/) : Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
+- [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/) : Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
 
--   [README Template](https://github.com/Code-Institute-Solutions/SampleREADME) : Template for the README.md file for this project was sourced from Code Institute.
+- [README Template](https://github.com/Code-Institute-Solutions/SampleREADME) : Template for the README.md file for this project was sourced from Code Institute.
 
--   [Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/carousel/) : Code snippets taken from the offical Bootstrap reference materials to create the image carousel featured on the landing page for the site.
+- [Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/carousel/) : Code snippets taken from the offical Bootstrap reference materials to create the image carousel featured on the landing page for the site.
 
--   [Stack Overflow - Sticky Footer Solution](https://stackoverflow.com/questions/20657599/footer-in-bootstrap-that-extends-with-content-or-sticks-to-the-bottom) : Utilized method provided by user "Zim" to create a wrapper tag for main content container in index.html and applied corresponding CSS properties to get sticky footer bar for the site's social media links working correctly.
+- [Stack Overflow - Sticky Footer Solution](https://stackoverflow.com/questions/20657599/footer-in-bootstrap-that-extends-with-content-or-sticks-to-the-bottom) : Utilized method provided by user "Zim" to create a wrapper tag for main content container in index.html and applied corresponding CSS properties to get sticky footer bar for the site's social media links working correctly.
 
 ### Content - TBU
 
--   All text content excluding city and location information was written by the developer.  
+- All text content excluding city and location information was written by the developer.  
 
--   City and points of interest descriptions were sourced from Wikipedia or Google Maps location descriptions.
+- City and points of interest descriptions were sourced from Wikipedia or Google Maps location descriptions.
 
--   City and points of interest GPS coordinates utilized on the maps were acquired from searching for each location on [Maps.ie](https://www.maps.ie/coordinates.html).
+- City and points of interest GPS coordinates utilized on the maps were acquired from searching for each location on [Maps.ie](https://www.maps.ie/coordinates.html).
 
--   Map locations and points of interest were selected by the developer for demonstration purposes.  In a real-world scenario this data would be returned in a JSON response from a data service.
+- Map locations and points of interest were selected by the developer for demonstration purposes.  In a real-world scenario this data would be returned in a JSON response from a data service.
 
 ### Media - TBU
 
--   All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
+- All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
 
--   Landing page carousel image credits:
+- Landing page carousel image credits:
     1. [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/) - via Pixabay
 
     1. [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/) - via Pixabay
@@ -222,9 +229,9 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
     1. [Killarney](https://pixabay.com/photos/killarney-ireland-city-traffic-959325/) - via Pixabay
 
     1. [Kilkenny](https://pixabay.com/photos/kilkenny-ireland-castle-abbey-339160/) - via Pixabay
-    
+
     1. [Donegal](https://commons.wikimedia.org/wiki/File:The_Abbey_Hotel,_The_Diamond_-_geograph.org.uk_-_1016168.jpg) - via Wikipedia
 
-### Acknowledgements - TBU
+### Acknowledgements
 
--   My Code Institute Mentor for helpful feedback on my ideas prior to development and throughout the project.
+- My Code Institute Mentor for helpful feedback on my ideas prior to development and throughout the project.
