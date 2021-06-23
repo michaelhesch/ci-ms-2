@@ -1,8 +1,12 @@
 # Milestone Project Two - Mappy
 
-[View the live project here.](https://michaelhesch.github.io/ci-ms-2/)
+![Am I Responsive Image](https://github.com/michaelhesch/ci-ms-2/tree/master/documentation/Mappy-AIR.PNG)
 
 The purpose of this website is to provide users with a map of cities to visit in Ireland, along with selected points of interest for each city.  The tool will generate a randomized list of cities including two, three or four primary destinations as results, based on user selection.  The user can then drill down into each destination to view a list of selected points of interest, which they can then filter by 'cateogry' to further refine their trip.
+
+[View the live project here.](https://michaelhesch.github.io/ci-ms-2/)
+
+---
 
 ## User Experience (UX) - TBU
 
@@ -12,23 +16,39 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 ##### As a first time visitor, I want to":"
 
-    1. Learn about x.
-    2. Learn about x.
-    3. Learn about x.
+    - Learn about x.
+
+    - Learn about x.
+
+    - Learn about x.
 
 - #### Returning Visitor Goals
 
 ##### As a returning visitor, I want to":"
 
-    1.  x.
-    2.  x.
-    3.  x.
+    -  x.
+
+    -  x.
+
+    -  x.
+
+- #### Site Owner Goals
+
+##### As the site owner, I want to":"
+
+    -  x.
+
+    -  x.
+
+    -  x.
 
 - ### Design - TBU
 
 - #### Colour Scheme
 
   - The page color scheme is based on subdued green and orange tones, as well as a light gray-green background color to create a simple aesthetic design for the page.  Oranges are used as highlights only to clearly draw the user's attention to a hover or click selection.  The theme is meant to reference the colors of the Irish flag.
+
+    - Colour Palette : ![Colour Palette](https://github.com/michaelhesch/ci-ms-2/tree/master/documentation)
 
 - #### Typography
 
@@ -101,9 +121,9 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.  Results of those checks are documented in PDFs included in the project repository and can be accessed by following the links below.
 
-- [W3C Markup Validator](https://) - [Results](https://)
-- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://)
-- [JavaScript](https://jshint.com/) - Development was undertaken using Visual Studio Code with the JSHint plugin
+- [W3C Markup Validator](https://validator.w3.org/nu/) - [Results](https://)
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - [Results](https://)
+- [JavaScript](https://jshint.com/) - In addition development was undertaken using Visual Studio Code with the JSHint plugin to eliminate 
 
 ### Testing User Stories from User Experience (UX) Section - TBU
 
@@ -174,16 +194,20 @@ The project was deployed to GitHub Pages using the following steps:
 4. Change the current working directory to the location where you want the cloned directory.
 5. Type `git clone`, and then paste the URL you copied in Step 2 in place of the URL in quotes below.
 
-    $ git clone "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+    ```
+    # git clone "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+    ```
 
 6. Press Enter. Your local clone will be created.
 
-    $ git clone "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+    ```
+    # git clone "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
     > Cloning into `Test-Clone`...
     > remote: Counting objects: 10, done.
     > remote: Compressing objects: 100% (8/8), done.
     > remove: Total 10 (delta 1), reused 10 (delta 1)
     > Unpacking objects: 100% (10/10), done.
+    ```
 
 Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to visit GitHub Help for more detailed explanations of the cloning process.
 

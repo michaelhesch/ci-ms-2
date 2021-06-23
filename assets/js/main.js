@@ -1,6 +1,6 @@
+/*jshint esversion: 6 */ 
+
 //Global Variables 
-//needed to hold travel destinations content generated in the generateTopMapCitiesResults function
-//also neededs to be consumed by detailsViewContent function below
 let cityList = []; //array to hold results to return 
 let bottomMap; //lower drill-down section map, needs to be accessed by multiple functions
 // fontMapper & locationsArr are returned via data.js
@@ -244,12 +244,11 @@ function clearDrilldown() {
   document.getElementById("controls-bottom").innerHTML = ``;
 }
 
-//function to create the control buttons for the lower drill-down container and print 
+//function to create the control button for the lower drill-down container
 function createDrilldownControls() {
   document.getElementById("controls-bottom").innerHTML = `
     <div class="col text-center align-items-center">
       <button class="map-button" onclick="clearDrilldown(); return false;">Hide Detailed View</button>
-      <button class="map-button" onclick="">Print Your Travel Map</button>
     </div>
   `;
 }
