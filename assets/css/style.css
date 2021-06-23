@@ -221,8 +221,8 @@ select {
     font-weight: 500;
   }
 
-  #stops-label {
-    text-align: center!important;
+  #controls {
+    text-align: left!important;
   }
 
   #controls-bottom button {
@@ -246,10 +246,10 @@ select {
     font-weight: 500;
   }
 
-  #stops-label {
-    text-align: center!important;
+  #controls {
+    text-align: left!important;
   }
-
+  
   #controls-bottom button {
     margin-bottom: 5px;
   }
