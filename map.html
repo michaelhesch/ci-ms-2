@@ -32,14 +32,14 @@
       <!--Navbar-->
       <nav class="navbar">
         <p class="site-logo">Mappy Ireland</p>
-        <a href="./index.html">Create New Travel Map</a>
-      </nav>
+        <button id="nav-button" type="button" onclick="window.location.href='index.html';">Create New Travel Map</button>
+    </nav>
     </header>
     <main>
       <!--Containers for JavaScript content delivery in Bootstrap grid-->
       <div id="main-container" class="container-fluid">
         <div id="controls" class="row text-center align-items-center">
-          <div class="col text-end">
+          <div class="col-md-6 text-end">
             <label for="numStops" id="stops-label"><strong>Select the number of cities to visit:</strong></label>
             <select id="numStops" name="numStops">
               <option value="2">Two</option>
@@ -47,28 +47,30 @@
               <option value="4">Four</option>
             </select>
           </div>
-          <div class="col text-start">
+          <div class="col-md-6 text-start">
             <button class="map-button" type="submit" onclick="generateTopMapCitiesResults(); return false;">Create your travel map!</button>
           </div>
         </div>
         <!--Container structure for top city map and associated information panel-->
-        <div id="form-div-background" class="row remove-margin">
-          <div class="row remove-margin">
+        <div class="row remove-margin">
+          <div class="row remove-margin div-background">
             <div class="col" id="form-div">
               <h3>Your Custom Ireland Travel Map:</h3>
-              <p id="top-map-comment">Please select your travel preferences above to generate a new map.</p>
+              <p id="top-map-comment"></p>
               <div class="row">
-                <div class="col">
-                  <div id="top-map-div"></div>
+                <div class="col-md-6">
+                  <div id="top-map-div" class="col-md-6"></div>
                 </div>
                 <br />
-                <div class="col" id="city-div"></div>
+                <div class="col-md-6" id="city-div">
+                  <p>Please select your travel preferences above to generate a new map.</p>
+                </div>
               </div>
             </div>
           </div>
           <!--Containers for lower details map and assocaited poi information panel-->
-          <div class="row remove-margin">
-            <div class="col" id="form-div-2"></div>
+          <div class="row remove-margin div-background">
+              <div class="row" id="form-div-2"></div>
           </div>
         </div>
         <!--Lower control panel container for details map button controls-->
