@@ -1,5 +1,6 @@
 //Global Variables 
-//needed to hold travel destinations content generated in the generateTopMapCitiesResults function, to be consumed by detailsViewContent function below
+//needed to hold travel destinations content generated in the generateTopMapCitiesResults function
+//also neededs to be consumed by detailsViewContent function below
 let cityList = []; //array to hold results to return 
 let bottomMap; //lower drill-down section map, needs to be accessed by multiple functions
 // fontMapper & locationsArr are returned via data.js
@@ -40,7 +41,7 @@ function generateCityList() {
   let numStops = document.getElementById("numStops").value;
 
   //While loop used to add random values which correspond to the index of an item in the data array.  
-  //If statement included to check for duplicates in the array of index values to prevent duplicate results from being displayed.
+  //If checks for duplicates in the array of index values to prevent duplicate results from being displayed.
   while (citiesArr.length < numStops) { 
     let randomResult = locationsArr[randomizer(locationsArr.length)];
     if (!citiesArr.includes(randomResult)) {
@@ -53,8 +54,10 @@ function generateCityList() {
 //Generate HTML content to display
 //function to generate output html to return city names and corresponding details based on user input
 function generateTopMapCitiesResults() {
-  cityList = generateCityList(); //assigns pritArr to be the array of city data returned by generateCityList function above
-  clearDrilldown(); //clear drilldown panel if user clicks generate new map and a drilldown from a past map was already loaded.
+  //assigns pritArr to be the array of city data returned by generateCityList function above
+  cityList = generateCityList();
+  //clear drilldown panel if user clicks generate new map and a drilldown from a past map was already loaded
+  clearDrilldown(); 
 
   //loop to create HTML output for each travel destination to be included in results to user
   let locationsList = "";
@@ -71,13 +74,16 @@ function generateTopMapCitiesResults() {
   generateTopMapAndCitiesLayout(locationsList);
 } 
 
-//function to render the upper map with markers for city results generated above.  Takes in the locationsList object from generateTopMapCitiesResults to display to user
+//function to render the upper map with markers for city results generated above.  
+//Takes in the locationsList object from generateTopMapCitiesResults to display to user
 function generateTopMapAndCitiesLayout(locationsList) {
   //HTML content displayed after preference selections are made with map results
   document.getElementById("top-map-comment").innerHTML = `Please see your customized results below.`;
   document.getElementById("city-div").innerHTML = `
     <h4>Destinations selected for your trip:</h4>
-    <div id="city-div-content" class="row">${locationsList}</div>
+    <div id="city-div-content" class="row">
+      <div class="col">${locationsList}</div>
+    </div>
   `;
   //refresh map content after container has been initialized 
   //https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized
@@ -95,13 +101,12 @@ function generateTopMapAndCitiesLayout(locationsList) {
     accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
   }).addTo(topMap);
 
-  //loop to add markers from array of coordinates, coordsGroup array is the output needed by Leaflet to generate map markers
+  //loop to add markers from array of coordinates
+  //coordsGroup array is the output needed by Leaflet to generate map markers
   let coordsGroup = [];
 
   for (let i = 0; i < cityList.length; i++) {
     L.marker(cityList[i].coord).addTo(topMap).bindPopup("This is the location of "+cityList[i].name+".");
-    //let coord = L.marker(cityList[i].coord).bindPopup("This is the location of "+cityList[i].name+".").addTo(cities);
-    //coordsGroup.push(coord);
     coordsGroup.push(cityList[i].coord);
   }
   //set the map to fit all POI markers in view upon rendering with padding and map/zoom animation
@@ -111,6 +116,9 @@ function generateTopMapAndCitiesLayout(locationsList) {
   });
 }
 
+//filters the selected cities 'drilldown' data based on the type of attraction (tripType) passed in
+//returns the 'drilldown' objects that match the trip type for the selected city
+//default view is to show all poi/attraction info, called allTypes below
 function generateFilteredAttractions(citySelectionIndex, tripType) {
   let citySelection = cityList[citySelectionIndex];
   let filteredSelection = citySelection.drilldown; 
@@ -120,7 +128,6 @@ function generateFilteredAttractions(citySelectionIndex, tripType) {
       return thingToDo.poiType == tripType;
     });
   }
-
   return filteredSelection;
 }
 
