@@ -1,6 +1,6 @@
 # Milestone Project Two - Mappy
 
-![Am I Responsive Image](https://github.com/michaelhesch/ci-ms-2/tree/master/documentation/Mappy-AIR.PNG)
+![Am I Responsive Image](documentation/mappy-air.png)
 
 The purpose of this website is to provide users with a map of cities to visit in Ireland, along with selected points of interest for each city.  The tool will generate a randomized list of cities including two, three or four primary destinations as results, based on user selection.  The user can then drill down into each destination to view a list of selected points of interest, which they can then filter by 'cateogry' to further refine their trip.
 
@@ -10,69 +10,81 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 ## User Experience (UX) - TBU
 
-- ### User stories - TBU
+### User stories - TBU
 
-- #### First Time Visitor Goals
+#### First Time Visitor Goals
 
-##### As a first time visitor, I want to":"
+- As a first time visitor
 
-    - Learn about x.
+  - Learn about x.
 
-    - Learn about x.
+  - Learn about x.
 
-    - Learn about x.
+  - Learn about x.
 
-- #### Returning Visitor Goals
+#### Returning Visitor Goals
 
-##### As a returning visitor, I want to":"
+- As a returning visitor
 
-    -  x.
+  - x.
 
-    -  x.
+  - x.
 
-    -  x.
+  - x.
 
-- #### Site Owner Goals
+#### Site Owner Goals
 
-##### As the site owner, I want to":"
+- As the site owner
 
-    -  x.
+  - x.
 
-    -  x.
+  - x.
 
-    -  x.
+  - x.
 
-- ### Design - TBU
+### Design - TBU
 
-- #### Colour Scheme
+#### Colour Scheme
 
-  - The page color scheme is based on subdued green and orange tones, as well as a light gray-green background color to create a simple aesthetic design for the page.  Oranges are used as highlights only to clearly draw the user's attention to a hover or click selection.  The theme is meant to reference the colors of the Irish flag.
+- The page color scheme is based on subdued green, gray-green and orange tones.  The theme is meant to reference variatiosn of the colors of the Irish flag.
 
-    - Colour Palette : ![Colour Palette](https://github.com/michaelhesch/ci-ms-2/tree/master/documentation)
+- A light neutral gray-green background color [#F6F5F3] was selected to create a clean and simple backdrop which would not distract from the content of the page.  
 
-- #### Typography
+- Orange [#B55224] was used as the highlight color only to clearly draw the user's attention to a hover over or click on a clickable selection.  
 
-  - The font used throughout the site is the Google Font 'Open Sans' which is a clean and simple font style that is easy to read across font sizes.  This font was selected to further build a clean and simple aesthetic across the content on the site.  Sans-serif serves as the backup to Open Sans if it fails to load.
+- Shades of green were employed for the navigation bar [#3C503D], the footer [#3C503D], button backgrounds [#BACBBB] and content containers [#E2E9E2].
 
-- #### Imagery
+- Primary colour palette selected for the site from [Coolors](https://coolors.co/):
 
-  - The landing page image carousel serves a series of images of cities that are included in the Mappy generation database.  This serves to draw the user's attention and create excitement for visiting cities included when using the tool.
+    ![Colour Palette](documentation/palette.png)
 
-- ### Wireframes - TBU
+- The full palette containing all colors used in the site can be found [here.](documentation/MappyPalette.pdf)
 
-  - Mobile Wireframes - x pages - [View](https://)
+#### Typography
 
-  - Tablet Wireframes - x pages - [View](https://)
+- The font used throughout the site is the Google Font 'Open Sans' which is a clean and simple font style that is easy to read across font sizes.  This font was selected to further build a clean and simple aesthetic across the content on the site.  Sans-serif serves as the backup to Open Sans if it fails to load.
 
-  - Desktop Wireframes - x pages  - [View](https://)
+#### Imagery
+
+- The landing page image carousel serves a series of images of cities that are included in the Mappy generation database.  This serves to draw the user's attention and create excitement for visiting cities included when using the tool.
+
+### Wireframes - TBU
+
+- Mobile Wireframes - x pages - [View](https://)
+
+- Tablet Wireframes - x pages - [View](https://)
+
+- Desktop Wireframes - x pages  - [View](https://)
 
 ## Features - TBU
 
-- x.
+- Clear and concise landing page.
 
-- x.
+- Distinct button on the landing page to launch the map creation tool.
 
-- x.
+- Clear and uncluttered map creation page with simple to use controls.
+
+- Easy to read maps and clear details on points of interest.
 
 ## Technologies Used - TBU
 
@@ -94,12 +106,6 @@ The purpose of this website is to provide users with a map of cities to visit in
     - Google fonts were used to import the 'Open Sans' font into the style.css file which is used on all pages throughout the project.
 1. [Font Awesome:](https://fontawesome.com/)
     - Font Awesome was used to add a visual identifier for the type of point of interest for the maps page, and for the social media links found in the footer of all pages.
-1. [w3schools.com - JavaScript:](https://www.w3schools.com/jsref/jsref_reference.asp)
-    - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
-1. [w3schools.com - CSS:](https://www.w3schools.com/css/default.asp)
-    - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
-1. [w3schools.com - Bootstrap:](https://www.w3schools.com/bootstrap4/default.asp)
-    - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 1. [Coolors:](https://coolors.co/)
     - Used Coolors to select the color palette for the page.  Selected color palette can be viewed [here](https://github.com/michaelhesch/ci-ms-2/tree/master/documentation/MappyPalette.pdf).
 1. [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/)
@@ -121,9 +127,9 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.  Results of those checks are documented in PDFs included in the project repository and can be accessed by following the links below.
 
-- [W3C Markup Validator](https://validator.w3.org/nu/) - [Results](https://)
-- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - [Results](https://)
-- [JavaScript](https://jshint.com/) - In addition development was undertaken using Visual Studio Code with the JSHint plugin to eliminate 
+- [W3C Markup Validator](https://validator.w3.org/nu/) - No errors detected. [Results](https://)
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - No errors detected. [Results](https://)
+- [JSHint JavaScript Validator](https://jshint.com/) - ##TBU In addition, development was undertaken using Visual Studio Code with the JSHint plugin to eliminate any warnings or errors in real time.  No outstanding warnings or errors detected using the version of JSHint IDE.
 
 ### Testing User Stories from User Experience (UX) Section - TBU
 
@@ -142,15 +148,20 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 - #### Returning Visitor Story Testing
 
-    1. Sign up for the club using the form in the "Join the Club" page.
+    1. X.
         1. After a user visits the page and learns more about the club, they may want to return to submit an application.  This is accomplished by navigating to the "Join the Club" page and filling out a form to collect the user's basic details.  [View Screenshot](https://)
         1. In addition, the user can select their desired membership level from two options, standard & premium, based on the features of each level displayed in the form. [View Screenshot](https://)
 
-    2. Check for newly posted upcoming club events.
+    2. X.
         1. The club events highlight section on the landing page would be updated rountinely by the club as new events are held, and as time passes, so this section will provide a quick and easy reference point for a returning user to view events. [View Screenshot](https://)
 
-    3. Check the physical club locations across Europe and opening hours of each club.
+    3. X.
         1. As the club expands, users can easily view newly added locations on the "Locations" tab of the page, which would be updated to include the address and opening hours details for new club locations. [View Screenshot](https://)
+
+- #### Site Owner Story Testing
+
+    1. X.
+        1. After a
 
 ### Further Testing - TBU
 
@@ -171,7 +182,6 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 - [Resolved] x
 - [Resolved] x
 - [Open] Map marker clearing - Ongoing issue related to how the Leaflet maps consume point of interest coordinates to set map markers.  Attempted several potential solutions to loop through the currently set markers and remove them when the POI list is filtered, however the way the markers are being set to the map when it is intilized will not allow this to work.  Extensively read the API documentation from Leaflet and Mapbox but have not been able to produce a solution to this yet.
-- [Open] Navbar Link Highlighting - The link to return to the landing page ("Create New Travel Map") will highlight to its mouse-over color if the page title on the navbar is hovered over.  The CSS properties are set such that the color should only change when a navbar link is hovered over, the title is not set up as a link.  Need to do additional investigation to determine how to fix this issue.
 
 ## Deployment
 
@@ -194,19 +204,23 @@ The project was deployed to GitHub Pages using the following steps:
 4. Change the current working directory to the location where you want the cloned directory.
 5. Type `git clone`, and then paste the URL you copied in Step 2 in place of the URL in quotes below.
 
-    ```
+    ```git
+
     # git clone "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+    
     ```
 
 6. Press Enter. Your local clone will be created.
 
-    ```
+    ```git
+    
     # git clone "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
     > Cloning into `Test-Clone`...
     > remote: Counting objects: 10, done.
     > remote: Compressing objects: 100% (8/8), done.
     > remove: Total 10 (delta 1), reused 10 (delta 1)
     > Unpacking objects: 100% (10/10), done.
+    
     ```
 
 Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to visit GitHub Help for more detailed explanations of the cloning process.
@@ -221,7 +235,32 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 - [Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/carousel/) : Code snippets taken from the offical Bootstrap reference materials to create the image carousel featured on the landing page for the site.
 
+- [w3schools.com - Bootstrap:](https://www.w3schools.com/bootstrap4/default.asp) : Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
+
+- [Leaflet.js Quick Start Guide](https://leafletjs.com/examples/quick-start/) : Guide used to inlcude necessary Leaflet CSS and JavaScript tags, as well as the code to create the map and create the basic map tile layer.  This guide was also used to create the map marker and marker detail pop-up code adapted for use in the Mappy project.
+
+    For example - basic map tile initilization code used from the guide below
+
+    ```javascript
+
+    # L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+    
+    ```
+
+- [Leaflet.js API documentation](https://leafletjs.com/reference-1.7.1.html) : Leaflet API documentation referenced for further detail on methods to manipulate the maps used in the project.
+
 - [Stack Overflow - Sticky Footer Solution](https://stackoverflow.com/questions/20657599/footer-in-bootstrap-that-extends-with-content-or-sticks-to-the-bottom) : Utilized method provided by user "Zim" to create a wrapper tag for main content container in index.html and applied corresponding CSS properties to get sticky footer bar for the site's social media links working correctly.
+
+- [w3schools.com - JavaScript:](https://www.w3schools.com/jsref/jsref_reference.asp) : Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
+
+- [w3schools.com - CSS:](https://www.w3schools.com/css/default.asp) : Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 
 ### Content - TBU
 
@@ -238,6 +277,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 - All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
 
 - Landing page carousel image credits:
+
     1. [Dublin](https://pixabay.com/photos/urban-dublin-street-landmark-5272365/) - via Pixabay
 
     1. [Galway](https://pixabay.com/photos/ireland-galway-nature-landscape-4586693/) - via Pixabay
