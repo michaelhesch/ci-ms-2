@@ -81,7 +81,9 @@ function generateTopMapAndCitiesLayout(locationsList) {
   document.getElementById("top-map-comment").innerHTML = `Please see your customized results below.`;
   document.getElementById("city-div").innerHTML = `
     <h4>Destinations selected for your trip:</h4>
-    <div id="city-div-content" class="row">${locationsList}</div>
+    <div id="city-div-content" class="row">
+      <div class="col">${locationsList}</div>
+    </div>
   `;
   //refresh map content after container has been initialized 
   //https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized
