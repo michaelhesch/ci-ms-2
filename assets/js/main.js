@@ -19,14 +19,13 @@ function mapLoader() {
 }
 
 //Randomize results to return based on user number of cities input
-
-//consume user preference inputs to generate array of results, generates array index values to be used by generateCityList function below
+//consumes user input to generate array of results
+//generates array index values to be used by generateCityList function below
 /**
  * Generate random number between 0 and numOfLocations.
  * @param numOfLocations as number
  * @returns random number
  */
-
 function randomizer(numOfLocations) {
   return Math.floor(Math.random() * numOfLocations);
 }
@@ -35,7 +34,6 @@ function randomizer(numOfLocations) {
  * Generate city list array based on randomly selected unique index values. 
  * @returns array of city objects
  */
-
 //function to select cities to add to the output array by using the randomizer results
 function generateCityList() {
   let citiesArr = [];
@@ -81,10 +79,6 @@ function generateTopMapAndCitiesLayout(locationsList) {
     <h4>Destinations selected for your trip:</h4>
     <div id="city-div-content" class="row">${locationsList}</div>
   `;
-
-  //render the upper city results map via mapbox API & leaflet library
-  //document.getElementById("mapid").innerHTML = ``;
-
   //refresh map content after container has been initialized 
   //https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized
   if (L.DomUtil.get('top-map-div') !== undefined) { 
@@ -103,7 +97,6 @@ function generateTopMapAndCitiesLayout(locationsList) {
 
   //loop to add markers from array of coordinates, coordsGroup array is the output needed by Leaflet to generate map markers
   let coordsGroup = [];
-  //let cities = L.layerGroup();
 
   for (let i = 0; i < cityList.length; i++) {
     L.marker(cityList[i].coord).addTo(topMap).bindPopup("This is the location of "+cityList[i].name+".");
@@ -111,9 +104,6 @@ function generateTopMapAndCitiesLayout(locationsList) {
     //coordsGroup.push(coord);
     coordsGroup.push(cityList[i].coord);
   }
-
-  //L.control.layers(null, cities).addTo(topMap);
-
   //set the map to fit all POI markers in view upon rendering with padding and map/zoom animation
   topMap.flyToBounds(coordsGroup, {
     padding: L.point(36, 36),
@@ -177,23 +167,6 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
 function updateDetailsMapMarkers(filteredAttractions) {
   //let coordsDrilldownGroup = [];
   let bottomMapMarkers = [];
-  
-  // TODO reset markers - check with tutoring
-  /*for (let i = 0; i < filteredAttractions.length; i++) {
-    L.marker(filteredAttractions[i].poiCoord).remove(bottomMap);
-  }*/
-  /*if (bottomMapMarkers !== null) {
-    for (var i = bottomMapMarkers.length - 1; i >= 0; i--) {
-      delete bottomMapMarkers[i];
-    }
-  }*/
-
-  //document.getElementById("bottom-map-div").innerHTML = "";
-  //bottomMap.removeLayer(L.marker);
-  /*for (let i = 0; i < bottomMapMarkers.length; i++) {
-    bottomMap.removeLayer(bottomMapMarkers[i]);
-  }*/
-
   //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
   for (let i = 0; i < filteredAttractions.length; i++) { 
     L.marker(filteredAttractions[i].poiCoord).addTo(bottomMap).bindPopup("This is the location of "+filteredAttractions[i].poiName+".");
@@ -238,15 +211,11 @@ function renderBottomMap (citySelection) {
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
   }).addTo(bottomMap);
-
   //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
-  //let coordsDrilldownGroup = [];
-
   for (let i = 0; i < filteredSelection.length; i++) {
     L.marker(filteredSelection[i].poiCoord).addTo(bottomMap).bindPopup("This is the location of "+filteredSelection[i].poiName+".");
     bottomMapMarkers.push(filteredSelection[i].poiCoord);
   }
-
   //set the map to include all POI markers from array above with padding and zoom/map animation
   bottomMap.flyToBounds(bottomMapMarkers, {
     padding: L.point(36, 36), 
