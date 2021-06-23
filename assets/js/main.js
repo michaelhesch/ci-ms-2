@@ -103,11 +103,16 @@ function generateTopMapAndCitiesLayout(locationsList) {
 
   //loop to add markers from array of coordinates, coordsGroup array is the output needed by Leaflet to generate map markers
   let coordsGroup = [];
+  //let cities = L.layerGroup();
 
   for (let i = 0; i < cityList.length; i++) {
     L.marker(cityList[i].coord).addTo(topMap).bindPopup("This is the location of "+cityList[i].name+".");
+    //let coord = L.marker(cityList[i].coord).bindPopup("This is the location of "+cityList[i].name+".").addTo(cities);
+    //coordsGroup.push(coord);
     coordsGroup.push(cityList[i].coord);
   }
+
+  //L.control.layers(null, cities).addTo(topMap);
 
   //set the map to fit all POI markers in view upon rendering with padding and map/zoom animation
   topMap.flyToBounds(coordsGroup, {
@@ -133,13 +138,11 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
   let citySelection = cityList[citySelectionIndex];
 
   document.getElementById("form-div-2").innerHTML = `
-    <br />
     <h3>Detailed view of ${citySelection.name}:</h3>
-    <div class="row">
-      <div class="col">
+      <div class="col-md-6">
         <div id="bottom-map-div"></div>
       </div>
-      <div class="col" id="drilldownDetails">
+      <div class="col-md-6" id="drilldownDetails">
         <label for="tripType"><h4>Points of interest for ${citySelection.name}: </h4></label>
         <select id="tripType" name="tripType" onchange="filterDrilldown(${citySelectionIndex});">
           <option value="allTypes">All</option>
@@ -149,7 +152,6 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
         </select>
         <div id="poi-list"></div>
       </div>
-    </div>
   `;
 
   //render drilldown map and POI markers using mapbox API and leaflet library
