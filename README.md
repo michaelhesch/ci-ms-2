@@ -81,7 +81,7 @@ The purpose of this website is to provide users with a map of cities to visit in
 1. [w3schools.com - Bootstrap:](https://www.w3schools.com/bootstrap4/default.asp)
     - Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 1. [Coolors:](https://coolors.co/)
-    - Used Coolors to select the color palette for the page.  Selected color palette can be viewed [here]().
+    - Used Coolors to select the color palette for the page.  Selected color palette can be viewed [here](https://github.com/michaelhesch/ci-ms-2/tree/master/documentation/MappyPalette.pdf).
 1. [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/)
     - Code snippets were referenced for styling various elements of the site, and organization of the social media links footer section.
 1. [Balsamiq:](https://balsamiq.com/)
@@ -172,22 +172,18 @@ The project was deployed to GitHub Pages using the following steps:
 2. Under the repository name, click "Code", then select the clipboard icon under "Clone with HTTPS" to copy the link.
 3. Open Git Bash
 4. Change the current working directory to the location where you want the cloned directory.
-5. Type `git clone`, and then paste the URL you copied in Step 2.
+5. Type `git clone`, and then paste the URL you copied in Step 2 in place of the URL in quotes below.
 
-```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-```
+    $ git clone "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
 
 6. Press Enter. Your local clone will be created.
 
-```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-> Cloning into `Test-Clone`...
-> remote: Counting objects: 10, done.
-> remote: Compressing objects: 100% (8/8), done.
-> remove: Total 10 (delta 1), reused 10 (delta 1)
-> Unpacking objects: 100% (10/10), done.
-```
+    $ git clone "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+    > Cloning into `Test-Clone`...
+    > remote: Counting objects: 10, done.
+    > remote: Compressing objects: 100% (8/8), done.
+    > remove: Total 10 (delta 1), reused 10 (delta 1)
+    > Unpacking objects: 100% (10/10), done.
 
 Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to visit GitHub Help for more detailed explanations of the cloning process.
 
