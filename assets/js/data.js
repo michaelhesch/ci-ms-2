@@ -217,18 +217,10 @@ const locationsArr = [
   }
 ];
 
-//Array of objects providing mapping between point of interest type and it's corresponding Font Awesome icon to be displayed in results.
-const fontMapper = [
-  {
-    poiType: "Historic/Monument",
-    iconType: `<i class="fas fa-landmark"> </i>`
-  },
-  {
-    poiType: "Restaurant/Pub",
-    iconType: `<i class="fas fa-utensils"> </i>`
-  },
-  {
-    poiType: "Outdoors",
-    iconType: `<i class="fas fa-cloud-sun"> </i>`
-  }
-];
+//Object providing mapping between point of interest type and it's corresponding Font Awesome icon
+//Used to display the font awesome icon in browser results.
+const fontMapper = {
+  "Historic/Monument" : `<i class="fas fa-landmark"> </i>`,
+  "Restaurant/Pub" : `<i class="fas fa-utensils"> </i>`,
+  "Outdoors" : `<i class="fas fa-cloud-sun"> </i>`
+};
