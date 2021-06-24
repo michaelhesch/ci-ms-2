@@ -1,6 +1,6 @@
 # Milestone Project Two - Mappy
 
-![Am I Responsive Image](documentation/mappy-air.png)
+![Am I Responsive Image](documentation/screenshots/mappy-air.png)
 
 The purpose of this website is to provide users with a map of cities to visit in Ireland, along with selected points of interest for each city.  The tool will generate a randomized list of cities including two, three or four primary destinations as results, based on user selection.  The user can then drill down into each destination to view a list of selected points of interest, which they can then filter by 'cateogry' to further refine their trip.
 
@@ -56,7 +56,7 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 - Primary colour palette selected for the site from [Coolors](https://coolors.co/):
 
-    ![Colour Palette](documentation/palette.png)
+    ![Colour Palette](documentation/screenshots/palette.png)
 
 - The full palette containing all colors used in the site can be found [here.](documentation/MappyPalette.pdf)
 
@@ -180,8 +180,21 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 ### Issues Encountered in Development - TBU
 
 - [Resolved] x
-- [Resolved] x
-- [Open] Map marker clearing - Ongoing issue related to how the Leaflet maps consume point of interest coordinates to set map markers.  Attempted several potential solutions to loop through the currently set markers and remove them when the POI list is filtered, however the way the markers are being set to the map when it is intilized will not allow this to work.  Extensively read the API documentation from Leaflet and Mapbox but have not been able to produce a solution to this yet.
+- [Open] Reusability of map configuration data - When placing the base map tile configuration below into a variable, with the goal of re-using this code throughout the project to improve maintainability and simplify the code overall, the map does not behave as intended when tested in the browser.  The result is the map not rendering correctly, and rapidly zooming over and over to the intended marker location.  Investigation into this is ongoing but for the time being, the original working code format is being used, where this layer setup is repeated for each instance of a map being rendered.
+
+    ```javascript
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.[apikeyplaceholder]', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1}
+
+    ```
+
+- [Open] Map marker clearing - Ongoing issue related to how the Leaflet maps consume point of interest coordinates to set map markers.  Attempted several potential solutions to loop through the currently set markers and/or marker layers to remove them when the POI list is filtered, however based on my investigations the way the markers are being set to the map when it is intilized will not allow this to work.  Extensively read the API documentation from Leaflet and Mapbox but have not been able to produce a solution to this yet.  Below is an example where only two markers should be visible, however all markers can be seen as they are all contained within the allMarkers default drill-down zoom level.
+
+    ![Marker Render Bug](documentation/screenshots/marker-bug.png)
 
 ## Deployment
 
