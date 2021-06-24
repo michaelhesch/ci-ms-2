@@ -95,7 +95,7 @@ main {
 #nav-button:hover {
 	color: white;
 	background-color: #B55224;
-	border-color: #B55224;
+	border-color: #91411D;
 	border-radius: 5px;
 }
 
@@ -110,6 +110,11 @@ main {
 	border-radius: 15px;
 	padding-left: 0;
 	padding-right: 0;
+}
+
+.carousel-city-name {
+	font-size: 26px;
+	font-weight: bold;
 }
 
 ul {
@@ -153,7 +158,7 @@ select {
 #build-button:hover {
 	color: white;
 	background-color: #B55224;
-	border-color: #B55224;
+	border-color: #91411D;
 	border-radius: 5px;
 }
 
