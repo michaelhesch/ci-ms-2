@@ -8,6 +8,8 @@ let cityList = [];
 let bottomMap; 
 //mapbox API key, stored globally for easy maintenance
 const apiKey = `pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA`;
+//mapbox required attribution stored globally for easy maintenance
+const mapAttribution = `Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`;
 // fontMapper & locationsArr are returned via data.js
 
 //Loads preference selection form for number of cities to visit, HTML layout and the default main map view 
@@ -16,10 +18,10 @@ function mapLoader() {
   let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    attribution: `${mapAttribution}`,
     id: 'mapbox/streets-v11',
     tileSize: 512,
-    zoomOffset: -1,
+    zoomOffset: -1
   }).addTo(topMap);
 }
 
@@ -98,11 +100,10 @@ function generateTopMapAndCitiesLayout(locationsList) {
   let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    attribution: `${mapAttribution}`,
     id: 'mapbox/streets-v11',
     tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
+    zoomOffset: -1
   }).addTo(topMap);
 
   //loop to add markers from array of coordinates
@@ -158,11 +159,10 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
   bottomMap = L.map('bottom-map-div', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
 
   L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      attribution: `${mapAttribution}`,
       id: 'mapbox/streets-v11',
       tileSize: 512,
-      zoomOffset: -1,
-      accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
+      zoomOffset: -1
   }).addTo(bottomMap);
 
   //sets filteredAttractions variable to the result of generateFitleredAttractions based on user selection
@@ -211,17 +211,19 @@ function updateDetailsViewContent(filteredAttractions) {
 }
 
 //render drilldown map and POI markers using mapbox API and leaflet library
-function renderBottomMap (citySelection) {
+function renderBottomMap(citySelection) {
   let bottomMap = L.map('bottom-map-div', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
   let filteredSelection = citySelection.drilldown;
 
   L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      attribution: `${mapAttribution}`,
       id: 'mapbox/streets-v11',
       tileSize: 512,
-      zoomOffset: -1,
-      accessToken: 'pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA'
+      zoomOffset: -1
   }).addTo(bottomMap);
+
+  let bottomMapMarkers = [];
+
   //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
   for (let i = 0; i < filteredSelection.length; i++) {
     L.marker(filteredSelection[i].poiCoord).addTo(bottomMap).bindPopup("This is the location of "+filteredSelection[i].poiName+".");

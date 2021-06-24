@@ -70,11 +70,21 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 ### Wireframes - TBU
 
-- Mobile Wireframes - x pages - [View](https://)
+- Mobile Wireframes - [View](documentation/wireframes/mobile-wireframe.pdf)
 
-- Tablet Wireframes - x pages - [View](https://)
+- Tablet Wireframes - [View](documentation/wireframes/tablet-wireframe.pdf)
 
-- Desktop Wireframes - x pages  - [View](https://)
+- Desktop Wireframes - [View](documentation/wireframes/desktop-wireframe.pdf)
+
+#### Deviations from wireframe designs
+
+- During development some small changes were made to the final design that is deployed vs. the wireframes above:
+
+  - Removal of the "Print Map" button & associated feature.  This was removed to reduce complexity for the initial release of the page, this may be added in through a future update.
+
+  - Addition of coloured "tile" background to hold the map output and map drilldown output content.  This was added to give some additional visual focus to the main content a user will interact with on the page, and to distinguish the maps and associated details from the background of the site.
+
+  - Added headings to the top map section and the details map below, which is updated dynamically to show the name of the city a user has selected.
 
 ## Features - TBU
 
@@ -125,47 +135,89 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 ## Testing - TBU
 
+### Code Validation
+
 The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.  Results of those checks are documented in PDFs included in the project repository and can be accessed by following the links below.
 
 - [W3C Markup Validator](https://validator.w3.org/nu/) - No errors detected. [Results](https://)
 - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - No errors detected. [Results](https://)
-- [JSHint JavaScript Validator](https://jshint.com/) - ##TBU In addition, development was undertaken using Visual Studio Code with the JSHint plugin to eliminate any warnings or errors in real time.  No outstanding warnings or errors detected using the version of JSHint IDE.
+- [JSHint JavaScript Validator](https://jshint.com/) - JSHint web version produces warnings when validating the code, while the IDE plug-in version of JSHint used during development returns no outstanding warnings.  This difference is due to the web version lacking the full context of references to outside files, functions called from HTML, etc.  During testing no unexpected behavior or bugs have been detected related to these warnings.  Descriptions of the outstanding warnings can be found below:
+  
+1. Three undefined variables
+    1. "L" : this is a reference to the Leaflet JS library, which is required to call Leaflet functions/methods from Leaflet.  My implementation of "L" is consistent with the Leaflet documentation, and is contained within functions throughout my page.  The Leaflet JavaScript and CSS libraries are loaded in the project via the HTML, which is likely the cause of this warning.  A further example of how "L" is used in a function in the project:
+
+        ```javascript
+        let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
+
+        L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
+        attribution: `${mapAttribution}`,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+        }).addTo(topMap);
+        ```
+
+    1. "locationsArr" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
+    1. "fontMapper" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
+
+### Function Testing
+
+The site contains 14 functions which are used to implement the dynamic functionality of the page in various ways.  During development and upon completion of the project, testing was undertaken to ensure these functions are behaving as designed.
+
+1. mapLoader() :
+1. randomizer(numOfLocations) :
+1. generateCityList() :
+1. generateTopMapCitiesResults() :
+1. generateTopMapAndCitiesLayout(locationsList) :
+1. generateFilteredAttractions(citySelectionIndex, tripType) :
+1. generateDetailsDefaultLayout(citySelectionIndex) :
+1. updateDetailsMapMarkers(filteredAttractions) :
+1. updateDetailsViewContent(filteredAttractions) :
+1. renderBottomMap(citySelection) :
+1. filterDrilldown(citySelectionIndex) :
+1. clearDrilldown() :
+1. createDrilldownControls() :
 
 ### Testing User Stories from User Experience (UX) Section - TBU
 
-- #### First Time Visitor Story Testing
+#### First Time Visitor Story Testing
 
-    1. Learn about X.
-        1. When a user arrives at the landing page of the site, they are presented with a clean and clear menu bar for navigation, featuring the name of the club, and a large hero image section to draw their attention.  
-        1. The hero image also features a text tagline to further reinforce the brand of the club and further draw the user's attention.  [View Screenshot](https://github.com/)
-        1. Continuing further down the page, the benefits of membership in the club are clearly featured in three large tiles with brief text descriptions of each feature. [View Screenshot](https://github.com/)
+1. Learn about X.
+    1. When a user arrives at the landing page of the site, they are presented with a clean and clear menu bar for navigation, featuring the name of the club, and a large hero image section to draw their attention.  
+    1. The hero image also features a text tagline to further reinforce the brand of the club and further draw the user's attention.  [View Screenshot](https://github.com/)
+    1. Continuing further down the page, the benefits of membership in the club are clearly featured in three large tiles with brief text descriptions of each feature. [View Screenshot](https://github.com/)
 
-    2. Learn about X.
-        1. The second component of the landing page, after the club benefits, is a listing of upcoming club events by location, including day and time. [View Screenshot](https://github.com/)
+2. Learn about X.
+    1. The second component of the landing page, after the club benefits, is a listing of upcoming club events by location, including day and time. [View Screenshot](https://github.com/)
 
-    3. Learn about X.
-        1. Once the user navigates to the Locations tab, the club's physical locations are clearly displayed in a large grid, including the address and opening hours of each location, as well as a map to help the user visualize the location in each city. [View Screenshot](https://github.com/)
+3. Learn about X.
+    1. Once the user navigates to the Locations tab, the club's physical locations are clearly displayed in a large grid, including the address and opening hours of each location, as well as a map to help the user visualize the location in each city. [View Screenshot](https://github.com/)
 
-- #### Returning Visitor Story Testing
+#### Returning Visitor Story Testing
 
-    1. X.
-        1. After a user visits the page and learns more about the club, they may want to return to submit an application.  This is accomplished by navigating to the "Join the Club" page and filling out a form to collect the user's basic details.  [View Screenshot](https://)
-        1. In addition, the user can select their desired membership level from two options, standard & premium, based on the features of each level displayed in the form. [View Screenshot](https://)
+1. X.
+    1. After a user visits the page and learns more about the club, they may want to return to submit an application.  This is accomplished by navigating to the "Join the Club" page and filling out a form to collect the user's basic details.  [View Screenshot](https://)
+    1. In addition, the user can select their desired membership level from two options, standard & premium, based on the features of each level displayed in the form. [View Screenshot](https://)
 
-    2. X.
-        1. The club events highlight section on the landing page would be updated rountinely by the club as new events are held, and as time passes, so this section will provide a quick and easy reference point for a returning user to view events. [View Screenshot](https://)
+2. X.
+    1. The club events highlight section on the landing page would be updated rountinely by the club as new events are held, and as time passes, so this section will provide a quick and easy reference point for a returning user to view events. [View Screenshot](https://)
 
-    3. X.
-        1. As the club expands, users can easily view newly added locations on the "Locations" tab of the page, which would be updated to include the address and opening hours details for new club locations. [View Screenshot](https://)
+3. X.
+    1. As the club expands, users can easily view newly added locations on the "Locations" tab of the page, which would be updated to include the address and opening hours details for new club locations. [View Screenshot](https://)
 
-- #### Site Owner Story Testing
+#### Site Owner Story Testing
 
-    1. X.
-        1. After a
+1. X.
+    1. After a
 
 ### Further Testing - TBU
 
-- All pages were tested for responsiveness and any visible bugs using Google Chrome developer tools to change the viewing size across devices.  In addition, all pages on the site were tested for correct behavior on a 27" desktop monitor, a 15.1" laptop monitor, an iPhone 11 and a 10.5" iPad.
+#### Responsiveness
+
+- All pages were tested for responsiveness and any visible bugs using Google Chrome developer tools to change the viewing size across all device sizes offered.  In addition, all pages on the site were tested for correct behavior on a 27" desktop monitor, a 15.1" laptop monitor, an iPhone 11 and a 10.5" iPad.  The pages scale and respond as expected for a normal user experience across these viewing sizes & devices.
+
+#### Lighthouse
+
 - The Lighthouse tool in Chrome Developer tools was used to generate performance scores and identify areas for improvement in both mobile and desktop views of the page.  Results of this scoring can be viewed via the links below:
 
     1. Mobile Scores:
@@ -307,4 +359,4 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Acknowledgements
 
-- My Code Institute Mentor for helpful feedback on my ideas prior to development and throughout the project.
+- My Code Institute Mentor Aaron for helpful feedback on my ideas prior to development and throughout the project.
