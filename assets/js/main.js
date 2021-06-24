@@ -2,19 +2,19 @@
 
 //Global Variables 
 
-//array to hold results to return 
+//Array to hold results to return, needs to be accessed by multiple functions
 let cityList = []; 
-//lower drill-down section map, needs to be accessed by multiple functions
+//Lower drill-down section map, needs to be accessed by multiple functions
 let bottomMap; 
-//mapbox API key, stored globally for easy maintenance
+//Mapbox API key, stored globally for easy maintenance
 const apiKey = `pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFzeDNhZ24ifQ.oaM0BZ8bOBg_8jf2HU9YgA`;
 //mapbox required attribution stored globally for easy maintenance
 const mapAttribution = `Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`;
-// fontMapper & locationsArr are returned via data.js
+//fontMapper & locationsArr are returned via data.js
 
 /**
- * Creates top map default view with no markers and adds basic map tiles
- * @returns rendered map to 'top-map-div'
+ * Creates top map default view with no markers and adds map.
+ * Adds map to DOM in div with css id of 'top-map-div'.
  */ 
 function mapLoader() {
   
@@ -29,16 +29,21 @@ function mapLoader() {
 }
 
 /**
- * Generates random number between 0 and numOfLocations to be used as array index matching value
- * @param numOfLocations as number
- * @returns random number
+ * Generates random number between 0 and numOfLocations. 
+ * @param numOfLocations as number of total cities in dataset.
+ * @returns random number between 0 and numOfLocations.
  */
 function randomizer(numOfLocations) {
   return Math.floor(Math.random() * numOfLocations);
 }
 
 /**
- * Generate city list array based on randomly selected unique index values. 
+ * Generate city list array based on randomly selected unique index values.
+ * While the cities array length is less than the number of stops selected by user:
+ * 1. Generate random number from randomizer()
+ * 2. Retrieve city from array at randomizer() return index
+ * 3. Check if city already exists in cities array, if it does not, add it. 
+ *    If it does, continue in loop to find next city. 
  * @returns array of city objects
  */
 function generateCityList() {
@@ -57,10 +62,10 @@ function generateCityList() {
 }
 
 /**
- * Generates HTML template litteral
- * @returns object of 
+ * Generates HTML template literal of all city names from generateCityList() and corresponding details.
+ * Loops through cityList length to append the name, summary and HTML elements to string called locationsList.
+ * Call generateTopMapAndCitiesLayout() function, passing locationsList as parameter.
  */
-//function to generate output html to return city names and corresponding details based on user input
 function generateTopMapCitiesResults() {
   //assigns pritArr to be the array of city data returned by generateCityList function above
   cityList = generateCityList();
@@ -83,12 +88,13 @@ function generateTopMapCitiesResults() {
 } 
 
 /**
- * Generate map with markers based on locationsList passed in
- * @param locationsList
- * @returns html objects
+ * Generate map with markers and string text based on locationsList.
+ * Set innerHTML of 'top-map-comment', 'city-div' based on locationsList.
+ * Refresh/override map content container in 'top-map-div'.
+ * Set view to Ireland coordinates for inital map render.
+ * Loop through cityList array to find each city's location markers and add to map.
+ * @param locationsList string of HTML template literal to be added to DOM
  */
-//function to render the upper map with markers for city results generated above.  
-//Takes in the locationsList object from generateTopMapCitiesResults to display to user
 function generateTopMapAndCitiesLayout(locationsList) {
   //HTML content displayed after preference selections are made with map results
   document.getElementById("top-map-comment").innerHTML = `Please see your customized results below.`;
@@ -129,9 +135,15 @@ function generateTopMapAndCitiesLayout(locationsList) {
   });
 }
 
-//filters the selected cities 'drilldown' data based on the type of attraction (tripType) passed in
-//returns the 'drilldown' objects that match the trip type for the selected city
-//default view is to show all poi/attraction info, called allTypes below
+/**
+ * Generates filtered attractions for a particular city and trip type.
+ * Finds the citySelection in cityList based on the citySelectionIndex.
+ * Setting default value of filteredSelection to be all content inside citySelection drilldown array
+ * If the tripType is anything other than all, filter drilldown results return only those matching selected trip type.
+ * @param citySelectionIndex as number of selected city.
+ * @param tripType string as selected points of interest category.
+ * @returns array of all filtered selections based on trip type.
+ */
 function generateFilteredAttractions(citySelectionIndex, tripType) {
   let citySelection = cityList[citySelectionIndex];
   let filteredSelection = citySelection.drilldown; 
@@ -144,6 +156,16 @@ function generateFilteredAttractions(citySelectionIndex, tripType) {
   return filteredSelection;
 }
 
+/**
+ * Generates bottom details panel based on selected city from top panel.
+ * Finds the citySelection in cityList based on the citySelectionIndex.
+ * Setting innerHTML for 'form-div-2' with selected city information & HTML elements.
+ * Set view to selected city coordinates for inital map render.
+ * Retrieve filteredAttractions based on the selected city & the default selection of 'All' in dropdown.
+ * Calls updateDetailsViewContent() to populate the filtered attractions appended list to HTML.
+ * Calls createDrilldownControls() to create 'Hide Detailed View' button.
+ * @param citySelectionIndex as number of selected city. 
+ */
 function generateDetailsDefaultLayout(citySelectionIndex) {
   let citySelection = cityList[citySelectionIndex];
   //update the bottom map container 'form-div-2' HTML based on user's city selection
@@ -182,9 +204,13 @@ function generateDetailsDefaultLayout(citySelectionIndex) {
   createDrilldownControls();
 }
 
-//function to add map markers to the bottom map 
+/**
+ * Generates bottom panel map markers and sets the map zoom to the filteredAttractions coordinates.
+ * Loop through filteredAttractions array and append marker to map for each filteredAttraction with coordinates & tooltip.
+ * Append coordinates to array of arrays to set the map zoom to fit the markers.
+ * @param filteredAttractions array of selected city objects.
+ */
 function updateDetailsMapMarkers(filteredAttractions) {
-  //let coordsDrilldownGroup = [];
   let bottomMapMarkers = [];
   //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
   for (let i = 0; i < filteredAttractions.length; i++) { 
@@ -198,7 +224,12 @@ function updateDetailsMapMarkers(filteredAttractions) {
   });
 }
 
-//create drilldown view content, pass in index of the city from the selection
+/**
+ * Appending HTML elements for each filtered attraction to string.
+ * Loop through each filteredAttraction, find the corresponding fontAwesome icon, append results to poiList string.
+ * Update map markers based on filteredAttractions, set innerHTML to poiList string.
+ * @param filteredAttractions array of selected city objects. 
+ */
 function updateDetailsViewContent(filteredAttractions) {
   let poiList = "";
   //loop to create filtered points of interest content for the drill-down pane
@@ -218,47 +249,32 @@ function updateDetailsViewContent(filteredAttractions) {
   document.getElementById("poi-list").innerHTML = poiList;
 }
 
-//render drilldown map and POI markers using mapbox API and leaflet library
-function renderBottomMap(citySelection) {
-  let bottomMap = L.map('bottom-map-div', {scrollWheelZoom: false}).setView(citySelection.coord, 10);
-  let filteredSelection = citySelection.drilldown;
-
-  L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
-      attribution: `${mapAttribution}`,
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1
-  }).addTo(bottomMap);
-
-  let bottomMapMarkers = [];
-
-  //loop to add markers from array of drilldown coordinates based on user selection to be rendered on the map
-  for (let i = 0; i < filteredSelection.length; i++) {
-    L.marker(filteredSelection[i].poiCoord).addTo(bottomMap).bindPopup("This is the location of "+filteredSelection[i].poiName+".");
-    bottomMapMarkers.push(filteredSelection[i].poiCoord);
-  }
-  //set the map to include all POI markers from array above with padding and zoom/map animation
-  bottomMap.flyToBounds(bottomMapMarkers, {
-    padding: L.point(36, 36), 
-    animate: true,
-  });
-}
-
-//update the points of interest drill down div based on user's selection
+/**
+ * Update points of interest for the selected city based on the user's selection from dropdown.
+ * Gets dropdown selection as typeOfTrip, passes citySelectionIndex and typeOfTrip to generateFilteredAttractions().
+ * Gets results from generateFilteredAttractions() as filteredAttractions, passes that into updateDetailsViewContent() 
+ * to update the HTML elements based on selected points of interest.
+ * @param citySelectionIndex as number of selected city.
+ */
 function filterDrilldown(citySelectionIndex) {
   let typeOfTrip =  document.getElementById("tripType").value;
   let filteredAttractions = generateFilteredAttractions(citySelectionIndex, typeOfTrip);
   updateDetailsViewContent(filteredAttractions);
 }
 
-//function to clear the entire lower drill-down container & drill-down controls 
-//result is to display only the top map & city data
+/**
+ * Clears HTML for 'form-div-2' and 'controls-bottom', which resets content for drilldown panel.
+ */
 function clearDrilldown() {
   document.getElementById("form-div-2").innerHTML = ``;
   document.getElementById("controls-bottom").innerHTML = ``;
 }
 
 //function to create the control button for the lower drill-down container
+/**
+ * Creates button to clear drilldown contents. This function is called from generateDetailsDefaultLayout()
+ * and is only visible when there are contents in drilldown.
+ */
 function createDrilldownControls() {
   document.getElementById("controls-bottom").innerHTML = `
     <div class="col text-center align-items-center">
