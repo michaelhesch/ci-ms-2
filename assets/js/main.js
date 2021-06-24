@@ -12,7 +12,10 @@ const apiKey = `pk.eyJ1IjoibWljaGFlbGhlc2NoIiwiYSI6ImNrcHdtcnphYTAzMnIyb3AwbGFze
 const mapAttribution = `Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`;
 // fontMapper & locationsArr are returned via data.js
 
-//Loads preference selection form for number of cities to visit, HTML layout and the default main map view 
+/**
+ * Creates top map default view with no markers and adds basic map tiles
+ * @returns rendered map to 'top-map-div'
+ */ 
 function mapLoader() {
   
   let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
@@ -25,11 +28,8 @@ function mapLoader() {
   }).addTo(topMap);
 }
 
-//Randomize results to return based on user number of cities input
-//consumes user input to generate array of results
-//generates array index values to be used by generateCityList function below
 /**
- * Generate random number between 0 and numOfLocations.
+ * Generates random number between 0 and numOfLocations to be used as array index matching value
  * @param numOfLocations as number
  * @returns random number
  */
@@ -41,13 +41,12 @@ function randomizer(numOfLocations) {
  * Generate city list array based on randomly selected unique index values. 
  * @returns array of city objects
  */
-//function to select cities to add to the output array by using the randomizer results
 function generateCityList() {
   let citiesArr = [];
   let numStops = document.getElementById("numStops").value;
 
   //While loop used to add random values which correspond to the index of an item in the data array.  
-  //If checks for duplicates in the array of index values to prevent duplicate results from being displayed.
+  //If checks for duplicates in the array of index values to prevent duplicate city results from being displayed.
   while (citiesArr.length < numStops) { 
     let randomResult = locationsArr[randomizer(locationsArr.length)];
     if (!citiesArr.includes(randomResult)) {
@@ -57,7 +56,10 @@ function generateCityList() {
   return citiesArr;
 }
 
-//Generate HTML content to display
+/**
+ * Generates HTML template litteral
+ * @returns object of 
+ */
 //function to generate output html to return city names and corresponding details based on user input
 function generateTopMapCitiesResults() {
   //assigns pritArr to be the array of city data returned by generateCityList function above
@@ -65,7 +67,7 @@ function generateTopMapCitiesResults() {
   //clear drilldown panel if user clicks generate new map and a drilldown from a past map was already loaded
   clearDrilldown(); 
 
-  //loop to create HTML output for each travel destination to be included in results to user
+  //loop to create HTML output for each travel destination to be included in results to user, appends to object locationsList
   let locationsList = "";
 
   for (let i = 0; i < cityList.length; i++) {
@@ -80,6 +82,11 @@ function generateTopMapCitiesResults() {
   generateTopMapAndCitiesLayout(locationsList);
 } 
 
+/**
+ * Generate map with markers based on locationsList passed in
+ * @param locationsList
+ * @returns html objects
+ */
 //function to render the upper map with markers for city results generated above.  
 //Takes in the locationsList object from generateTopMapCitiesResults to display to user
 function generateTopMapAndCitiesLayout(locationsList) {
@@ -97,6 +104,7 @@ function generateTopMapAndCitiesLayout(locationsList) {
     L.DomUtil.get('top-map-div')._leaflet_id = null; 
   }
 
+  //define map and add map tile layer
   let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
   L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
