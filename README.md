@@ -2,47 +2,49 @@
 
 ![Am I Responsive Image](documentation/screenshots/mappy-air.png)
 
-The purpose of this website is to provide users with a map of cities to visit in Ireland, along with selected points of interest for each city.  The tool will generate a randomized list of cities including two, three or four primary destinations as results, based on user selection.  The user can then drill down into each destination to view a list of selected points of interest, which they can then filter by 'cateogry' to further refine their trip.
+The purpose of Mappy is to provide users with a custom generated map of cities to visit in Ireland, along with selected points of interest for each city.  The tool will generate a randomized list of cities including two, three or four primary destinations as results, based on the user's selection.  The user can then drill down into each destination to view a list of selected points of interest, which they can then filter by 'cateogry' to further refine their trip.
 
 [View the live project here.](https://michaelhesch.github.io/ci-ms-2/)
 
 ---
 
-## User Experience (UX) - TBU
+## User Experience (UX)
 
-### User stories - TBU
+### User stories
 
 #### First Time Visitor Goals
 
 - As a first time visitor
 
-  - Learn about x.
+  - I want to learn about the service offered by Mappy and how it can help plan my trip.
 
-  - Learn about x.
+  - I want to easily access the map making tool without any confusing steps.
 
-  - Learn about x.
+  - I want to learn valuable information about potential destinations from the map making tool.
 
 #### Returning Visitor Goals
 
 - As a returning visitor
 
-  - x.
+  - I want to be able to quickly return to the map making tool.
 
-  - x.
+  - I want to easily generate new maps to meet my needs.
 
-  - x.
+  - I want to see different results each time I generate a new map.
 
 #### Site Owner Goals
 
 - As the site owner
 
-  - x.
+  - I want to create incentive for user's to interact with the map making tool.
 
-  - x.
+  - I want to provide a pleasant and easy to use to the user experience.
 
-  - x.
+  - I want to provide value to the user through the information provided in the service.
 
-### Design - TBU
+  - I want the user to want to come back to use the map making tool in the future.
+
+### Design
 
 #### Colour Scheme
 
@@ -64,11 +66,16 @@ The purpose of this website is to provide users with a map of cities to visit in
 
 - The font used throughout the site is the Google Font 'Open Sans' which is a clean and simple font style that is easy to read across font sizes.  This font was selected to further build a clean and simple aesthetic across the content on the site.  Sans-serif serves as the backup to Open Sans if it fails to load.
 
+- A sample of the Open Sans typography from [Google Fonts](https://fonts.google.com/specimen/Open+Sans?query=open#standard-styles):
+
+  ![OpenSans](documentation/screenshots/open-sans.png)
+
 #### Imagery
 
-- The landing page image carousel serves a series of images of cities that are included in the Mappy generation database.  This serves to draw the user's attention and create excitement for visiting cities included when using the tool.
+- The landing page is largely text based, but features a distinct image carousel which displays a series of images of cities included in the Mappy generation database.  This aims draw the user's attention and create excitement for visiting cities included when using the tool.
+- The map generation page utilizes a stacked arrangement for the primary map and secondary map, which is not displayed until the user engages with the top map.  A plain map of Ireland is displayed upon loading the map page to draw the user's attention and encourage them to engage with the tool.
 
-### Wireframes - TBU
+### Wireframes
 
 - Mobile Wireframes - [View](documentation/wireframes/mobile-wireframe.pdf)
 
@@ -86,17 +93,33 @@ The purpose of this website is to provide users with a map of cities to visit in
 
   - Added headings to the top map section and the details map below, which is updated dynamically to show the name of the city a user has selected.
 
-## Features - TBU
+## Features
 
-- Clear and concise landing page.
+- All Pages
 
-- Distinct button on the landing page to launch the map creation tool.
+  - Clear and concise page design, including a simple and responsive navigation bar.
 
-- Clear and uncluttered map creation page with simple to use controls.
+  - A sticky footer with easy to identify social media links.
 
-- Easy to read maps and clear details on points of interest.
+- Landing Page
 
-## Technologies Used - TBU
+  - Easy to read overview of the functionality provided by Mappy.
+
+  - Image carousel with enticing images of different cities in Ireland.
+
+  - Distinct button on the landing page to launch the map creation tool.
+
+- Map Creation Tool Page
+
+  - Clear and uncluttered layout with simple to use controls.
+
+  - Easy to read maps and clearly identifiable details on points of interest.
+
+  - Randomized results which display new data each time a map is generated.
+
+  - Easy to filter points of interest data to show only a specific type of attraction to the user.
+
+## Technologies Used
 
 ### Programming Languages Used
 
@@ -104,18 +127,18 @@ The purpose of this website is to provide users with a map of cities to visit in
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
-### Frameworks, Libraries & Programs Used - TBU
+### Frameworks, Libraries & Programs Used
 
-1. [Leaflet.js](https://leafletjs.com/)
-    - Leaflet was used to generate mobile friendly and efficient maps and to attach point of interest markers to the maps generated in this project.  Attribution for Leaflet can also be found on the maps embedded in the page.
+1. [Leaflet 1.7.1](https://leafletjs.com/reference-1.7.1.html)
+    - Leaflet.js was used to generate mobile friendly and efficient maps and to attach point of interest markers to the maps generated in this project.  Attribution for Leaflet can also be found on the maps embedded in the page.
 1. [Mapbox](https://docs.mapbox.com/api/overview/)
-    - Mapbox was used in conjunction with Leaflet to provide the image tiles utilized by the Leaflet maps.  Attribution for Mapbox can also be found on the maps embedded in the page.
+    - Mapbox was used in conjunction with Leaflet to provide the image tiles and other functionality utilized by the Leaflet maps.  Required attribution for Mapbox can also be found on the maps embedded in the page.
 1. [Bootstrap 5.0.1](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
     - Bootstrap was used to add responsiveness and provide a simplified grid construction method.  In addition I utilized Bootstrap to create a sticky footer bar and image carousel for the site's landing page.
 1. [Google Fonts:](https://fonts.google.com/)
-    - Google fonts were used to import the 'Open Sans' font into the style.css file which is used on all pages throughout the project.
+    - Google fonts were used to import the 'Open Sans' font into the style.css file which is used as the default on all pages throughout the project.
 1. [Font Awesome:](https://fontawesome.com/)
-    - Font Awesome was used to add a visual identifier for the type of point of interest for the maps page, and for the social media links found in the footer of all pages.
+    - Font Awesome was used to add a visual identifier icon for the type of point of interest for the maps page, and for the social media links found in the footer of all pages.
 1. [Coolors:](https://coolors.co/)
     - Used Coolors to select the color palette for the page.  Selected color palette can be viewed [here](https://github.com/michaelhesch/ci-ms-2/tree/master/documentation/MappyPalette.pdf).
 1. [Code Institute Full-Stack Developer Course](https://www.codeinstitute.net/)
@@ -126,8 +149,8 @@ The purpose of this website is to provide users with a map of cities to visit in
     - GIMP (GNU Image Manipulation Program) is a free and open source image editor, used to resize and adjust the images used on the site for better performance.
 1. [Visual Stuido Code:](https://code.visualstudio.com/)
     - Visual Stuido code was used as the desktop development IDE for the project, managing the code and assets for the page during development.
-1. [Visual Studio Code - JSHint Plugin:](https://jshint.com/about/)
-    - JSHint plugin was utilized throughout the development process to help catch typographic errors and other potential issues as code was being written.
+1. [JSHint / JSHint Plugin:](https://jshint.com/about/)
+    - The JSHint website was used to validate the JavaScript code.  In addition, the JSHint VS Code plugin was utilized throughout the development process to help catch typographic errors and other potential issues as code was being written.
 1. [Git:](https://git-scm.com/)
     - Git was used for version control by utilizing the Windows command prompt/terminal interface to commit and push to GitHub.
 1. [GitHub:](https://github.com/)
@@ -143,71 +166,118 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - No errors detected. [Results](https://)
 - [JSHint JavaScript Validator](https://jshint.com/) - JSHint web version produces warnings when validating the code, while the IDE plug-in version of JSHint used during development returns no outstanding warnings.  This difference is due to the web version lacking the full context of references to outside files, functions called from HTML, etc.  During testing no unexpected behavior or bugs have been detected related to these warnings.  Descriptions of the outstanding warnings can be found below:
   
-1. Three undefined variables
-    1. "L" : this is a reference to the Leaflet JS library, which is required to call Leaflet functions/methods from Leaflet.  My implementation of "L" is consistent with the Leaflet documentation, and is contained within functions throughout my page.  The Leaflet JavaScript and CSS libraries are loaded in the project via the HTML, which is likely the cause of this warning.  A further example of how "L" is used in a function in the project:
+#### Warning: Three undefined variables
 
-        ```javascript
-        let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
+1. "L" : this is a reference to the Leaflet JS library, which is required to call Leaflet functions/methods from Leaflet.  My implementation of "L" is consistent with the Leaflet documentation, and is contained within functions throughout my page.  The Leaflet JavaScript and CSS libraries are loaded in the project via the HTML, which is likely the cause of this warning.  A further example of how "L" is used in a function in the project:
 
-        L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
-        attribution: `${mapAttribution}`,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1
-        }).addTo(topMap);
-        ```
+    ```javascript
+    let topMap = L.map('top-map-div', {scrollWheelZoom: false}).setView([53.2734, -7.7783], 7);
 
-    1. "locationsArr" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
-    1. "fontMapper" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
+    L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
+    attribution: `${mapAttribution}`,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1
+    }).addTo(topMap);
+    ```
+
+    For comparison, this is the [Leaflet Quick-Start Guide Example](https://leafletjs.com/examples/quick-start/)
+
+    ```javascript
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+    ```
+
+1. "locationsArr" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
+1. "fontMapper" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
+
+#### Warning: Five Unused variables
+
+1. "mapLoader" : this function is called using a ```<body onLoad="mapLoader();">``` trigger in the map.html file to render the default map view when the page loads.  However, JSHint lacks this context when validating the JavaScript code in the web browser version, which causes this warning to be returned.
+
+2. "generateTopMapCitiesResults" :
+
+3. "generateDetailsMapDefaultLayout" :
+
+4. "renderBottomMap" :
+
+5. "filterDrilldown" :
 
 ### Function Testing
 
-The site contains 14 functions which are used to implement the dynamic functionality of the page in various ways.  During development and upon completion of the project, testing was undertaken to ensure these functions are behaving as designed.
+The site contains 13 functions which are used to implement the dynamic functionality of the page in various ways.  During development and upon completion of the project, testing was undertaken to ensure these functions are behaving as designed.
 
 1. mapLoader() :
-1. randomizer(numOfLocations) :
-1. generateCityList() :
-1. generateTopMapCitiesResults() :
-1. generateTopMapAndCitiesLayout(locationsList) :
-1. generateFilteredAttractions(citySelectionIndex, tripType) :
-1. generateDetailsDefaultLayout(citySelectionIndex) :
-1. updateDetailsMapMarkers(filteredAttractions) :
-1. updateDetailsViewContent(filteredAttractions) :
-1. renderBottomMap(citySelection) :
-1. filterDrilldown(citySelectionIndex) :
-1. clearDrilldown() :
-1. createDrilldownControls() :
+
+2. randomizer(numOfLocations) :
+
+3. generateCityList() :
+
+4. generateTopMapCitiesResults() :
+
+5. generateTopMapAndCitiesLayout(locationsList) :
+
+6. generateFilteredAttractions(citySelectionIndex, tripType) :
+
+7. generateDetailsDefaultLayout(citySelectionIndex) :
+
+8. updateDetailsMapMarkers(filteredAttractions) :
+
+9. updateDetailsViewContent(filteredAttractions) :
+
+10. renderBottomMap(citySelection) :
+
+11. filterDrilldown(citySelectionIndex) :
+
+12. clearDrilldown() :
+
+13. createDrilldownControls() :
 
 ### Testing User Stories from User Experience (UX) Section - TBU
 
 #### First Time Visitor Story Testing
 
-1. Learn about X.
-    1. When a user arrives at the landing page of the site, they are presented with a clean and clear menu bar for navigation, featuring the name of the club, and a large hero image section to draw their attention.  
-    1. The hero image also features a text tagline to further reinforce the brand of the club and further draw the user's attention.  [View Screenshot](https://github.com/)
-    1. Continuing further down the page, the benefits of membership in the club are clearly featured in three large tiles with brief text descriptions of each feature. [View Screenshot](https://github.com/)
+1. I want to learn about the service offered by Mappy and how it can help plan my trip.
+    1. x.  
+    1. x. [View Screenshot](https://github.com/)
+    1. x. [View Screenshot](https://github.com/)
 
-2. Learn about X.
-    1. The second component of the landing page, after the club benefits, is a listing of upcoming club events by location, including day and time. [View Screenshot](https://github.com/)
+2. I want to easily access the map making tool without any confusing steps.
+    1. x. [View Screenshot](https://github.com/)
 
-3. Learn about X.
-    1. Once the user navigates to the Locations tab, the club's physical locations are clearly displayed in a large grid, including the address and opening hours of each location, as well as a map to help the user visualize the location in each city. [View Screenshot](https://github.com/)
+3. I want to learn valuable information about potential destinations from the map making tool.
+    1. x. [View Screenshot](https://github.com/)
 
 #### Returning Visitor Story Testing
 
-1. X.
-    1. After a user visits the page and learns more about the club, they may want to return to submit an application.  This is accomplished by navigating to the "Join the Club" page and filling out a form to collect the user's basic details.  [View Screenshot](https://)
-    1. In addition, the user can select their desired membership level from two options, standard & premium, based on the features of each level displayed in the form. [View Screenshot](https://)
+1. I want to be able to quickly return to the map making tool.
+    1. x. [View Screenshot](https://)
+    1. x. [View Screenshot](https://)
 
-2. X.
-    1. The club events highlight section on the landing page would be updated rountinely by the club as new events are held, and as time passes, so this section will provide a quick and easy reference point for a returning user to view events. [View Screenshot](https://)
+2. I want to easily generate new maps to meet my needs.
+    1. x. [View Screenshot](https://)
 
-3. X.
-    1. As the club expands, users can easily view newly added locations on the "Locations" tab of the page, which would be updated to include the address and opening hours details for new club locations. [View Screenshot](https://)
+3. I want to see different results each time I generate a new map.
+    1. x. [View Screenshot](https://)
 
 #### Site Owner Story Testing
 
-1. X.
+1. I want to create incentive for user's to interact with the map making tool.
+    1. After a
+
+1. I want to provide a pleasant and easy to use to the user experience.
+    1. After a
+
+1. I want to provide value to the user through the information provided in the service.
+    1. After a
+
+1. I want the user to want to come back to use the map making tool in the future.
     1. After a
 
 ### Further Testing - TBU
@@ -218,7 +288,7 @@ The site contains 14 functions which are used to implement the dynamic functiona
 
 #### Lighthouse
 
-- The Lighthouse tool in Chrome Developer tools was used to generate performance scores and identify areas for improvement in both mobile and desktop views of the page.  Results of this scoring can be viewed via the links below:
+- The Lighthouse tool within Chrome Developer tools was used to generate performance scores and identify areas for improvement in both mobile and desktop views of the page.  Results of this scoring can be viewed via the links below:
 
     1. Mobile Scores:
         1. [Home Page](https://)
@@ -238,6 +308,18 @@ The site contains 14 functions which are used to implement the dynamic functiona
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.[apikeyplaceholder]', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1}
+
+    ```
+
+    -[Partial Solution] In an effort to simplify the main.js code and improve maintainability of the code going forward, for example in the event the API key needs to be updated, the API key and attribution values have been stored in global constants.  These variables have been added to the map tileLayer generation code using template litterals.  This will allow these values to be updated easily in the future as needed, with the added benefit of shortening the repeated use of the tileLayer code.
+
+    ```javascript
+
+    L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${apiKey}`, {
+    attribution: `${mapAttribution}`,
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1}
@@ -290,7 +372,7 @@ The project was deployed to GitHub Pages using the following steps:
 
 Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to visit GitHub Help for more detailed explanations of the cloning process.
 
-## Credits - TBU
+## Credits
 
 ### Code
 
@@ -327,7 +409,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 - [w3schools.com - CSS:](https://www.w3schools.com/css/default.asp) : Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 
-### Content - TBU
+### Content
 
 - All text content excluding city and location information was written by the developer.  
 
@@ -337,7 +419,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 - Map locations and points of interest were selected by the developer for demonstration purposes.  In a real-world scenario this data would be returned in a JSON response from a data service.
 
-### Media - TBU
+### Media
 
 - All Images were sourced externally, from Wikipedia or are royalty free images from Pixabay.  Specific image credits below:
 
@@ -359,4 +441,4 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Acknowledgements
 
-- My Code Institute Mentor Aaron for helpful feedback on my ideas prior to development and throughout the project.
+- My Code Institute Mentor Aaron for helpful feedback on my ideas prior to development and guidance throughout the project.
