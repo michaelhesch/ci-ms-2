@@ -169,11 +169,12 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
     - No warnings or errors returned.
 
 - [W3C CSS Validator - Jigsaw](https://jigsaw.w3.org/css-validator/)
-  - [Style.css Results](documentation/validation/css-validator.png)No errors detected.
+  - [Style.css Results](documentation/validation/css-validator.png)
+    - No warnings or errors returned.
 
 - [JSHint JavaScript Validator](https://jshint.com/) - JSHint web version produces warnings when validating the code, while the IDE plug-in version of JSHint used during development returns no outstanding warnings.  This difference is due to the web version lacking the full context of references to outside files, functions called from HTML, etc.  During testing no unexpected behavior or bugs have been detected related to these warnings.  Descriptions of the outstanding warnings can be found below:
   
-#### Warning: Three undefined variables
+#### JSHint Warning: Three undefined variables
 
 1. "L" : this is a reference to the Leaflet JS library, which is required to call Leaflet functions/methods from Leaflet.  My implementation of "L" is consistent with the Leaflet documentation, and is contained within functions throughout my page.  The Leaflet JavaScript and CSS libraries are loaded in the project via the HTML, which is likely the cause of this warning.  A further example of how "L" is used in a function in the project:
 
@@ -201,10 +202,10 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
     }).addTo(mymap);
     ```
 
-1. "locationsArr" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
-1. "fontMapper" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
+2. "locationsArr" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
+3. "fontMapper" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
 
-#### Warning: Four Unused variables
+#### JSHint Warning: Four Unused variables
 
 1. "mapLoader" : this function is called using ```<body onload="mapLoader();">``` in the map.html file to render the default map view when the page loads.  However, JSHint lacks this context when validating the JavaScript code in the web browser version, which causes this warning to be returned.
 
@@ -218,7 +219,9 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 The site contains 12 functions which are used to implement the dynamic functionality of the page in various ways.  During development and upon completion of the project, testing was undertaken to ensure these functions are behaving as designed.
 
-Each function was tested using ```console.log()```
+Each function was tested with the extensive use of ```console.log()```, often in multiple places within the same function, to confirm that the expected behavior was happening through each step of the function as well as at the end result.  This testing was essential to the development of this site, as several functions take in parameters from others, so confirming the output of each function was correct was All ```console.log()```s have been removed from the deployed project.
+
+In addition, during the development process when functions were not working as expected or intended, the Chrome Developer Tools were used 
 
 ### Testing User Stories from User Experience (UX) Section - TBU
 
@@ -265,7 +268,13 @@ Each function was tested using ```console.log()```
 
 #### Responsiveness
 
-- All pages were tested for responsiveness and any visible bugs using Google Chrome developer tools to change the viewing size across all device sizes offered.  In addition, all pages on the site were tested for correct behavior on a 27" desktop monitor, a 15.1" laptop monitor, an iPhone 11 and a 10.5" iPad.  The pages scale and respond as expected for a normal user experience across these viewing sizes & devices.
+- All pages were tested for responsiveness and any visible bugs using Google Chrome developer tools to emulate the viewing size across all standard device sizes offered.  Media queries have been implemented in the CSS of the site to adjust various attributes as necessary to improve the viewing experience on small screen sizes, such as scaling social media icon sizes and adjusting button styling to remain easily usable.
+  
+  Device Screen Sizes Tested
+
+  ![Devices Tested](documentation/screenshots/device-list.png)
+
+- In addition, all pages on the site were tested for correct behavior on a 27" desktop monitor, a 15.1" laptop monitor, an iPhone 11 and a 10.5" iPad Pro.  The pages scale and respond as expected for a normal user experience across these viewing sizes & devices.
 
 #### Lighthouse
 
