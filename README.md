@@ -162,8 +162,15 @@ The purpose of Mappy is to provide users with a custom generated map of cities t
 
 The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.  Results of those checks are documented in PDFs included in the project repository and can be accessed by following the links below.
 
-- [W3C Markup Validator](https://validator.w3.org/nu/) - No errors detected. [Results](https://)
-- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - No errors detected. [Results](https://)
+- [W3C Markup Validator](https://validator.w3.org/nu/)
+  - [Index.html Results](documentation/validation/index-validator.png)
+    - No warnings or errors returned.
+  - [Map.html Results](documentation/validation/map-validator.png)
+    - No warnings or errors returned.
+
+- [W3C CSS Validator - Jigsaw](https://jigsaw.w3.org/css-validator/)
+  - [Style.css Results](documentation/validation/css-validator.png)No errors detected.
+
 - [JSHint JavaScript Validator](https://jshint.com/) - JSHint web version produces warnings when validating the code, while the IDE plug-in version of JSHint used during development returns no outstanding warnings.  This difference is due to the web version lacking the full context of references to outside files, functions called from HTML, etc.  During testing no unexpected behavior or bugs have been detected related to these warnings.  Descriptions of the outstanding warnings can be found below:
   
 #### Warning: Three undefined variables
@@ -197,47 +204,21 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 1. "locationsArr" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
 1. "fontMapper" : this is the data source array created by the developer and used by the site's functions to populate the site with city and point of interest data, in place of a JSON response from a data service.  To keep the primary JavaScript file "main.js" neat and tidy, this array was placed in a separate JavaScript file called "data.js", which is loaded via the HTML when the maps page is opened.  As this variable is referenced in the "main.js" but is coming from an external source, this is likely the cause of this warning.
 
-#### Warning: Five Unused variables
+#### Warning: Four Unused variables
 
-1. "mapLoader" : this function is called using a ```<body onLoad="mapLoader();">``` trigger in the map.html file to render the default map view when the page loads.  However, JSHint lacks this context when validating the JavaScript code in the web browser version, which causes this warning to be returned.
+1. "mapLoader" : this function is called using ```<body onload="mapLoader();">``` in the map.html file to render the default map view when the page loads.  However, JSHint lacks this context when validating the JavaScript code in the web browser version, which causes this warning to be returned.
 
-2. "generateTopMapCitiesResults" :
+2. "generateTopMapCitiesResults" : this function is called using ```<button onclick="generateTopMapCitiesResults();">``` in the map.html file to create the top travel map and city list.  JSHint lacks this context in the browser validation tool, which causes this warning to be returned.
 
-3. "generateDetailsMapDefaultLayout" :
+3. "generateDetailsDefaultLayout" : this function is called using ```<button onclick="generateDetailsDefaultLayout();">``` in the map.html page, but is attached to a button that is used to trigger the drill down functions, but this button is only presented to the user after the top map panel has been populated.  JSHint lacks this context in the browser validation tool, which causes this warning to be returned.
 
-4. "renderBottomMap" :
-
-5. "filterDrilldown" :
+4. "filterDrilldown" : this function is called using ```<select onchange="filterDrilldown();">``` in the map.html page, but is attached to a drop down list which shows the user category names for points of interest.  This option is only visible to the user after the top map has been rendered and a city has been selected to drill down into.  This function serves to filter the points of interest in the drill down each time the type is changed.  JSHint lacks this context in the browser validation tool, which causes this warning to be returned.
 
 ### Function Testing
 
-The site contains 13 functions which are used to implement the dynamic functionality of the page in various ways.  During development and upon completion of the project, testing was undertaken to ensure these functions are behaving as designed.
+The site contains 12 functions which are used to implement the dynamic functionality of the page in various ways.  During development and upon completion of the project, testing was undertaken to ensure these functions are behaving as designed.
 
-1. mapLoader() :
-
-2. randomizer(numOfLocations) :
-
-3. generateCityList() :
-
-4. generateTopMapCitiesResults() :
-
-5. generateTopMapAndCitiesLayout(locationsList) :
-
-6. generateFilteredAttractions(citySelectionIndex, tripType) :
-
-7. generateDetailsDefaultLayout(citySelectionIndex) :
-
-8. updateDetailsMapMarkers(filteredAttractions) :
-
-9. updateDetailsViewContent(filteredAttractions) :
-
-10. renderBottomMap(citySelection) :
-
-11. filterDrilldown(citySelectionIndex) :
-
-12. clearDrilldown() :
-
-13. createDrilldownControls() :
+Each function was tested using ```console.log()```
 
 ### Testing User Stories from User Experience (UX) Section - TBU
 
@@ -290,18 +271,39 @@ The site contains 13 functions which are used to implement the dynamic functiona
 
 - The Lighthouse tool within Chrome Developer tools was used to generate performance scores and identify areas for improvement in both mobile and desktop views of the page.  Results of this scoring can be viewed via the links below:
 
-    1. Mobile Scores:
-        1. [Home Page](https://)
-        1. [Map Generation Page](https://)
-    1. Desktop Scores:
-        1. [Home Page](https://)
-        1. [Map Generation Page](https://)
+1. Mobile Scores:
+    1. [Home Page](https://)
+    1. [Map Generation Page](https://)
+1. Desktop Scores:
+    1. [Home Page](https://)
+    1. [Map Generation Page](https://)
 
 - Please note that while efforts to coprrect some defects indicated in these results are due to issues found in external dependencies, such as Bootstrap's CSS, the HTTP version configured in the GitHub Pages server that the site is deployed on, etc. or other faults that are beyond the scope of this project to remedy.
 
 ### Issues Encountered in Development - TBU
 
-- [Resolved] x
+- [Resolved] Unresolvable erroneous validation error - When doing final double-checks on validation, I encountered a strange Aria related validation warning on the map.html page.  This was being flagged on the ```<option>``` tag used in the drop down selection which allows a user to choose how many cities to return in their travel map.  This was subsequently resolved, but further background on this issue can be found below.
+
+- Warning returned: ```The aria-selected attribute should not be used on the option element.```
+  - Warning is being flagged for the code on line 44, the ```<option>``` tag in the ```<select>``` element used to select the number of cities to visit.  This element does not require an Aria attribute when not used in a ```listbox``` multi-select drop-down, based on referencing the MDN Aria documentation [here.](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role)
+  - As shown below, the code in thsi project does not include any Aria values in the ```<select>``` or ```<option>``` tags, and should not produce this validation error.
+
+      ```html
+        <label for="numStops" id="stops-label"><strong>Select the number of cities to visit:</strong></label>
+              <select id="numStops" name="numStops">
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+              </select>    
+      ```
+
+  - This warning was a new result from the validator on 24 June, as prior validation checks on 23 June and 22 June did not return this warning.  Upon further investigation into the commit history of the Nu validation tool, there was a commit on 26 June to add a warning on any detected ```<option>``` tag, which I believe is incorrect behavior.  
+  - This commit does not account for scenarios where there is not a multiselect drop down use of ```<option>```, as is the case in this project.  The commit introducing this change can be viewed on GitHub [here.](https://github.com/validator/validator/commit/9e1246c2cc6f9d93c6907d883171a424c91086f2)
+
+    ![W3 Option Commit](documentation/validation/validator-aria-commit.png)  
+
+  - I logged a ticket with the W3 Nu Validator team to investigate this via their GitHub, which can be viewed [here.](https://github.com/validator/validator/issues/1167)  This was resolved on 24 June after the W3 contributor who introduced this change replied to my GitHub ticket stating this behavior was in fact a bug related to the change.  The commit resolving this issue can be viewed [here.](https://github.com/validator/validator/commit/97792649288ad81f9b8ff1fed6fe74c492d867b9)  
+
 - [Open] Reusability of map configuration data - When placing the base map tile configuration below into a variable, with the goal of re-using this code throughout the project to improve maintainability and simplify the code overall, the map does not behave as intended when tested in the browser.  The result is the map not rendering correctly, and rapidly zooming over and over to the intended marker location.  Investigation into this is ongoing but for the time being, the original working code format is being used, where this layer setup is repeated for each instance of a map being rendered.
 
     ```javascript
@@ -370,7 +372,7 @@ The project was deployed to GitHub Pages using the following steps:
     
     ```
 
-Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to visit GitHub Help for more detailed explanations of the cloning process.
+[Click Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to visit GitHub Help for more detailed explanations of the cloning process.
 
 ## Credits
 
