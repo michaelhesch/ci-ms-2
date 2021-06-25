@@ -104,7 +104,8 @@ function generateTopMapAndCitiesLayout(locationsList) {
       <div class="col">${locationsList}</div>
     </div>
   `;
-  //refresh map content after container has been initialized 
+  //refresh map content after container has been initialized
+  //code snippit taken from solution provided by Stack Overflow user 'Joe Eifert' at the link below 
   //https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized
   if (L.DomUtil.get('top-map-div') !== undefined) { 
     L.DomUtil.get('top-map-div')._leaflet_id = null; 

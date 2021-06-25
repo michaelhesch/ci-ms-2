@@ -156,7 +156,7 @@ The purpose of Mappy is to provide users with a custom generated map of cities t
 1. [GitHub:](https://github.com/)
     - GitHub is used to store the project's code after being pushed from the local development machine using Git, as well as host the page using GitHub Pages.
 
-## Testing - TBU
+## Testing
 
 ### Code Validation
 
@@ -217,54 +217,53 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 ### Function Testing
 
-The site contains 12 functions which are used to implement the dynamic functionality of the page in various ways.  During development and upon completion of the project, testing was undertaken to ensure these functions are behaving as designed.
+The site contains 12 JavaScript functions which are used to implement the dynamic functionality of the page in various ways.  During development and upon completion of the project, testing was undertaken to ensure these functions are behaving as designed.
 
 Each function was tested with the extensive use of ```console.log()```, often in multiple places within the same function, to confirm that the expected behavior was happening through each step of the function as well as at the end result.  This testing was essential to the development of this site, as several functions take in parameters from others, so confirming the output of each function was correct was All ```console.log()```s have been removed from the deployed project.
 
-In addition, during the development process when functions were not working as expected or intended, the Chrome Developer Tools were used 
+During the development process when functions were not working as expected or intended, the debugger in the Chrome Developer Tools was used to set break points and step through functions to troubleshoot and resolve issues.  This was very helpful in identifying where an issue was being created.
 
-### Testing User Stories from User Experience (UX) Section - TBU
+After deploying the site, additional checks were performed to ensure all functions are behaving as expected by selecting every option and clicking every button on the site, particularly on the map generation page.  This included selecting options and clicking items out of the normal logical order to make sure that no bugs exist in the deployed version of the site.
+
+### Testing User Stories from User Experience (UX) Section
 
 #### First Time Visitor Story Testing
 
 1. I want to learn about the service offered by Mappy and how it can help plan my trip.
-    1. x.  
-    1. x. [View Screenshot](https://github.com/)
-    1. x. [View Screenshot](https://github.com/)
+    1. The landing page provides a clear description of what is offered by the service centered in the page upon loading. [View Screenshot](documentation/screenshots/mappy-offering.png)
 
 2. I want to easily access the map making tool without any confusing steps.
-    1. x. [View Screenshot](https://github.com/)
+    1. The "Build your map" button is presented in the the middle of the page and is clearly defined from the background and surrounding content. [View Screenshot](documentation/screenshots/create-map-button.png)
 
 3. I want to learn valuable information about potential destinations from the map making tool.
-    1. x. [View Screenshot](https://github.com/)
+    1. The map making tool allows quick and easy access to city information by displaying it immediately when a map is generated.  Details about each city are easy to access by clicking one button. [View Screenshot](documentation/screenshots/city-map.png)
 
 #### Returning Visitor Story Testing
 
 1. I want to be able to quickly return to the map making tool.
-    1. x. [View Screenshot](https://)
-    1. x. [View Screenshot](https://)
+    1. The "Build your map" button launches the map creation tool in one click from the landing page, allowing a returning user to very easily access the tool.  Alternatively this page can be bookmarked and accessed directly by a returning user. [View Screenshot](documentation/screenshots/create-map-button.png)
 
 2. I want to easily generate new maps to meet my needs.
-    1. x. [View Screenshot](https://)
+    1. Once on the map creation page, new maps can be generated with one click of the "create your travel map" button at the top of the page.  This can be done until the user obtains a combination they are satisfied with. [View Screenshot](documentation/screenshots/city-map.png)
 
 3. I want to see different results each time I generate a new map.
-    1. x. [View Screenshot](https://)
+    1. Results are randomized each time a new map is generated, so new results will be returned each time a user generates a map. [View Screenshot](documentation/screenshots/city-map-2.png)
 
 #### Site Owner Story Testing
 
 1. I want to create incentive for user's to interact with the map making tool.
-    1. After a
+    1. The free, easy to use service provided by Mappy to help users improve their travel experiences creates incentive to use the site.
 
 1. I want to provide a pleasant and easy to use to the user experience.
-    1. After a
+    1. The subdued color palette, clean design aesthetic and easy to use navigation controls provide this to the user.
 
 1. I want to provide value to the user through the information provided in the service.
-    1. After a
+    1. Details about each city included as well as points of interest across multiple categories for each city provide users with valuable insights into new cities.
 
 1. I want the user to want to come back to use the map making tool in the future.
-    1. After a
+    1. The ability to get new results quickly and easily with the map generation tool provides users with incentive to return to plan their future travel around Ireland.
 
-### Further Testing - TBU
+### Further Testing
 
 #### Responsiveness
 
@@ -281,15 +280,15 @@ In addition, during the development process when functions were not working as e
 - The Lighthouse tool within Chrome Developer tools was used to generate performance scores and identify areas for improvement in both mobile and desktop views of the page.  Results of this scoring can be viewed via the links below:
 
 1. Mobile Scores:
-    1. [Home Page](https://)
-    1. [Map Generation Page](https://)
+    1. [Home Page](documentation/lighthouse/mobile-index.pdf)
+    1. [Map Generation Page](documentation/lighthouse/mobile-map.pdf)
 1. Desktop Scores:
-    1. [Home Page](https://)
-    1. [Map Generation Page](https://)
+    1. [Home Page](documentation/lighthouse/desktop-index.pdf)
+    1. [Map Generation Page](documentation/lighthouse/desktop-map.pdf)
 
-- Please note that while efforts to coprrect some defects indicated in these results are due to issues found in external dependencies, such as Bootstrap's CSS, the HTTP version configured in the GitHub Pages server that the site is deployed on, etc. or other faults that are beyond the scope of this project to remedy.
+- Please note that while efforts to coprrect some defects indicated in these results are due to issues found in external dependencies, such as Bootstrap's CSS, the Mapbox library, the HTTP version configured in the GitHub Pages server that the site is deployed on, etc. or other faults that are beyond the scope of this project to remedy.
 
-### Issues Encountered in Development - TBU
+### Issues Encountered in Development
 
 - [Resolved] Unresolvable erroneous validation error - When doing final double-checks on validation, I encountered a strange Aria related validation warning on the map.html page.  This was being flagged on the ```<option>``` tag used in the drop down selection which allows a user to choose how many cities to return in their travel map.  This was subsequently resolved, but further background on this issue can be found below.
 
@@ -415,6 +414,8 @@ The project was deployed to GitHub Pages using the following steps:
 - [Leaflet.js API documentation](https://leafletjs.com/reference-1.7.1.html) : Leaflet API documentation referenced for further detail on methods to manipulate the maps used in the project.
 
 - [Stack Overflow - Sticky Footer Solution](https://stackoverflow.com/questions/20657599/footer-in-bootstrap-that-extends-with-content-or-sticks-to-the-bottom) : Utilized method provided by user "Zim" to create a wrapper tag for main content container in index.html and applied corresponding CSS properties to get sticky footer bar for the site's social media links working correctly.
+
+- [Stack Overflow - Clear Leaflet Map Container After Container Initialized](https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized) : Utilized method provided by "Joe Eifert" to work around not globally storing the top map variable.  This allows the map to be updated without re-creating the HTML element that the map is stored in.  This issue arose in the code where the top map is rendered on loading the map page, but needs to be updated later to display results.
 
 - [w3schools.com - JavaScript:](https://www.w3schools.com/jsref/jsref_reference.asp) : Referenced w3schools materials on JavaScript to review & learn more about certain JavaScript function methods (array filtering, for example).  Also utilized to review additional documentation on CSS as well as Bootstrap features, in addition to the Bootstrap documentation.
 
